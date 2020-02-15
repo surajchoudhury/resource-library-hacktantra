@@ -1,0 +1,292 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* code start */
+
+
+
+/* general classes */
+/* *,
+*::after,
+*::before {
+  box-sizing: border-box;
+} */
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+
+/* code start */
+header {
+  height: 50px;
+  background-color: rgb(50, 55, 84);
+  font-size: 0px;
+}
+
+/* main section */
+main {
+  background-color: #f3f3f3;
+}
+
+.main_container {
+  max-width: 1280px;
+  margin: 0 auto;
+  color: rgb(37, 44, 51);
+  font-family: "Open Sans", sans-serif;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.topic-container {
+  width: 978px;
+  background-color: white;
+}
+
+.contributer_container {
+  width: 280px;
+  height: 50px;
+  background-color: rgb(255, 204, 204);
+}
+
+/*topic */
+.topic_header_container {
+  padding: 0 20px;
+  box-shadow: -1px 2px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.author_publishDate_container {
+  padding: 7px 0 10px 0px;
+}
+
+.topic_title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #252c33;
+  line-height: 25px;
+  display: block;
+  padding: 20px 20px 5px 0px;
+}
+
+.short_decreption {
+  display: inline;
+  color: rgb(70, 83, 94);
+  font-size: 12px;
+  font-weight: 300;
+  word-spacing: 1px;
+  text-transform: capitalize;
+  padding-right: 10px;
+}
+
+.topic_author_name {
+  display: inline-block;
+  color: rgb(70, 83, 94);
+  font-size: 12px;
+  font-weight: 300;
+  word-spacing: 1px;
+  margin-top: 7px;
+  text-transform: capitalize;
+  padding-right: 10px;
+}
+
+b {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.tags {
+  display: inline-block;
+  color: rgb(70, 83, 94);
+  font-size: 13px;
+  font-weight: 300;
+  word-spacing: 1px;
+  margin-top: 10px;
+  text-transform: capitalize;
+  padding-right: 10px;
+}
+
+.tutorial_nav {
+  height: 34px;
+  background-color: rgb(243, 243, 243);
+  /* border: .5px solid gray; */
+}
+
+.nav-topic {
+  display: inline-block;
+  margin: 0px 10px;
+  padding: 5px 10px;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.underline {
+  border-bottom: 3px solid rgb(76, 156, 223);
+  ;
+}
+
+.main_tutorial_area {
+  cursor: default;
+  padding: 20px 20px 30px 20px;
+  line-height: 21px;
+  font-size: 15px;
+}
+
+/* faq_section*/
+.faq_section {
+  box-shadow: -1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.faq_heading {
+  font-size: 18px;
+  margin: 0 16.600px;
+  padding: 15px 15px;
+  text-transform: uppercase;
+}
+
+.faq_container {
+  margin: 7px;
+}
+
+.question {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 25px 0px 20px;
+}
+
+.answer {
+  font-size: 14px;
+  padding: 5px 25px;
+}

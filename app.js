@@ -9,7 +9,7 @@ require('dotenv').config();
 var usersRouter = require('./routes/v1/users');
 
 //mongoose connect to database
-mongoose.connect('mongodb://localhost/resources',{ useNewUrlParser: true, useUnifiedTopology: true },(err => {
+mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true, useUnifiedTopology: true },(err => {
   console.log('connected', err?false:true)
 }))
 

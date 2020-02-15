@@ -5,7 +5,8 @@ const subjectSchema = new Schema({
   title: {
     type: String,
     trim: true,
-    required: true
+    required: true,
+    unique: true
   },
   modules: [{
     type: Schema.Types.ObjectId,

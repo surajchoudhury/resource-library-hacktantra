@@ -1,4 +1,5 @@
 import React from "react";
+import { GoMarkGithub } from "react-icons/go";
 
 class Signin extends React.Component {
   constructor(props) {
@@ -10,34 +11,56 @@ class Signin extends React.Component {
   }
 
   render() {
-    return <section>
-      <div class="form_container">
-    <div class="button_container">
-      <div id="btn"></div>
-      <button type="button" class="toggle-btn">Login</button>
-      <button type="button" class="toggle-btn">Regester</button>
-    </div>
-    <div class="social-icons">
-      <img src="./assets/images/GitHub-Mark.png" alt="" />  
-    </div>
+    return (
+      <div class="limiter">
+        <div class="container-login100">
+          <div class="wrap-login100">
+            <form class="login100-form validate-form">
+              <span class="login100-form-title p-b-26">Welcome</span>
+              <span class="login100-form-title p-b-48">
+                <i class="zmdi zmdi-font">
+                  <GoMarkGithub className="github_logo" />
+                </i>
+              </span>
 
-    <form id="login" class="input-group" action="" method="POST">
-      <input class="input-field" type="text" name="" placeholder="User Id" required />
-      <input class="input-field" type="text" name="" placeholder="Enter Password" />
-      <input type="checkbox" class="check-box"/><span>Remember Password</span>
-      <button class="submit-btn" type="submit">log in</button>
-    </form>
+              <div
+                class="wrap-input100 validate-input"
+                data-validate="Valid email is: a@b.c"
+              >
+                <input class="input100" type="text" name="email" />
+                <span class="focus-input100" data-placeholder="Username"></span>
+              </div>
 
-    <form id="register" class="input-group" action="" method="POST">
-      <input class="input-field" type="text" name="" placeholder="User Id" required />
-      <input class="input-field" type="text" name="" placeholder="Email id" required />
-      <input class="input-field" type="text" name="" placeholder="Enter Password" />
-      <input type="checkbox" class="check-box" /><span>agree terms and condition</span>
-      <button class="submit-btn" type="submit">Regester</button>
-    </form>
-  </div>
-    </section>;
-}
+              <div
+                class="wrap-input100 validate-input"
+                data-validate="Enter password"
+              >
+                <span class="btn-show-pass">
+                  <i class="zmdi zmdi-eye"></i>
+                </span>
+                <input class="input100" type="password" name="pass" />
+                <span class="focus-input100" data-placeholder="Password"></span>
+              </div>
+
+              <div class="container-login100-form-btn">
+                <div class="wrap-login100-form-btn">
+                  <div class="login100-form-bgbtn"></div>
+                  <button class="login100-form-btn">Login</button>
+                </div>
+              </div>
+
+              <div class="text-center p-t-115">
+                <span class="txt1">Don’t have an account?</span>
+                <a class="txt2" href="#">
+                  Sign Up
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Signin;

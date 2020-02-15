@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./Store";
 import { BrowserRouter } from "react-router-dom";
 import "./stylesheets/style.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

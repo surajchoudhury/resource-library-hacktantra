@@ -1,6 +1,11 @@
 import React from "react";
-import Signin from "../components/Signin";
 import { Route, Switch } from "react-router-dom";
+
+//relative imports
+
+import Signin from "../components/Signin";
+import Dashboard from "./Dashboard";
+import ModuleView from "./ModulesView";
 
 class Home extends React.Component {
   constructor() {
@@ -11,20 +16,20 @@ class Home extends React.Component {
   }
 
   publicRoutes = () => {
-    return (
-      <section>
-        <Route path="/signin">
-          <Signin />
-        </Route>
-      </section>
-    );
+    return <section></section>;
   };
 
   protectedRoutes = () => {
     return (
       <section>
-        <Route path="/">
-          <p>homepage</p>
+        <Route path="/signin">
+          <Signin />
+        </Route>
+        <Route path="/modules/view">
+          <ModuleView />
+        </Route>
+        <Route exact path="/">
+          <Dashboard />
         </Route>
       </section>
     );
@@ -33,9 +38,7 @@ class Home extends React.Component {
   render() {
     return (
       <main>
-        <Switch>
-          {localStorage.token ? this.protectedRoutes() : this.publicRoutes()}
-        </Switch>
+        <Switch>{this.protectedRoutes()}</Switch>
       </main>
     );
   }

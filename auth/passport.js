@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken')
 passport.use(new GitHubStrategy({
     clientID: process.env.Client_ID,
     clientSecret: process.env.Client_Secret,
-    callbackURL: "http://localhost:3000/api/v1/users/auth/github/callback"
+    callbackURL: "https://resource-library-alt.herokuapp.com/api/v1/users/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     if(profile.username == 'reettik97'|| profile.username == 'itzsunny'){

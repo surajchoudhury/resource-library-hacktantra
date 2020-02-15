@@ -7,7 +7,7 @@ var mongoose = require('mongoose')
 require('dotenv').config();
 // var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/v1/users');
-
+var subjectsRouter = require('./routes/v1/subjects')
 //mongoose connect to database
 mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true, useUnifiedTopology: true },(err => {
   console.log('connected', err?false:true)
@@ -28,5 +28,5 @@ require('./auth/passport')
 
 // app.use('/', indexRouter);
 app.use('/api/v1/users', usersRouter);
-
+app.use('/api/v1/subjects', subjectsRouter)
 module.exports = app;

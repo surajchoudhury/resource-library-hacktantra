@@ -21,8 +21,5 @@ router.get('/auth/github/callback',
   });
 
 
-  router.get('/check',auth.verifyToken,auth.isMentor,(req,res) => {
-    res.send('helloworld')
-  })
 
 module.exports = router

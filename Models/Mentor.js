@@ -45,12 +45,9 @@ mentorSchema.pre("save", function(next) {
   }
 });
 
-mentorSchema.methods.verifyPassword = (password, done) => {
-  bcrypt.compare(password, this.password, (err, matched) => {
-    if (err) return done(null, false);
-    done(null, matched);
-  });
-};
+mentorSchema.methods.verifyPassword = async function(password) {
+    return await bcrypt.compare(password, this.password)
+  }
 
 const Mentor = mongoose.model("Mentor", mentorSchema);
 module.exports = Mentor;

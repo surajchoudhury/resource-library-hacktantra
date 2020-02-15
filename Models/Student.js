@@ -45,12 +45,9 @@ studentSchema.pre("save", function(next) {
   }
 });
 
-studentSchema.methods.verifyPassword = (password, done) => {
-  bcrypt.compare(password, this.password, (err, matched) => {
-    if (err) return done(null, false);
-    done(null, matched);
-  });
-};
+studentSchema.methods.verifyPassword = async function(password) {
+  return await bcrypt.compare(password, this.password)
+}
 
 const Student = mongoose.model("Student", studentSchema);
-mongoose.model = Student;
+module.exports = Student;

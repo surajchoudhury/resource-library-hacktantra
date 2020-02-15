@@ -10,9 +10,9 @@ const subjectSchema = new Schema({
   },
   modules: [{
     type: Schema.Types.ObjectId,
-    ref: 'Mentor'
+    ref: 'Module'
   }],
-  Image: {
+  image: {
     type: String
   }
 })

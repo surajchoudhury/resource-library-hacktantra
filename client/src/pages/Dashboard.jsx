@@ -1,12 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSubjects, createSubject, deleteSubject } from "../Actions";
+import {
+  fetchSubjects,
+  createSubject,
+  deleteSubject,
+  setSubjecct
+} from "../Actions";
 import { Accordion, Card, Button, Form } from "react-bootstrap";
 import { GiWhiteBook } from "react-icons/gi";
 import { IoMdAdd } from "react-icons/io";
 import { Link, withRouter } from "react-router-dom";
 import { FiDelete } from "react-icons/fi";
 import Loader from "../components/Loader";
+import { setSubId, fetchSubject } from "../Actions";
 
 class Dashboard extends React.Component {
   constructor() {
@@ -67,7 +73,15 @@ class Dashboard extends React.Component {
                     <p className="card-text">{subject.description}</p>
                   </div>
                   <a href="" className=" my-btn-dash">
-                    <Link to="/modules" className="link">Start Learning</Link>
+                    <Link
+                      to="/modules"
+                      className="link"
+                      onClick={() => {
+                        this.props.dispatch(fetchSubject(subject._id));
+                      }}
+                    >
+                      Start Learning
+                    </Link>
                   </a>
                 </div>
               ))}

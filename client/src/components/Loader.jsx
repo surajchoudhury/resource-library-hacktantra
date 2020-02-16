@@ -7,7 +7,7 @@ const Loader = () => {
       <Spinner animation="border" role="status" className="my-spinner">
         <span className="sr-only">Loading...</span>
       </Spinner>{" "}
-      Loading...
+      <span className="loading">Loading...</span>
     </div>
   );
 };

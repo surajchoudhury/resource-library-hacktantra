@@ -71,6 +71,10 @@ main {
   height: 40rem;
   width:100%;
 }
+.form_module-faq {
+  height: 20rem;
+  width:100%;
+}
 .topic_author_name {
   display: inline-block;
   color: rgb(70, 83, 94);
@@ -8360,8 +8364,8 @@ h1, h2, h3, h4, h5,
   width: 100%; }
 
 #sidebar {
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 280px;
+  max-width: 280px;
   background: #212121;
   color: #fff;
   -webkit-transition: all 0.3s;
@@ -8392,7 +8396,7 @@ h1, h2, h3, h4, h5,
       #sidebar ul li > ul li {
         font-size: 14px; }
     #sidebar ul li a {
-      padding: 15px 30px;
+      padding: 1rem;
       display: block;
       color: rgba(255, 255, 255, 0.6);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1); }

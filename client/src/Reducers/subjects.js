@@ -1,7 +1,8 @@
-import { SET_SUBJECTS, GET_SUBID } from "../Types";
+import { SET_SUBJECTS, GET_SUBID, GET_SUBJECT } from "../Types";
 
 const INITIAL_STATE = {
   subjects: null,
+  subject: null,
   subId: null
 };
 
@@ -16,6 +17,11 @@ function subjects(state = INITIAL_STATE, action) {
       return {
         ...state,
         subId: action.payload
+      };
+    case GET_SUBJECT:
+      return {
+        ...state,
+        subject: action.payload
       };
     default:
       return state;

@@ -362,6 +362,11 @@ iframe {
 
 .github_logo {
   font-size: 2.5rem;
+  color: rgb(95, 102, 109);
+  transition: all .3s;
+  &:hover {
+    color: #343A40;
+  }
 }
 
 /*------------------------------------------------------------------
@@ -563,7 +568,10 @@ iframe {
   padding: 0 20px;
   width: 100%;
   height: 50px;
-  background-color: #2884fb;
+  background-color: rgb(88, 95, 102);
+  &:hover {
+    background-color: #343A40;
+  }
 }
 
 .wrap-login100-form-btn:hover .login100-form-bgbtn {

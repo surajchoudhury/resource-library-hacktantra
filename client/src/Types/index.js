@@ -5,3 +5,5 @@ export const SET_MODULES = "SET_MODULES";
 export const SET_MENTORS = "SET_MENTORS";
 export const IS_LOGGED = "IS_LOGGED";
 export const GET_SUBID = "GET_SUBID";
+export const GET_SUBJECT = "GET_SUBJECT";
+export const GET_MODULE = "GET_MODULE";

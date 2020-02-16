@@ -5,7 +5,9 @@ import {
   SET_SUBJECTS,
   SET_MODULES,
   IS_LOGGED,
-  GET_SUBID
+  // GET_SUBID,
+  GET_SUBJECT,
+  GET_MODULE
 } from "../Types";
 
 function setUsers(payload) {
@@ -50,9 +52,23 @@ export function isLogged(payload) {
   };
 }
 
-export function setSubId(payload) {
+// export function setSubId(payload) {
+//   return {
+//     type: GET_SUBID,
+//     payload
+//   };
+// }
+
+function setSubject(payload) {
   return {
-    type: GET_SUBID,
+    type: GET_SUBJECT,
+    payload
+  };
+}
+
+function setModule(payload) {
+  return {
+    type: GET_MODULE,
     payload
   };
 }
@@ -117,7 +133,25 @@ export function deleteSubject(id) {
   };
 }
 
-export function createModule(id, title, description, body, image) {
+export function fetchSubject(id) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${id}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(subject => {
+        if (subject.success) {
+          dispatch(setSubject(subject));
+        }
+      });
+  };
+}
+
+export function createModule(id, title, description, body, faq) {
   return dispatch => {
     fetch(`/api/v1/subjects/${id}/modules`, {
       method: "POST",
@@ -129,18 +163,37 @@ export function createModule(id, title, description, body, image) {
         title,
         description,
         body,
-        image
+        faq
       })
     })
       .then(res => res.json())
       .then(modules => {
         if (modules.success) {
+          console.log(modules);
+          dispatch(fetchSubject(id));
           dispatch(fetchSubjects());
         }
       });
   };
 }
 
+export function fetchModule(id, moduleID) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${id}/modules/${moduleID}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(Module => {
+        if (Module.success) {
+          dispatch(setModule(Module));
+        }
+      });
+  };
+}
 export function loginUser(username, password, history) {
   return dispatch => {
     fetch("/api/v1/users/login", {

@@ -1,5 +1,9 @@
 import React from "react";
 import Loader from "../components/Loader";
+import { FiDelete, FiEdit } from "react-icons/fi";
+import { fetchModule, deleteModule } from "../Actions";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class ModulesView extends React.Component {
   constructor() {
@@ -7,6 +11,9 @@ class ModulesView extends React.Component {
     this.state = {};
   }
 
+  handledelete = (id, moduleID) => {
+    this.props.dispatch(deleteModule(id, moduleID));
+  };
   render() {
     return (
       <main>
@@ -15,11 +22,33 @@ class ModulesView extends React.Component {
             <div className="topic-container">
               <div className="topic_header_container">
                 <div className="topic_title">
-                  {this.props.module.module.title}
+                  <span>{this.props.module.module.title}</span>
+                  <span>
+                    {" "}
+                    <Link to="/update" className="delete_icon_module">
+                      <FiEdit
+                        onClick={() =>
+                          fetchModule(
+                            this.props.module.module.subject._id,
+                            this.props.module.module._id
+                          )
+                        }
+                      />
+                    </Link>
+                    <FiDelete
+                      className="delete_icon_module"
+                      onClick={() =>
+                        this.handledelete(
+                          this.props.module.module.subject._id,
+                          this.props.module.module._id
+                        )
+                      }
+                    />
+                  </span>
                 </div>
                 <div>
                   <span className="short_decreption">
-                    <b>decreption:</b>
+                    <b>description:</b>
                   </span>
                   <p className="short_decreption">
                     {this.props.module.module.description}
@@ -109,4 +138,4 @@ class ModulesView extends React.Component {
   }
 }
 
-export default ModulesView;
+export default connect()(withRouter(ModulesView));

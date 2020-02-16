@@ -169,7 +169,6 @@ export function createModule(id, title, description, body, faq) {
       .then(res => res.json())
       .then(modules => {
         if (modules.success) {
-          console.log(modules);
           dispatch(fetchSubject(id));
           dispatch(fetchSubjects());
         }
@@ -190,6 +189,60 @@ export function fetchModule(id, moduleID) {
       .then(Module => {
         if (Module.success) {
           dispatch(setModule(Module));
+        }
+      });
+  };
+}
+
+export function updateModule(
+  id,
+  moduleID,
+  title,
+  description,
+  body,
+  faq,
+  history
+) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${id}/modules/${moduleID}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        body,
+        faq
+      })
+    })
+      .then(res => res.json())
+      .then(modules => {
+        if (modules.success) {
+          history.push("/modules");
+          dispatch(fetchModule(id, moduleID));
+          dispatch(fetchSubject(id));
+          dispatch(fetchSubjects());
+        }
+      });
+  };
+}
+
+export function deleteModule(id, moduleID, history) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${id}/modules/${moduleID}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(Module => {
+        if (Module.success) {
+          dispatch(fetchSubjects());
+          dispatch(fetchSubject(id));
         }
       });
   };

@@ -9,6 +9,7 @@ import Dashboard from "./Dashboard";
 import ModuleView from "./ModulesView";
 import Header from "../components/Header";
 import Modules from "./Modules";
+import UpdateModule from "./UpdateModule";
 import { fetchUser, isLogged } from "../Actions";
 
 class Home extends React.Component {
@@ -50,11 +51,11 @@ class Home extends React.Component {
   protectedRoutes = () => {
     return (
       <section>
+        <Route exact path="/update">
+          <UpdateModule />
+        </Route>
         <Route path="/modules">
           <Modules />
-        </Route>
-        <Route path="/modules/view">
-          <ModuleView />
         </Route>
 
         <Route exact path="/">

@@ -28,3 +28,41 @@ function setModules(payload) {
   };
 }
 
+export function fetchSubjects() {
+  return dispatch => {
+    fetch("/api/v1/subjects", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(subject => {
+        console.log(subject);
+        if (subject.success) {
+        }
+      });
+  };
+}
+
+export function loginUser(username, password) {
+  return dispatch => {
+    fetch("/api/v1/users/login", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: {
+        username,
+        password
+      }
+    })
+      .then(res => res.json())
+      .then(user => {
+        if (user.success) {
+          localStorage.setItem("token", user.token);
+        }
+      });
+  };
+}

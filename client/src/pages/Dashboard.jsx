@@ -1,9 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import { fetchSubjects } from "../Actions";
 
 class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {};
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchSubjects());
   }
 
   render() {
@@ -13,13 +19,12 @@ class Dashboard extends React.Component {
           <div className="col mb-4 ">
             <div className="card card-dashboard">
               <div className="dashboard-img-container">
-              <img
-                src="assets/images/html-css.jpg"
-                className="card-img-top"
-                alt="..."
-              />
+                <img
+                  src="assets/images/html-css.jpg"
+                  className="card-img-top"
+                  alt="..."
+                />
               </div>
-            
               <div className="card-body">
                 <h5 className="card-title text-center">HTML & CSS</h5>
                 <p className="card-text">
@@ -27,7 +32,7 @@ class Dashboard extends React.Component {
                   learning HTML & CSS.
                 </p>
               </div>
-              <a href="html-desc.html" className="btn btn-primary">
+              <a href="" className="btn btn-primary">
                 Start Learning
               </a>
             </div>
@@ -38,4 +43,6 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+function mapStatetoProps({ state }) {}
+
+export default connect(mapStatetoProps)(Dashboard);

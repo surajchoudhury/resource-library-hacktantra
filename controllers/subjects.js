@@ -12,7 +12,7 @@ module.exports = {
   },
   getAllSubjects: async (req,res) => {
     try {
-      var subjects = await Subject.find({});
+      var subjects = await Subject.find({}).populate('modules');
       res.json({success:true,subjects:subjects})
     } catch(error){
       res.status(400).json(error)

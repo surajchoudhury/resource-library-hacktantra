@@ -1,11 +1,34 @@
-
-
 .container-dashboard {
-  height: 100vh;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(2,1fr);
+}
+.container-dashboard-big {
+  display: flex;
+  padding: 1rem;
 }
 .card-dashboard {
   padding: 1rem;
 }
 .dashboard-img-container {
   height: 8rem;
+}
+.my-card {
+  width: 10rem;
+}
+.according_container {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.my-card_container {
+  display: flex;
+  width: 20rem;
+  align-items: center;
+  flex-flow: column;
+  background-color: transparent;
+}
+.add_subject {
+  font-size: 1.5rem;
 }

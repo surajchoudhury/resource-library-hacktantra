@@ -32,8 +32,9 @@ module.exports = {
   },
 
   deleteSubject: async (req, res) => {
+    let id = req.params.id;
     try {
-      var deletedSubject = await Subject.findByIdAndRemove(req.params.id);
+      var deletedSubject = await Subject.findByIdAndRemove(id);
       res.json({
         success: true,
         msg: `succesfully deleted ${deletedSubject.title}`

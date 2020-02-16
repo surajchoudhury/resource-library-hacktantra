@@ -8,13 +8,19 @@ const subjectSchema = new Schema({
     required: true,
     unique: true
   },
-  modules: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Mentor'
-  }],
+  description: {
+    type: String,
+    required: true
+  },
+  modules: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Mentor"
+    }
+  ],
   Image: {
     type: String
   }
-})
+});
 
-module.exports = mongoose.model('Subject', subjectSchema)
+module.exports = mongoose.model("Subject", subjectSchema);

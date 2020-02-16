@@ -1,7 +1,9 @@
-import { SET_USERS } from "../Types";
+import { SET_USERS, SET_USER, IS_LOGGED } from "../Types";
 
 const INITIAL_STATE = {
-  users: null
+  users: null,
+  user: null,
+  isLogged: false
 };
 
 function users(state = INITIAL_STATE, action) {
@@ -11,6 +13,17 @@ function users(state = INITIAL_STATE, action) {
         ...state,
         users: action.payload
       };
+    case SET_USER:
+      return {
+        ...state,
+        user: action.payload
+      };
+    case IS_LOGGED:
+      return {
+        ...state,
+        isLogged: action.payload
+      };
+
     default:
       return state;
   }

@@ -1,34 +1,59 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 //relative imports
 
 import Signin from "../components/Signin";
 import Dashboard from "./Dashboard";
 import ModuleView from "./ModulesView";
+import Header from "../components/Header";
+import { fetchUser, isLogged } from "../Actions";
 
 class Home extends React.Component {
   constructor() {
     super();
-    this.state = {
-      isLogged: false
-    };
   }
+
+  componentDidMount() {
+    this.updateUser();
+  }
+
+  updateUser = () => {
+    this.props.dispatch(fetchUser());
+  };
+  oAuth = token => {
+    if (token == "undefined" || !token) return;
+    localStorage.setItem("token", token);
+    this.props.history.push("/");
+  };
+
+  // handleLogout = () => {
+  //   localStorage.clear();
+  //   this.props.dispatch(isLogged(false));
+  // };
 
   publicRoutes = () => {
     return (
-      <Route path="/signin">
-        <Signin />
-      </Route>
+      <>
+        <Route path="/oauth">
+          {this.oAuth(this.props.location.search.split("=")[1])}
+        </Route>
+        <Route path="/">
+          <Signin />
+        </Route>
+      </>
     );
   };
 
   protectedRoutes = () => {
     return (
       <section>
+        {/* <Route path="/logout">{this.handleLogout()}</Route> */}
         <Route path="/modules/view">
           <ModuleView />
         </Route>
+
         <Route exact path="/">
           <Dashboard />
         </Route>
@@ -37,14 +62,25 @@ class Home extends React.Component {
   };
 
   render() {
+    let isMentor = this.props.user && this.props.user.user.isMentor;
     return (
       <main>
+        {this.props.isLogged && localStorage.token ? <Header /> : null}
         <Switch>
-          {localStorage.token ? this.protectedRoutes() : this.publicRoutes()}
+          {localStorage.token || this.props.isLogged
+            ? this.protectedRoutes(isMentor)
+            : this.publicRoutes()}
         </Switch>
       </main>
     );
   }
 }
 
-export default Home;
+function mapStatetoProps({ users }) {
+  return {
+    isLogged: users.isLogged,
+    user: users.user
+  };
+}
+
+export default connect(mapStatetoProps)(withRouter(Home));

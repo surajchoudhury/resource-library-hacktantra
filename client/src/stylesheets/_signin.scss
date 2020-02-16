@@ -137,7 +137,6 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
-
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -150,12 +149,10 @@
 body,
 html {
   height: 100%;
-
 }
 
 /*---------------------------------------------*/
 a {
-
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
@@ -343,6 +340,13 @@ iframe {
   width: 100%;
 }
 
+.eyes {
+  position: absolute;
+  bottom: -0.5rem;
+  font-size: 1.2rem;
+  right: 0.5rem;
+}
+
 .login100-form-title {
   display: block;
   font-size: 35px;
@@ -350,7 +354,7 @@ iframe {
   color: #333333;
   line-height: 1.2;
   text-align: center;
-  padding:2rem 0 0 0 ;
+  padding: 2rem 0 0 0;
 }
 .login100-form-title i {
   font-size: 60px;
@@ -451,6 +455,11 @@ iframe {
   width: 100%;
 }
 
+// .input100::focus {
+//   .focus-input100 {
+//     z-index: -5;
+//   }
+// }
 /*---------------------------------------------*/
 .btn-show-pass {
   font-size: 15px;
@@ -554,7 +563,7 @@ iframe {
   padding: 0 20px;
   width: 100%;
   height: 50px;
-  background-color: #2884FB;
+  background-color: #2884fb;
 }
 
 .wrap-login100-form-btn:hover .login100-form-bgbtn {

@@ -6,7 +6,7 @@ var auth = require("../../auth/auth");
 var subjects = require("../../controllers/subjects");
 
 //get subjects
-router.get("/", subjects.getAllSubjects);
+router.get("/", auth.verifyToken, subjects.getAllSubjects);
 
 //create subjects
 router.post("/", auth.verifyToken, auth.isMentor, subjects.createSubject);

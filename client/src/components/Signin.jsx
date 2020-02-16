@@ -1,5 +1,6 @@
 import React from "react";
 import { GoMarkGithub } from "react-icons/go";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 //////////
 
@@ -12,7 +13,8 @@ class Signin extends React.Component {
     super(props);
     this.state = {
       username: null,
-      password: null
+      password: null,
+      visible: false
     };
   }
 
@@ -27,6 +29,12 @@ class Signin extends React.Component {
     );
   };
 
+  handleVisible = () => {
+    this.setState({ visible: true });
+  };
+  handleHidden = () => {
+    this.setState({ visible: false });
+  };
   render() {
     return (
       <div class="limiter">
@@ -53,9 +61,11 @@ class Signin extends React.Component {
                   class="input100"
                   type="text"
                   name="username"
+                  placeholder="username"
                   onChange={this.handleChange}
                 />
-                <span class="focus-input100" data-placeholder="Username"></span>
+
+                <span class="focus-input100" data-placeholder=""></span>
               </div>
 
               <div
@@ -67,11 +77,21 @@ class Signin extends React.Component {
                 </span>
                 <input
                   class="input100"
-                  type="password"
+                  type={this.state.visible ? "text" : "password"}
                   name="password"
+                  placeholder="Password"
                   onChange={this.handleChange}
                 />
-                <span class="focus-input100" data-placeholder="Password"></span>
+                <span class="focus-input100" data-placeholder=""></span>
+                {this.state.password ? (
+                  <p className="eyes">
+                    {this.state.visible ? (
+                      <FiEyeOff onClick={this.handleHidden} />
+                    ) : (
+                      <FiEye onClick={this.handleVisible} />
+                    )}
+                  </p>
+                ) : null}
               </div>
 
               <div class="container-login100-form-btn">

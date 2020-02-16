@@ -1,29 +1,50 @@
-import { SET_USERS, SET_MENTORS, SET_SUBJECTS, SET_MODULES } from "../Types";
+import {
+  SET_USERS,
+  SET_USER,
+  SET_MENTORS,
+  SET_SUBJECTS,
+  SET_MODULES,
+  IS_LOGGED
+} from "../Types";
 
 function setUsers(payload) {
   return {
-    Type: SET_USERS,
+    type: SET_USERS,
     payload
   };
 }
 
 function setMentors(payload) {
   return {
-    Type: SET_MENTORS,
+    type: SET_MENTORS,
     payload
   };
 }
 
 function setSubjects(payload) {
   return {
-    Type: SET_SUBJECTS,
+    type: SET_SUBJECTS,
     payload
   };
 }
 
 function setModules(payload) {
   return {
-    Type: SET_MODULES,
+    type: SET_MODULES,
+    payload
+  };
+}
+
+function setUser(payload) {
+  return {
+    type: SET_USER,
+    payload
+  };
+}
+
+export function isLogged(payload) {
+  return {
+    type: IS_LOGGED,
     payload
   };
 }
@@ -39,8 +60,32 @@ export function fetchSubjects() {
     })
       .then(res => res.json())
       .then(subject => {
-        console.log(subject);
         if (subject.success) {
+          dispatch(setSubjects(subject));
+        }
+      });
+  };
+}
+
+export function createSubject(title, description, image, history) {
+  return dispatch => {
+    fetch("/api/v1/subjects", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        image
+      })
+    })
+      .then(res => res.json())
+      .then(subject => {
+        if (subject.success) {
+          // history.push("/");
+          dispatch(fetchSubjects());
         }
       });
   };
@@ -62,7 +107,27 @@ export function loginUser(username, password, history) {
       .then(user => {
         if (user.success) {
           localStorage.setItem("token", user.token);
+          dispatch(isLogged(true));
           history.push("/");
+        }
+      });
+  };
+}
+
+export function fetchUser() {
+  return dispatch => {
+    fetch("/api/v1/users", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(user => {
+        if (user.success) {
+          dispatch(isLogged(true));
+          dispatch(setUser(user));
         }
       });
   };

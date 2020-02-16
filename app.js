@@ -29,4 +29,9 @@ require('./auth/passport')
 // app.use('/', indexRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/subjects', subjectsRouter)
+app.get("*", (req, res, next) => {
+  res.sendFile(__dirname, "public/index.html");
+});
+
+
 module.exports = app;

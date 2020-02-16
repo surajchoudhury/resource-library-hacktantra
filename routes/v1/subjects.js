@@ -1,4 +1,4 @@
-var express =  require('express');
+var express = require("express");
 var router = express.Router();
 var Subject = require('../../Models/Subject')
 var Mentor = require('../../Models/Mentor')
@@ -10,17 +10,16 @@ var Module = require('../../Models/Module')
 
 
 //get subjects
-router.get('/', auth.verifyToken, subjects.getAllSubjects)
+router.get("/", subjects.getAllSubjects);
 
 //create subjects
-router.post('/',auth.verifyToken,auth.isMentor,subjects.createSubject)
-
+router.post("/", auth.verifyToken, auth.isMentor, subjects.createSubject);
 
 //update subjects
-router.put('/:id', auth.verifyToken, auth.isMentor, subjects.updateSubject)
+router.put("/:id", auth.verifyToken, auth.isMentor, subjects.updateSubject);
 
 //delete subjects
-router.delete('/:id',auth.verifyToken, auth.isMentor, subjects.updateSubject)
+router.delete("/:id", auth.verifyToken, auth.isMentor, subjects.updateSubject);
 
 //get all modules
 router.get('/:subjectid/modules',auth.verifyToken, async (req,res) =>{

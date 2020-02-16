@@ -18,6 +18,9 @@ const moduleSchema = new Schema({
   image: {
     type: String
   },
+  faq:{
+    type:String
+  },
   subject: {
     type: Schema.Types.ObjectId,
     ref: 'Subject'

@@ -16,7 +16,7 @@ router.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/api/v1/users/login', session:false }),
   async function(req, res) {
     var token = await auth.generateJWT(req.user)
-    res.json({success:true,token})
+     res.redirect(`http://localhost:3000/oauth/?t=${token}`);
     // res.send('success');
   });
 

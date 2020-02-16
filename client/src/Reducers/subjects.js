@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 };
 
 function subjects(state = INITIAL_STATE, action) {
-  switch (action.payload) {
+  switch (action.type) {
     case SET_SUBJECTS:
       return {
         ...state,

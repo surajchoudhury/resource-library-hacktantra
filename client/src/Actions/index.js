@@ -46,22 +46,23 @@ export function fetchSubjects() {
   };
 }
 
-export function loginUser(username, password) {
+export function loginUser(username, password, history) {
   return dispatch => {
     fetch("/api/v1/users/login", {
       method: "POST",
       headers: {
         "content-type": "application/json"
       },
-      body: {
+      body: JSON.stringify({
         username,
         password
-      }
+      })
     })
       .then(res => res.json())
       .then(user => {
         if (user.success) {
           localStorage.setItem("token", user.token);
+          history.push("/");
         }
       });
   };

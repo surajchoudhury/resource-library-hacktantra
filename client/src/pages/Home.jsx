@@ -16,15 +16,16 @@ class Home extends React.Component {
   }
 
   publicRoutes = () => {
-    return <section></section>;
+    return (
+      <Route path="/signin">
+        <Signin />
+      </Route>
+    );
   };
 
   protectedRoutes = () => {
     return (
       <section>
-        <Route path="/signin">
-          <Signin />
-        </Route>
         <Route path="/modules/view">
           <ModuleView />
         </Route>
@@ -38,7 +39,9 @@ class Home extends React.Component {
   render() {
     return (
       <main>
-        <Switch>{this.protectedRoutes()}</Switch>
+        <Switch>
+          {localStorage.token ? this.protectedRoutes() : this.publicRoutes()}
+        </Switch>
       </main>
     );
   }

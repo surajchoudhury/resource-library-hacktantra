@@ -5,7 +5,7 @@ import { GoMarkGithub } from "react-icons/go";
 
 import { loginUser } from "../Actions";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class Signin extends React.Component {
   constructor(props) {
@@ -16,13 +16,15 @@ class Signin extends React.Component {
     };
   }
 
-  onchange = ({ target: { name, value } }) => {
+  handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   };
 
   handleLogin = event => {
     event.preventDefault();
-    this.props.dispatch(loginUser(this.props.username, this.props.password));
+    this.props.dispatch(
+      loginUser(this.state.username, this.state.password, this.props.history)
+    );
   };
 
   render() {
@@ -37,9 +39,9 @@ class Signin extends React.Component {
               <span class="login100-form-title p-b-26">Welcome</span>
               <span class="login100-form-title p-b-48">
                 <i class="zmdi zmdi-font">
-                  <Link to="api/v1/users/auth/github">
+                  <a href="https://resource-library-alt.herokuapp.com/api/v1/users/auth/github">
                     <GoMarkGithub className="github_logo" />
-                  </Link>
+                  </a>
                 </i>
               </span>
 
@@ -47,7 +49,12 @@ class Signin extends React.Component {
                 class="wrap-input100 validate-input"
                 data-validate="Valid email is: a@b.c"
               >
-                <input class="input100" type="text" name="username" />
+                <input
+                  class="input100"
+                  type="text"
+                  name="username"
+                  onChange={this.handleChange}
+                />
                 <span class="focus-input100" data-placeholder="Username"></span>
               </div>
 
@@ -58,7 +65,12 @@ class Signin extends React.Component {
                 <span class="btn-show-pass">
                   <i class="zmdi zmdi-eye"></i>
                 </span>
-                <input class="input100" type="password" name="pass" />
+                <input
+                  class="input100"
+                  type="password"
+                  name="password"
+                  onChange={this.handleChange}
+                />
                 <span class="focus-input100" data-placeholder="Password"></span>
               </div>
 
@@ -83,4 +95,4 @@ class Signin extends React.Component {
   }
 }
 
-export default connect()(Signin);
+export default connect()(withRouter(Signin));

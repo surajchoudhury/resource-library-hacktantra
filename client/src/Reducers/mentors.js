@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 };
 
 function mentors(state = INITIAL_STATE, action) {
-  switch (action.payload) {
+  switch (action.type) {
     case SET_MENTORS: {
       return {
         ...state,

@@ -1,12 +1,19 @@
 body {
   text-align: center;
   font-family: "Open Sans", sans-serif;
+  background-color: #F3F3F3;
 }
 .App {
   font-size: 2rem;
   font-weight: 200;
   word-spacing: 0.2rem;
   color: rgb(255, 255, 255);
+}
+.link {
+  color: rgba(255,255,255,.5);
+  &:hover {
+    color: #fff;
+  }
 }
 .loader_container {
   width: 100%;

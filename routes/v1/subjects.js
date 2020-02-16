@@ -19,7 +19,7 @@ router.post("/", auth.verifyToken, auth.isMentor, subjects.createSubject);
 router.put("/:id", auth.verifyToken, auth.isMentor, subjects.updateSubject);
 
 //delete subjects
-router.delete("/:id", auth.verifyToken, auth.isMentor, subjects.updateSubject);
+router.delete("/:id", auth.verifyToken, auth.isMentor, subjects.deleteSubject);
 
 //get all modules
 router.get('/:subjectid/modules',auth.verifyToken, async (req,res) =>{

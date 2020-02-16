@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSubjects, createSubject } from "../Actions";
+import { fetchSubjects, createSubject, deleteSubject } from "../Actions";
 import { Accordion, Card, Button, Form } from "react-bootstrap";
 import { GiWhiteBook } from "react-icons/gi";
 import { IoMdAdd } from "react-icons/io";
 import { Link, withRouter } from "react-router-dom";
+import { FiDelete } from "react-icons/fi";
 import Loader from "../components/Loader";
 
 class Dashboard extends React.Component {
@@ -43,27 +44,30 @@ class Dashboard extends React.Component {
       <>
         {this.props.subjects ? (
           <section className="container-dashboard-big">
-            <section className="container pt-5 container-dashboard">
+            <section className="container-dashboard">
               {this.props.subjects.map(subject => (
                 <div className="card card-dashboard">
+                  <header className="delete_btn_dashboard">
+                    <FiDelete
+                      className="delete_btn"
+                      onClick={() =>
+                        this.props.dispatch(deleteSubject(subject._id))
+                      }
+                    />
+                  </header>
                   <div className="dashboard-img-container">
                     <img
-                      src="assets/images/html-css.jpg"
+                      src={subject.image}
                       className="card-img-top"
                       alt="..."
                     />
                   </div>
                   <div className="card-body">
-                    <h5 className="card-title text-center">
-                      {" "}
-                      {subject.title}
-                    </h5>
-                    <p className="card-text">
-                      {subject.description}
-                    </p>
+                    <h5 className="card-title text-center"> {subject.title}</h5>
+                    <p className="card-text">{subject.description}</p>
                   </div>
-                  <a href="" className="btn btn-primary">
-                    Start Learning
+                  <a href="" className=" my-btn-dash">
+                    <Link to="/modules" className="link">Start Learning</Link>
                   </a>
                 </div>
               ))}

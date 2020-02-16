@@ -4,3 +4,4 @@ export const SET_SUBJECTS = "SET_SUBJECTS";
 export const SET_MODULES = "SET_MODULES";
 export const SET_MENTORS = "SET_MENTORS";
 export const IS_LOGGED = "IS_LOGGED";
+export const GET_SUBID = "GET_SUBID";

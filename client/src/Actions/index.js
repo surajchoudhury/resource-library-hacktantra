@@ -4,7 +4,8 @@ import {
   SET_MENTORS,
   SET_SUBJECTS,
   SET_MODULES,
-  IS_LOGGED
+  IS_LOGGED,
+  GET_SUBID
 } from "../Types";
 
 function setUsers(payload) {
@@ -49,6 +50,13 @@ export function isLogged(payload) {
   };
 }
 
+export function setSubId(payload) {
+  return {
+    type: GET_SUBID,
+    payload
+  };
+}
+
 export function fetchSubjects() {
   return dispatch => {
     fetch("/api/v1/subjects", {
@@ -84,7 +92,49 @@ export function createSubject(title, description, image, history) {
       .then(res => res.json())
       .then(subject => {
         if (subject.success) {
-          // history.push("/");
+          history.push("/");
+          dispatch(fetchSubjects());
+        }
+      });
+  };
+}
+
+export function deleteSubject(id) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(subject => {
+        if (subject.success) {
+          dispatch(fetchSubjects());
+        }
+      });
+  };
+}
+
+export function createModule(id, title, description, body, image) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${id}/modules`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        body,
+        image
+      })
+    })
+      .then(res => res.json())
+      .then(modules => {
+        if (modules.success) {
           dispatch(fetchSubjects());
         }
       });

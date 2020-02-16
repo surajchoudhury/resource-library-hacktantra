@@ -8,6 +8,7 @@ import Signin from "../components/Signin";
 import Dashboard from "./Dashboard";
 import ModuleView from "./ModulesView";
 import Header from "../components/Header";
+import Modules from "./Modules";
 import { fetchUser, isLogged } from "../Actions";
 
 class Home extends React.Component {
@@ -49,7 +50,9 @@ class Home extends React.Component {
   protectedRoutes = () => {
     return (
       <section>
-        {/* <Route path="/logout">{this.handleLogout()}</Route> */}
+        <Route path="/modules">
+          <Modules />
+        </Route>
         <Route path="/modules/view">
           <ModuleView />
         </Route>

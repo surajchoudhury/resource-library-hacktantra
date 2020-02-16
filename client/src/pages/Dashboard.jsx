@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchSubjects } from "../Actions";
+import { Link } from "react-router-dom";
 
 class Dashboard extends React.Component {
   constructor() {
@@ -15,6 +16,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <section className="container pt-5 container-dashboard">
+        <Link to="/signin">signin</Link>
         <div className="row row-cols-1 row-cols-md-2">
           <div className="col mb-4 ">
             <div className="card card-dashboard">

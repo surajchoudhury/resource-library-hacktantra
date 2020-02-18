@@ -9,12 +9,17 @@ class ModulesView extends React.Component {
   constructor() {
     super();
     this.state = {};
+    this.body = React.createRef();
   }
 
   handledelete = (id, moduleID) => {
     this.props.dispatch(deleteModule(id, moduleID));
   };
+  // createMarkup() {
+  //   return { __html: "First &middot; Second" };
+  // }
   render() {
+    const body = this.body;
     return (
       <main>
         {this.props.module ? (
@@ -71,9 +76,13 @@ class ModulesView extends React.Component {
                 <span className="nav-topic underline">Editorial</span>
                 <span className="nav-topic">faq</span>
               </div>
-              <div className="main_tutorial_area">
-                <h2 className="sec_1">sec 1</h2>
-                <p>
+              <div
+                className="main_tutorial_area"
+                dangerouslySetInnerHTML={{ __html:this.props.module.module.body}}
+              >
+                {/* {(body.current.innerHTML = this.props.module.module.body)} */}
+                {/* <h2 className="sec_1">sec 1</h2> */}
+                {/* <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
                   placeat quaerat laudantium magni nihil quibusdam labore eius
                   cumque rerum dolore, et qui odio assumenda. Aspernatur
@@ -100,7 +109,7 @@ class ModulesView extends React.Component {
                   commodi. Fugiat culpa doloremque cupiditate qui quam officiis
                   fuga aut alias et voluptatibus illum inventore, iste incidunt
                   cum perspiciatis impedit consequuntur magnam ducimus illo!
-                </p>
+                </p> */}
               </div>
               <hr />
               <div className="faq_section">

@@ -12,20 +12,18 @@ module.exports = {
   },
   getAllSubjects: async (req, res) => {
     try {
-      var subjects = await Subject.find({}).populate('modules');
-      res.json({success:true,subjects:subjects})
-    } catch(error){
-      res.status(400).json(error)
+      var subjects = await Subject.find({}).populate("modules");
+      res.json({ success: true, subjects });
+    } catch (error) {
+      res.status(400).json(error);
     }
   },
   updateSubject: async (req, res) => {
     try {
-      var updatedSubject = await Subject.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-      );
-      res.json({ success: true, subject: updatedSubject });
+      var subject = await Subject.findByIdAndUpdate(req.params.id, req.body, {
+        new: true
+      });
+      res.json({ success: true, subject });
     } catch (error) {
       res.status(400).json(error);
     }

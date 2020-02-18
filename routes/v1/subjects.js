@@ -6,7 +6,7 @@ var auth = require("../../auth/auth");
 var subjects = require("../../controllers/subjects");
 // var modulesRouter = require('./modules')
 var Module = require("../../Models/Module");
-
+var showdown = require("showdown");
 //get subjects
 router.get("/", auth.verifyToken, subjects.getAllSubjects);
 
@@ -31,7 +31,7 @@ router.post("/", auth.verifyToken, auth.isMentor, subjects.createSubject);
 router.put("/:id", auth.verifyToken, auth.isMentor, subjects.updateSubject);
 
 //delete subjects
-router.delete("/:id", auth.verifyToken, auth.isMentor, subjects.updateSubject);
+router.delete("/:id", auth.verifyToken, auth.isMentor, subjects.deleteSubject);
 
 //get all modules
 router.get("/:subjectid/modules", auth.verifyToken, async (req, res) => {
@@ -55,6 +55,10 @@ router.get(
       var getModule = await Module.findById(req.params.moduleid).populate(
         "author subject"
       );
+      (converter = new showdown.Converter()),
+        (text = getModule.body),
+        (html = await converter.makeHtml(text));
+      getModule.body = html;
       res.json({ success: true, module: getModule });
     } catch (error) {
       res.status(400).json(error);

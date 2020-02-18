@@ -91,7 +91,7 @@ export function fetchSubjects() {
   };
 }
 
-export function createSubject(title, description, image, history) {
+export function createSubject(title, description, image) {
   return dispatch => {
     fetch("/api/v1/subjects", {
       method: "POST",
@@ -107,10 +107,7 @@ export function createSubject(title, description, image, history) {
     })
       .then(res => res.json())
       .then(subject => {
-        if (subject.success) {
-          history.push("/");
-          dispatch(fetchSubjects());
-        }
+        dispatch(fetchSubjects());
       });
   };
 }
@@ -126,7 +123,9 @@ export function deleteSubject(id) {
     })
       .then(res => res.json())
       .then(subject => {
+        console.log("point 1");
         if (subject.success) {
+          console.log("point 2");
           dispatch(fetchSubjects());
         }
       });

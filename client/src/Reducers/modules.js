@@ -1,8 +1,9 @@
-import { SET_MODULES, GET_MODULE } from "../Types";
+import { SET_MODULES, GET_MODULE, GET_CHAPTER } from "../Types";
 
 const INITIAL_STATE = {
   modules: null,
-  module: null
+  module: null,
+  chapter: null
 };
 
 function modules(state = INITIAL_STATE, action) {
@@ -16,6 +17,12 @@ function modules(state = INITIAL_STATE, action) {
       return {
         ...state,
         module: action.payload
+      };
+
+    case GET_CHAPTER:
+      return {
+        ...state,
+        chapter: action.payload
       };
     default:
       return state;

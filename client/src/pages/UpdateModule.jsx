@@ -37,10 +37,10 @@ class UpdateModule extends React.Component {
       .then(Module => {
         if (Module.success) {
           this.setState({
-            title: Module.module && Module.module.title,
-            description: Module.module && Module.module.description,
-            body: Module.module && Module.module.body,
-            faq: Module.module && Module.module.faq
+            title: Module.MDmodule && Module.MDmodule.title,
+            description: Module.MDmodule && Module.MDmodule.description,
+            body: Module.MDmodule && Module.MDmodule.body,
+            faq: Module.MDmodule && Module.MDmodule.faq
           });
         }
       });
@@ -69,31 +69,30 @@ class UpdateModule extends React.Component {
         this.state.faq ? (
           <Form onSubmit={this.handleUpdate}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Title</Form.Label>
-              <Form.Control
+              
+              <input
                 type="text"
                 placeholder="Update Title of the module"
-                name="title"
+                name="titl" 
+                className="input_title"
                 onChange={this.handleChange}
                 value={this.state.title}
               />
-              <Form.Text className="text-muted">
-                create a module that prople can read!
-              </Form.Text>
+            
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
+              <textarea
                 type="text"
                 placeholder="Update Description for module"
                 name="description"
+                className="textarea_desc"
                 onChange={this.handleChange}
                 value={this.state.description}
               />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Body</Form.Label>
+            
 
               <textarea
                 className="form_module_update"

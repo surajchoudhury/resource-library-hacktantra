@@ -5,3 +5,16 @@
     color: rgba($color: #fff, $alpha: 1);
   }
 }
+
+.link {
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  &:hover {
+    color: #fff;
+  }
+}
+.book_logo {
+  font-size: 2rem;
+  margin-right: 0.3rem;
+}

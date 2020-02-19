@@ -7,3 +7,4 @@ export const IS_LOGGED = "IS_LOGGED";
 export const GET_SUBID = "GET_SUBID";
 export const GET_SUBJECT = "GET_SUBJECT";
 export const GET_MODULE = "GET_MODULE";
+export const GET_CHAPTER = "GET_CHAPTER";

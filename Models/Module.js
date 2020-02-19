@@ -22,6 +22,12 @@ const moduleSchema = new Schema(
     faq: {
       type: String
     },
+    chapters: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Chapter"
+      }
+    ],
     subject: {
       type: Schema.Types.ObjectId,
       ref: "Subject"

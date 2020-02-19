@@ -6,10 +6,12 @@ import { connect } from "react-redux";
 
 import Signin from "../components/Signin";
 import Dashboard from "./Dashboard";
-import ModuleView from "./ModulesView";
+import CreateModule from "./CreateModule";
+import CreateChapter from "./CreateChapter";
 import Header from "../components/Header";
 import Modules from "./Modules";
 import UpdateModule from "./UpdateModule";
+import UpdateChapter from "./UpdateChapter";
 import { fetchUser, isLogged } from "../Actions";
 
 class Home extends React.Component {
@@ -51,11 +53,21 @@ class Home extends React.Component {
   protectedRoutes = () => {
     return (
       <section>
+        <Route path={`/modules/chapters/new`}>
+          <CreateChapter />
+        </Route>
+        <Route path={`/modules/chapter/update`}>
+          <UpdateChapter />
+        </Route>
+        <Route path={`/modules/:id`}>
+          <Modules />
+        </Route>
+
         <Route exact path="/update">
           <UpdateModule />
         </Route>
-        <Route path="/modules">
-          <Modules />
+        <Route exact path="/create">
+          <CreateModule />
         </Route>
 
         <Route exact path="/">
@@ -66,6 +78,7 @@ class Home extends React.Component {
   };
 
   render() {
+    // let isMentor;
     let isMentor = this.props.user && this.props.user.user.isMentor;
     return (
       <main>
@@ -80,10 +93,11 @@ class Home extends React.Component {
   }
 }
 
-function mapStatetoProps({ users }) {
+function mapStatetoProps({ users, subjects }) {
   return {
     isLogged: users.isLogged,
-    user: users.user
+    user: users.user,
+    subID: subjects.subId
   };
 }
 

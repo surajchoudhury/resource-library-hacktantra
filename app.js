@@ -10,7 +10,7 @@ require("dotenv").config();
 var usersRouter = require("./routes/v1/users");
 var subjectsRouter = require("./routes/v1/subjects");
 
-//mongoose connect to database
+// mongoose connect to database
 mongoose.connect(
   process.env.MONGO_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -18,6 +18,14 @@ mongoose.connect(
     console.log("connected", err ? false : true);
   }
 );
+
+// mongoose.connect(
+//   "mongodb://localhost/resource-library",
+//   { useNewUrlParser: true, useUnifiedTopology: true },
+//   err => {
+//     console.log("connected", err ? false : true);
+//   }
+// );
 
 var app = express();
 

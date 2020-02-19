@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, FormControl, Button, Form } from "react-bootstrap";
-import { FaPowerOff,FaBookOpen } from "react-icons/fa";
+import { FaPowerOff, FaBookOpen } from "react-icons/fa";
 import { isLogged } from "../Actions";
 import { connect } from "react-redux";
-
 
 const Logout = dispatch => {
   localStorage.removeItem("token");
@@ -16,16 +15,19 @@ const Header = props => {
     <>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">
-          <FaBookOpen /> {" "} Resource Library
+          <Link className="link" to="/">
+            {" "}
+            <FaBookOpen className="book_logo" /> Resource Library
+          </Link>
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link>
             {" "}
-            <Link className="link" to="/">Home </Link>
+            <Link className="link" to="/"></Link>
           </Nav.Link>
 
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Nav.Link href="#features"></Nav.Link>
+          <Nav.Link href="#pricing"></Nav.Link>
         </Nav>
         <Link to="/">
           <FaPowerOff
@@ -37,11 +39,5 @@ const Header = props => {
     </>
   );
 };
-
-// function mapStateToProps ({users}) {
-// return {
-//   isLogged:
-// }
-// }
 
 export default connect()(Header);

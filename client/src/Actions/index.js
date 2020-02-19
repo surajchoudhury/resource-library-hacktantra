@@ -5,9 +5,10 @@ import {
   SET_SUBJECTS,
   SET_MODULES,
   IS_LOGGED,
-  // GET_SUBID,
+  GET_SUBID,
   GET_SUBJECT,
-  GET_MODULE
+  GET_MODULE,
+  GET_CHAPTER
 } from "../Types";
 
 function setUsers(payload) {
@@ -52,12 +53,12 @@ export function isLogged(payload) {
   };
 }
 
-// export function setSubId(payload) {
-//   return {
-//     type: GET_SUBID,
-//     payload
-//   };
-// }
+export function setSubId(payload) {
+  return {
+    type: GET_SUBID,
+    payload
+  };
+}
 
 function setSubject(payload) {
   return {
@@ -69,6 +70,13 @@ function setSubject(payload) {
 function setModule(payload) {
   return {
     type: GET_MODULE,
+    payload
+  };
+}
+
+function setChapter(payload) {
+  return {
+    type: GET_CHAPTER,
     payload
   };
 }
@@ -123,9 +131,7 @@ export function deleteSubject(id) {
     })
       .then(res => res.json())
       .then(subject => {
-        console.log("point 1");
         if (subject.success) {
-          console.log("point 2");
           dispatch(fetchSubjects());
         }
       });
@@ -150,7 +156,7 @@ export function fetchSubject(id) {
   };
 }
 
-export function createModule(id, title, description, body, faq) {
+export function createModule(id, title, description, body, faq, history) {
   return dispatch => {
     fetch(`/api/v1/subjects/${id}/modules`, {
       method: "POST",
@@ -170,6 +176,7 @@ export function createModule(id, title, description, body, faq) {
         if (modules.success) {
           dispatch(fetchSubject(id));
           dispatch(fetchSubjects());
+          history.push(`/modules/${"=" + id}`);
         }
       });
   };
@@ -219,7 +226,7 @@ export function updateModule(
       .then(res => res.json())
       .then(modules => {
         if (modules.success) {
-          history.push("/modules");
+          history.push(`/modules/${"=" + id}`);
           dispatch(fetchModule(id, moduleID));
           dispatch(fetchSubject(id));
           dispatch(fetchSubjects());
@@ -228,7 +235,7 @@ export function updateModule(
   };
 }
 
-export function deleteModule(id, moduleID, history) {
+export function deleteModule(id, moduleID) {
   return dispatch => {
     fetch(`/api/v1/subjects/${id}/modules/${moduleID}`, {
       method: "DELETE",
@@ -242,10 +249,111 @@ export function deleteModule(id, moduleID, history) {
         if (Module.success) {
           dispatch(fetchSubjects());
           dispatch(fetchSubject(id));
+          window.location.reload(false);
         }
       });
   };
 }
+
+export function fetchChapter(subid, modid, chapid) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${subid}/modules/${modid}/chapters/${chapid}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(chapter => {
+        if (chapter.success) {
+          dispatch(setChapter(chapter));
+        }
+      });
+  };
+}
+
+export function createChapter(subid, modid, title, description, body, history) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${subid}/modules/${modid}/chapters`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        body
+      })
+    })
+      .then(res => res.json())
+      .then(modules => {
+        if (modules.success) {
+          dispatch(fetchSubject(subid));
+          dispatch(fetchModule(subid, modid));
+          history.push(`/modules/${"=" + subid}`);
+        }
+      });
+  };
+}
+
+export function updateChapter(
+  subid,
+  moduleID,
+  chapterID,
+  title,
+  description,
+  body,
+  history
+) {
+  return dispatch => {
+    fetch(
+      `/api/v1/subjects/${subid}/modules/${moduleID}/chapters/${chapterID}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: localStorage.token
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          body
+        })
+      }
+    )
+      .then(res => res.json())
+      .then(chapter => {
+        if (chapter.success) {
+          history.push(`/modules/${"=" + subid}`);
+          dispatch(fetchModule(subid, moduleID));
+          dispatch(fetchSubject(subid));
+          dispatch(fetchChapter(subid, moduleID, chapterID));
+        }
+      });
+  };
+}
+
+export function deleteChapter(subid, modid, chapid) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${subid}/modules/${modid}/chapters/${chapid}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(chapter => {
+        if (chapter.success) {
+          window.location.reload(false);
+          dispatch(fetchSubject(subid));
+        }
+      });
+  };
+}
+
 export function loginUser(username, password, history) {
   return dispatch => {
     fetch("/api/v1/users/login", {

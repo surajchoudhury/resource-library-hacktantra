@@ -4,6 +4,62 @@
   justify-content: space-evenly;
 }
 
+//edit update
+
+.edit_update_container {
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: -1rem;
+  &:hover {
+    .container_edit_update {
+      max-height: 10rem;
+    }
+  }
+}
+.container_edit_update {
+  max-height: 0;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: #252c33;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.update_mod_container,
+.delete_mod_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 1rem;
+}
+.update_mod_container {
+  padding-top: 0.8rem;
+}
+.delete_mod_container {
+  padding-bottom: 0.8rem;
+  padding-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.8rem;
+  font-weight: 100;
+  &:hover {
+    color: #fff;
+  }
+}
+.delete_icon_module {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.8rem;
+  font-weight: 100;
+  &:hover {
+    color: #fff;
+  }
+}
+.icon-delete {
+  font-size: 1.1rem;
+  margin: 0 0.3rem 0 0;
+}
+
 ///////update form
 
 .update_form_container {
@@ -21,15 +77,93 @@
   padding: 1rem;
 }
 ////////////
+
+///create module
+
+.input_title {
+  font-size: 2.5rem;
+  width: 100%;
+  padding: 1rem;
+}
+.textarea_desc {
+  font-size: 1.2rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.models_cont {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  justify-content: space-between;
+  cursor: pointer;
+  &:hover {
+    background-color: #2f89fb;
+  }
+}
+
+.chapters_cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 0;
+  overflow: hidden;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    .chapter_title_small {
+      color: #fff;
+    }
+  }
+}
+
+/////
+
+//////chapter
+
+.chk_chapter {
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s;
+  &:hover {
+    color: #fff;
+  }
+}
+#model_chk {
+  display: none;
+}
+
+#model_chk:checked ~ .chapters_cont {
+  max-height: 50rem;
+}
+#model_chk:checked ~ .models_cont label .chk_chapter {
+  transform: rotate(180deg);
+}
+
+.models_cont_big:hover .chapters_cont {
+  max-height: 50rem;
+}
+.chapter_title_small {
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  width: 100%;
+}
+
+//////
 main {
   background-color: #f3f3f3;
 }
 .my-card2 {
-  width: 90%;
+  width: 100%;
   margin: 1rem auto;
 }
 .main_container {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
   color: rgb(37, 44, 51);
   font-family: "Open Sans", sans-serif;
@@ -64,14 +198,10 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
   padding: 20px 20px 5px 0px;
 }
 
-.delete_icon_module {
-  font-size: 1.2rem;
-  margin-left: 1rem;
-  color: #252c33;
-}
 .short_decreption {
   display: inline;
   color: rgb(70, 83, 94);
@@ -93,9 +223,13 @@ main {
 .form_module {
   height: 40rem;
   width: 100%;
+  font-size: 0.95rem;
+  padding: 1rem;
 }
 .form_module-faq {
   height: 20rem;
+  font-size: 0.95rem;
+  padding: 1rem;
   width: 100%;
 }
 .topic_author_name {
@@ -10926,15 +11060,33 @@ h5,
   margin-right: -50px;
 }
 #sidebar h1 {
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   font-weight: 700;
   font-size: 20px;
 }
 #sidebar h1 .logo {
   color: #fff;
-  display: block;
-  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  position: relative;
   background: #2f89fc;
+}
+.add_mod {
+  position: absolute;
+  right: -4.5rem;
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 200;
+  transition: all 0.5s;
+  opacity: 0;
+}
+.add_module {
+  font-size: 1.8rem;
+  &:hover ~ .add_mod {
+    opacity: 1;
+  }
 }
 #sidebar ul.components {
   padding: 0;
@@ -10949,10 +11101,10 @@ h5,
   font-size: 14px;
 }
 #sidebar ul li a {
-  padding: 1rem;
+  padding: 0 1rem;
   display: block;
   color: rgba(255, 255, 255, 0.6);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  // border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 #sidebar ul li a:hover {
   color: #fff;

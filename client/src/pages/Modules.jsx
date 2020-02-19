@@ -1,11 +1,19 @@
 import React from "react";
 import ModulesView from "./ModulesView";
+import ChaptersView from "./ChaptersView";
 import { Accordion, Card, Form, Button } from "react-bootstrap";
 import { GoFileSubmodule } from "react-icons/go";
-import { IoMdAdd } from "react-icons/io";
-import { createModule, fetchModule } from "../Actions";
+import { IoMdAdd, IoIosArrowDown } from "react-icons/io";
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import {
+  createModule,
+  fetchModule,
+  fetchSubject,
+  fetchChapter
+} from "../Actions";
 import { connect } from "react-redux";
 import Loader from "../components/Loader";
+import { Link, withRouter } from "react-router-dom";
 
 class Modules extends React.Component {
   constructor() {
@@ -15,181 +23,211 @@ class Modules extends React.Component {
       title: null,
       description: null,
       body: null,
-      faq: null
+      faq: null,
+      chapter: false,
+
+      current: null
     };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(
+      fetchSubject(this.props.location.pathname.split("=")[1])
+    );
   }
 
   handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   };
 
-  handleCreateModule = event => {
-    event.preventDefault();
-    this.props.dispatch(
-      createModule(
-        this.props.subject.subject._id,
-        this.state.title,
-        this.state.description,
-        this.state.body,
-        this.state.faq
-      )
-    );
-  };
-
   handleGetModule = (event, id, moduleID) => {
     event.preventDefault();
+    this.setState({ chapter: false });
     this.props.dispatch(fetchModule(id, moduleID));
+  };
+
+  handleCheck = id => {
+    this.setState({
+      current: id
+    });
+  };
+  handleUncheck = id => {
+    this.setState({
+      current: id
+    });
+  };
+
+  getChapter = (subid, modid, chid) => {
+    this.setState({ chapter: true });
+    this.props.dispatch(fetchChapter(subid, modid, chid));
   };
 
   render() {
     return (
       <main>
         {this.props.subject ? (
-          <div class="wrapper d-flex align-items-stretch">
+          <div className="wrapper d-flex align-items-stretch">
             <nav id="sidebar">
-              <div class="custom-menu">
+              <div className="custom-menu">
                 <button
                   type="button"
                   id="sidebarCollapse"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                 >
-                  <i class="fa fa-bars"></i>
-                  <span class="sr-only">Toggle Menu</span>
+                  <i className="fa fa-bars"></i>
+                  <span className="sr-only">Toggle Menu</span>
                 </button>
               </div>
               <h1>
-                <a href="index.html" class="logo">
-                  Modules
-                </a>
+                <span className="logo">
+                  <span>Modules</span>
+                  <Link to="/create" className="link">
+                    <AiOutlinePlusCircle className="add_module" />
+                    <span className="add_mod">Add a module</span>
+                  </Link>
+                </span>
               </h1>
 
-              <ul class="list-unstyled components mb-5">
+              <ul className="list-unstyled components mb-5">
                 {this.props.subject.subject.modules.length ? (
-                  this.props.subject.subject.modules.map(model => (
-                    <li
-                      class="active"
-                      onClick={event =>
-                        this.handleGetModule(
-                          event,
-                          this.props.subject.subject._id,
-                          model._id
-                        )
-                      }
-                    >
-                      <a href="">
-                        <span class="fa fa-home mr-3"></span> {model.title}
-                      </a>
-                    </li>
+                  this.props.subject.subject.modules.map((model, index) => (
+                    <span>
+                      <span className="models_cont_big">
+                        <input
+                          type="checkbox"
+                          name=""
+                          id="model_chk"
+                          checked={
+                            this.state.current === String(index) ? true : false
+                          }
+                        />
+                        <div className="models_cont">
+                          <label htmlFor="model_chk" id={index}>
+                            {" "}
+                            <IoIosArrowDown
+                              className="chk_chapter"
+                              onClick={event => {
+                                !this.state.checked
+                                  ? this.handleCheck(
+                                      event.target.parentElement.getAttribute(
+                                        "id"
+                                      )
+                                    )
+                                  : this.handleUncheck(
+                                      event.target.parentElement.getAttribute(
+                                        "id"
+                                      )
+                                    );
+                              }}
+                            />
+                          </label>
+                          <span
+                            className="active"
+                            onClick={event =>
+                              this.handleGetModule(
+                                event,
+                                this.props.subject.subject._id,
+                                model._id
+                              )
+                            }
+                          >
+                            {model.title}
+                          </span>{" "}
+                          <Link to="/modules/chapters/new" className="link">
+                            <AiOutlinePlusCircle
+                              className="add_module"
+                              onClick={() =>
+                                this.props.dispatch(
+                                  fetchModule(
+                                    this.props.subject.subject._id,
+                                    model._id
+                                  )
+                                )
+                              }
+                            />
+                          </Link>
+                          <span className="add_mod">Add a Chapter</span>
+                        </div>
+
+                        {model.chapters.length ? (
+                          model.chapters.map(chapter => (
+                            <span className="chapters_cont">
+                              <p
+                                className="chapter_title_small"
+                                onClick={() =>
+                                  this.getChapter(
+                                    this.props.subject.subject._id,
+                                    model._id,
+                                    chapter._id
+                                  )
+                                }
+                              >
+                                {chapter.title}
+                              </p>
+                            </span>
+                          ))
+                        ) : (
+                          <span className="chapters_cont">
+                            <p className="chapter_title_small">
+                              NO Chapters created yet!
+                            </p>
+                          </span>
+                        )}
+                      </span>{" "}
+                      {/* {model.chapters.length ? (
+                        model.chapters.map(chapter => (
+                          <span className="chapters_cont">
+                            <p
+                              className="chapter_title_small"
+                              onClick={() =>
+                                this.getChapter(
+                                  this.props.subject.subject._id,
+                                  model._id,
+                                  chapter._id
+                                )
+                              }
+                            >
+                              {chapter.title}
+                            </p>
+                          </span>
+                        ))
+                      ) : (
+                        <span className="chapters_cont">
+                          <p className="chapter_title_small">
+                            NO Chapters created yet!
+                          </p>
+                        </span>
+                      )} */}
+                    </span>
                   ))
                 ) : (
-                  <li class="active">
+                  <li className="active">
                     <a href="#">
-                      <span class="fa fa-home mr-3"></span> No Modules created
-                      yet!
+                      <span className="fa fa-home mr-3"></span> No Modules
+                      created yet!
                     </a>
                   </li>
                 )}
               </ul>
             </nav>
 
-            <div id="content" class="p-4 p-md-5 pt-5">
-              <Accordion>
-                <Card className="my-card2">
-                  <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                      <GoFileSubmodule className="module_add" />
-                      <IoMdAdd className="module_add" />{" "}
-                      <span className="module_add_letter">
-                        Add a module for {this.props.subject.subject.title}
-                      </span>
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body>
-                      <Form onSubmit={this.handleCreateModule}>
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Label>Title</Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="Enter Title of the module"
-                            name="title"
-                            onChange={this.handleChange}
-                          />
-                          <Form.Text className="text-muted">
-                            create a module that prople can read!
-                          </Form.Text>
-                        </Form.Group>
-
-                        <Form.Group controlId="formBasicPassword">
-                          <Form.Label>Description</Form.Label>
-                          <Form.Control
-                            type="text"
-                            placeholder="Enter Description for module"
-                            name="description"
-                            onChange={this.handleChange}
-                          />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Label>Body</Form.Label>
-
-                          <textarea
-                            className="form_module"
-                            as="textarea"
-                            rows="30"
-                            name="body"
-                            onChange={this.handleChange}
-                            placeholder="Write your content in Mark down"
-                          ></textarea>
-
-                          <Form.Text className="text-muted"></Form.Text>
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Label>FAQ</Form.Label>
-
-                          <textarea
-                            className="form_module-faq"
-                            as="textarea"
-                            rows="30"
-                            name="faq"
-                            onChange={this.handleChange}
-                            placeholder="Write faq in Mark down"
-                          ></textarea>
-
-                          <Form.Text className="text-muted"></Form.Text>
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                          Create +
-                        </Button>
-                      </Form>
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
-              {/* <h2 class="mb-4">Sidebar #04</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p> */}
-              {this.props.module ? (
-                <ModulesView module={this.props.module} />
-              ) : (
-                <p>Click on a module to read</p>
-              )}
-            </div>
+            {!this.state.chapter ? (
+              <div id="content" className="p-4 p-md-5 pt-5">
+                {this.props.module ? (
+                  <ModulesView module={this.props.module} />
+                ) : (
+                  <p>Click on a module to read</p>
+                )}
+              </div>
+            ) : (
+              <div id="content" className="p-4 p-md-5 pt-5">
+                {this.props.chapter ? (
+                  <ChaptersView chapter={this.props.chapter} />
+                ) : (
+                  <Loader />
+                )}
+              </div>
+            )}
           </div>
         ) : (
           <Loader />
@@ -202,7 +240,8 @@ class Modules extends React.Component {
 function mapStatetoProps({ subjects, modules }) {
   return {
     subject: subjects.subject,
-    module: modules.module
+    module: modules.module,
+    chapter: modules.chapter
   };
 }
-export default connect(mapStatetoProps)(Modules);
+export default connect(mapStatetoProps)(withRouter(Modules));

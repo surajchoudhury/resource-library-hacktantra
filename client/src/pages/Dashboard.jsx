@@ -1,11 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  fetchSubjects,
-  createSubject,
-  deleteSubject,
-  setSubjecct
-} from "../Actions";
+import { fetchSubjects, createSubject, deleteSubject } from "../Actions";
 import { Accordion, Card, Button, Form } from "react-bootstrap";
 import { GiWhiteBook } from "react-icons/gi";
 import { IoMdAdd } from "react-icons/io";
@@ -74,10 +69,13 @@ class Dashboard extends React.Component {
                   </div>
                   <a href="" className=" my-btn-dash">
                     <Link
-                      to="/modules"
+                      to={`/modules/${"="+subject._id}`}
                       className="link"
                       onClick={() => {
-                        this.props.dispatch(fetchSubject(subject._id));
+                        this.props.dispatch(
+                          fetchSubject(subject._id),
+                          this.props.dispatch(setSubId(subject._id))
+                        );
                       }}
                     >
                       Start Learning

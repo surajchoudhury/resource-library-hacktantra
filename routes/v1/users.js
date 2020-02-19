@@ -20,6 +20,7 @@ router.get("/", auth.verifyToken, async (req, res) => {
   }
 });
 
+router.post("/signup", users.signup);
 
 router.post("/login", users.login);
 

@@ -34,7 +34,7 @@ router.get(
   }),
   async function(req, res) {
     var token = await auth.generateJWT(req.user);
-    res.redirect(`http://localhost:3000/oauth/?t=${token}`);
+    res.redirect(`/oauth/?t=${token}`);
     // res.send('success');
   }
 );

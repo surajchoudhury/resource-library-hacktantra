@@ -13,29 +13,31 @@ const Logout = dispatch => {
 const Header = props => {
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">
-          <Link className="link" to="/">
-            {" "}
-            <FaBookOpen className="book_logo" /> Resource Library
-          </Link>
-        </Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link>
-            {" "}
-            <Link className="link" to="/"></Link>
-          </Nav.Link>
+      <header className="header">
+        <Navbar bg="dark" variant="dark" >
+          <Navbar.Brand href="#home">
+            <Link className="link" to="/">
+              {" "}
+              <FaBookOpen className="book_logo" /> Resource Library
+            </Link>
+          </Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link>
+              {" "}
+              <Link className="link" to="/"></Link>
+            </Nav.Link>
 
-          <Nav.Link href="#features"></Nav.Link>
-          <Nav.Link href="#pricing"></Nav.Link>
-        </Nav>
-        <Link to="/">
-          <FaPowerOff
-            className="logout"
-            onClick={() => Logout(props.dispatch)}
-          />
-        </Link>
-      </Navbar>
+            <Nav.Link href="#features"></Nav.Link>
+            <Nav.Link href="#pricing"></Nav.Link>
+          </Nav>
+          <Link to="/">
+            <FaPowerOff
+              className="logout"
+              onClick={() => Logout(props.dispatch)}
+            />
+          </Link>
+        </Navbar>
+      </header>
     </>
   );
 };

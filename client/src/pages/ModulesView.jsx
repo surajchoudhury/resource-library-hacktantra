@@ -4,11 +4,16 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { fetchModule, deleteModule } from "../Actions";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import Prism from "prismjs";
 
 class ModulesView extends React.Component {
   constructor() {
     super();
     this.state = {};
+  }
+
+  componentDidMount() {
+    Prism.highlightAll();
   }
 
   handledelete = (id, moduleID) => {
@@ -74,12 +79,12 @@ class ModulesView extends React.Component {
                     <b>publish date</b> :{" "}
                     {new Date(
                       this.props.module.module.updatedAt
-                    ).toLocaleTimeString()}
+                    ).toDateString()}
                   </span>
                 </div>
               </div>
               <div className="tutorial_nav">
-                <span className="nav-topic underline">Editorial</span>
+                <span className="nav-topic underline">Article</span>
                 <span className="nav-topic">faq</span>
               </div>
               <div

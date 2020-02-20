@@ -24,6 +24,7 @@ class Signin extends React.Component {
 
   handleLogin = event => {
     event.preventDefault();
+    console.log("in");
     this.props.dispatch(
       loginUser(this.state.username, this.state.password, this.props.history)
     );
@@ -102,10 +103,8 @@ class Signin extends React.Component {
               </div>
 
               <div class="text-center p-t-115">
-                <span class="txt1">Don’t have an account?</span>
-                <a class="txt2" href="#">
-                  Sign Up
-                </a>
+                <span class="txt1">Don’t have an account?</span>{" "}
+                <Link to="/signup">Sign Up</Link>
               </div>
             </form>
           </div>

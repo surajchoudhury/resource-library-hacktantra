@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 //relative imports
 
 import Signin from "../components/Signin";
+import Signup from "../components/Signup";
 import Dashboard from "./Dashboard";
 import CreateModule from "./CreateModule";
 import CreateChapter from "./CreateChapter";
@@ -43,35 +44,45 @@ class Home extends React.Component {
         <Route path="/oauth">
           {this.oAuth(this.props.location.search.split("=")[1])}
         </Route>
-        <Route path="/">
+        <Route path="/signup">
+          <Signup />
+        </Route>
+        <Route exact path="/">
           <Signin />
         </Route>
       </>
     );
   };
 
-  protectedRoutes = () => {
+  protectedRoutes = isMentor => {
     return (
       <section>
-        <Route path={`/modules/chapters/new`}>
-          <CreateChapter />
+        {isMentor ? (
+          <Route exact path={`/modules/chapters/new`}>
+            <CreateChapter />
+          </Route>
+        ) : null}
+        {isMentor ? (
+          <Route exact path={`/modules/chapter/update`}>
+            <UpdateChapter />
+          </Route>
+        ) : null}
+        <Route exact path={`/modules/:id`}>
+          <Modules isMentor={isMentor} />
         </Route>
-        <Route path={`/modules/chapter/update`}>
-          <UpdateChapter />
-        </Route>
-        <Route path={`/modules/:id`}>
-          <Modules />
-        </Route>
-
-        <Route exact path="/update">
-          <UpdateModule />
-        </Route>
-        <Route exact path="/create">
-          <CreateModule />
-        </Route>
+        {isMentor ? (
+          <Route exact path="/update">
+            <UpdateModule />
+          </Route>
+        ) : null}
+        {isMentor ? (
+          <Route exact path="/create">
+            <CreateModule />
+          </Route>
+        ) : null}
 
         <Route exact path="/">
-          <Dashboard />
+          <Dashboard isMentor={isMentor} />
         </Route>
       </section>
     );

@@ -25,7 +25,6 @@ class Modules extends React.Component {
       body: null,
       faq: null,
       chapter: false,
-
       current: null
     };
   }
@@ -81,10 +80,12 @@ class Modules extends React.Component {
               <h1>
                 <span className="logo">
                   <span>Modules</span>
-                  <Link to="/create" className="link">
-                    <AiOutlinePlusCircle className="add_module" />
-                    <span className="add_mod">Add a module</span>
-                  </Link>
+                  {this.props.isMentor ? (
+                    <Link to="/create" className="link">
+                      <AiOutlinePlusCircle className="add_module" />
+                      <span className="add_mod">Add a module</span>
+                    </Link>
+                  ) : null}
                 </span>
               </h1>
 
@@ -133,20 +134,24 @@ class Modules extends React.Component {
                           >
                             {model.title}
                           </span>{" "}
-                          <Link to="/modules/chapters/new" className="link">
-                            <AiOutlinePlusCircle
-                              className="add_module"
-                              onClick={() =>
-                                this.props.dispatch(
-                                  fetchModule(
-                                    this.props.subject.subject._id,
-                                    model._id
+                          {this.props.isMentor ? (
+                            <Link to="/modules/chapters/new" className="link">
+                              <AiOutlinePlusCircle
+                                className="add_module"
+                                onClick={() =>
+                                  this.props.dispatch(
+                                    fetchModule(
+                                      this.props.subject.subject._id,
+                                      model._id
+                                    )
                                   )
-                                )
-                              }
-                            />
-                          </Link>
-                          <span className="add_mod">Add a Chapter</span>
+                                }
+                              />
+                              <span className="add_mod">Add a Chapter</span>
+                            </Link>
+                          ) : (
+                            <span className="add_module"></span>
+                          )}
                         </div>
 
                         {model.chapters.length ? (
@@ -174,30 +179,6 @@ class Modules extends React.Component {
                           </span>
                         )}
                       </span>{" "}
-                      {/* {model.chapters.length ? (
-                        model.chapters.map(chapter => (
-                          <span className="chapters_cont">
-                            <p
-                              className="chapter_title_small"
-                              onClick={() =>
-                                this.getChapter(
-                                  this.props.subject.subject._id,
-                                  model._id,
-                                  chapter._id
-                                )
-                              }
-                            >
-                              {chapter.title}
-                            </p>
-                          </span>
-                        ))
-                      ) : (
-                        <span className="chapters_cont">
-                          <p className="chapter_title_small">
-                            NO Chapters created yet!
-                          </p>
-                        </span>
-                      )} */}
                     </span>
                   ))
                 ) : (

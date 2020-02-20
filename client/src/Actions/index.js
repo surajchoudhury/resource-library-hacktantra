@@ -354,7 +354,30 @@ export function deleteChapter(subid, modid, chapid) {
   };
 }
 
+export function signupUser(username, email, password, history) {
+  return dispatch => {
+    fetch("/api/v1/users/signup", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password
+      })
+    })
+      .then(res => res.json())
+      .then(user => {
+        if (user.success) {
+          history.push("/");
+        }
+      });
+  };
+}
+
 export function loginUser(username, password, history) {
+  console.log("in2")
   return dispatch => {
     fetch("/api/v1/users/login", {
       method: "POST",
@@ -368,6 +391,7 @@ export function loginUser(username, password, history) {
     })
       .then(res => res.json())
       .then(user => {
+        console.log(user,"user")
         if (user.success) {
           localStorage.setItem("token", user.token);
           dispatch(isLogged(true));

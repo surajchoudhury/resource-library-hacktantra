@@ -363,9 +363,9 @@ iframe {
 .github_logo {
   font-size: 2.5rem;
   color: rgb(95, 102, 109);
-  transition: all .3s;
+  transition: all 0.3s;
   &:hover {
-    color: #343A40;
+    color: #343a40;
   }
 }
 
@@ -570,7 +570,7 @@ iframe {
   height: 50px;
   background-color: rgb(88, 95, 102);
   &:hover {
-    background-color: #343A40;
+    background-color: #343a40;
   }
 }
 

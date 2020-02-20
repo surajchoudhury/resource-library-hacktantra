@@ -3,12 +3,17 @@ import Loader from "../components/Loader";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { deleteChapter, fetchChapter } from "../Actions";
 import { Link, withRouter } from "react-router-dom";
+import Prism from "prismjs";
 import { connect } from "react-redux";
 
 class ChaptersView extends React.Component {
   constructor() {
     super();
     this.state = {};
+  }
+
+  componentDidMount() {
+    Prism.highlightAll();
   }
 
   handledelete = (subid, modid, chapterID) => {
@@ -81,12 +86,12 @@ class ChaptersView extends React.Component {
                     <b>publish date</b> :{" "}
                     {new Date(
                       this.props.chapter.chapter.updatedAt
-                    ).toLocaleDateString()}
+                    ).toDateString()}
                   </span>
                 </div>
               </div>
               <div className="tutorial_nav">
-                <span className="nav-topic underline">Editorial</span>
+                <span className="nav-topic underline">Article</span>
                 {/* <span className="nav-topic">faq</span> */}
               </div>
               <div

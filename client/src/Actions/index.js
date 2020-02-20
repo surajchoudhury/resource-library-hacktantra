@@ -327,8 +327,8 @@ export function updateChapter(
       .then(chapter => {
         if (chapter.success) {
           history.push(`/modules/${"=" + subid}`);
-          dispatch(fetchModule(subid, moduleID));
           dispatch(fetchSubject(subid));
+          dispatch(fetchModule(subid, moduleID));
           dispatch(fetchChapter(subid, moduleID, chapterID));
         }
       });
@@ -377,7 +377,6 @@ export function signupUser(username, email, password, history) {
 }
 
 export function loginUser(username, password, history) {
-  console.log("in2")
   return dispatch => {
     fetch("/api/v1/users/login", {
       method: "POST",
@@ -391,7 +390,6 @@ export function loginUser(username, password, history) {
     })
       .then(res => res.json())
       .then(user => {
-        console.log(user,"user")
         if (user.success) {
           localStorage.setItem("token", user.token);
           dispatch(isLogged(true));

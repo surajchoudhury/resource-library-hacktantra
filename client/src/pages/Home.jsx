@@ -92,7 +92,7 @@ class Home extends React.Component {
     // let isMentor;
     let isMentor = this.props.user && this.props.user.user.isMentor;
     return (
-      <main>
+      <main className="App">
         {this.props.isLogged && localStorage.token ? <Header /> : null}
         <Switch>
           {localStorage.token || this.props.isLogged

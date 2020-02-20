@@ -24,7 +24,6 @@ class Signin extends React.Component {
 
   handleLogin = event => {
     event.preventDefault();
-    console.log("in");
     this.props.dispatch(
       loginUser(this.state.username, this.state.password, this.props.history)
     );

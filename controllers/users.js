@@ -36,7 +36,8 @@ module.exports = {
         let user = await Mentor.create(req.body);
         res.json({ success: true, user });
       } else {
-        let user = await Student.create(req.body);
+        // let user = await Student.create(req.body);
+        let user = await new Student(req.body).save()
         res.json({ success: true, user });
       }
     } catch (error) {

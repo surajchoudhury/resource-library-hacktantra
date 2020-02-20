@@ -72,7 +72,7 @@ class UpdateChapter extends React.Component {
               <input
                 type="text"
                 placeholder="Update Title of the Chapter"
-                name="titl"
+                name="title"
                 className="input_title"
                 onChange={this.handleChange}
                 value={this.state.title}

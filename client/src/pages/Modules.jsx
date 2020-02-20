@@ -1,19 +1,14 @@
 import React from "react";
 import ModulesView from "./ModulesView";
 import ChaptersView from "./ChaptersView";
-import { Accordion, Card, Form, Button } from "react-bootstrap";
-import { GoFileSubmodule } from "react-icons/go";
-import { IoMdAdd, IoIosArrowDown } from "react-icons/io";
+import { Tooltip, OverlayTrigger } from "react-bootstrap";
+import { IoIosArrowDown } from "react-icons/io";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import {
-  createModule,
-  fetchModule,
-  fetchSubject,
-  fetchChapter
-} from "../Actions";
+import { fetchModule, fetchSubject, fetchChapter } from "../Actions";
 import { connect } from "react-redux";
 import Loader from "../components/Loader";
 import { Link, withRouter } from "react-router-dom";
+import Prism from "prismjs";
 
 class Modules extends React.Component {
   constructor() {
@@ -61,6 +56,10 @@ class Modules extends React.Component {
     this.props.dispatch(fetchChapter(subid, modid, chid));
   };
 
+  renderTooltip = props => {
+    return <Tooltip {...props}>Add a Model</Tooltip>;
+  };
+
   render() {
     return (
       <main>
@@ -82,8 +81,13 @@ class Modules extends React.Component {
                   <span>Modules</span>
                   {this.props.isMentor ? (
                     <Link to="/create" className="link">
-                      <AiOutlinePlusCircle className="add_module" />
-                      <span className="add_mod">Add a module</span>
+                      <OverlayTrigger
+                        placement="right"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={this.renderTooltip}
+                      >
+                        <AiOutlinePlusCircle className="add_module" />
+                      </OverlayTrigger>
                     </Link>
                   ) : null}
                 </span>
@@ -138,14 +142,14 @@ class Modules extends React.Component {
                             <Link to="/modules/chapters/new" className="link">
                               <AiOutlinePlusCircle
                                 className="add_module"
-                                onClick={() =>
+                                onClick={() => {
                                   this.props.dispatch(
                                     fetchModule(
                                       this.props.subject.subject._id,
                                       model._id
                                     )
-                                  )
-                                }
+                                  );
+                                }}
                               />
                               <span className="add_mod">Add a Chapter</span>
                             </Link>
@@ -159,13 +163,13 @@ class Modules extends React.Component {
                             <span className="chapters_cont">
                               <p
                                 className="chapter_title_small"
-                                onClick={() =>
+                                onClick={() => {
                                   this.getChapter(
                                     this.props.subject.subject._id,
                                     model._id,
                                     chapter._id
-                                  )
-                                }
+                                  );
+                                }}
                               >
                                 {chapter.title}
                               </p>

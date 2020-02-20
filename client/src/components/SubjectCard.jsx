@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { fetchSubjects, createSubject, deleteSubject } from "../Actions";
-import { Accordion, Card, Button, Form, Modal } from "react-bootstrap";
-import { GiWhiteBook } from "react-icons/gi";
-import { IoMdAdd } from "react-icons/io";
+import { deleteSubject } from "../Actions";
+import { Button, Modal } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import { FiDelete } from "react-icons/fi";
-import Loader from "./Loader";
 import { setSubId, fetchSubject } from "../Actions";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+
 import { connect } from "react-redux";
 
 const DeleteModal = (show, handleClose, handleShow, subject, dispatch) => {
@@ -28,10 +27,7 @@ const DeleteModal = (show, handleClose, handleShow, subject, dispatch) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button
-            variant="primary"
-            onClick={() => handleConfirm()}
-          >
+          <Button variant="primary" onClick={() => handleConfirm()}>
             Confirm
           </Button>
         </Modal.Footer>
@@ -49,11 +45,25 @@ const SubjectCard = props => {
   return (
     <div className="card card-dashboard">
       <header className="delete_btn_dashboard">
-        <FiDelete
-          className="delete_btn"
-          // onClick={() => props.dispatch(deleteSubject(subject._id))}
-          onClick={handleShow}
-        />
+        <div className="edit_update_container">
+          ...
+          <div className="container_edit_update">
+            <span
+              className="update_mod_container"
+              // onClick={() =>
+              //   fetchModule(props.module.subject._id, props.module._id)
+              // }
+            >
+              <Link to="/" className="delete_icon_module">
+                <AiOutlineEdit className="icon-delete" /> Update
+              </Link>
+            </span>
+            <span className="delete_mod_container" onClick={handleShow}>
+              {" "}
+              <AiOutlineDelete className="icon-delete" /> Delete
+            </span>
+          </div>
+        </div>
       </header>
       <div className="dashboard-img-container">
         <img src={subject.image} className="card-img-top" alt="..." />

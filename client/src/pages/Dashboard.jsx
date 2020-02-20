@@ -5,9 +5,7 @@ import { Accordion, Card, Button, Form } from "react-bootstrap";
 import { GiWhiteBook } from "react-icons/gi";
 import { IoMdAdd } from "react-icons/io";
 import { Link, withRouter } from "react-router-dom";
-import { FiDelete } from "react-icons/fi";
 import Loader from "../components/Loader";
-import { setSubId, fetchSubject } from "../Actions";
 import SubjectCard from "../components/SubjectCard";
 
 class Dashboard extends React.Component {

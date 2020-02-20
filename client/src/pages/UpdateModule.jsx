@@ -69,16 +69,14 @@ class UpdateModule extends React.Component {
         this.state.faq ? (
           <Form onSubmit={this.handleUpdate}>
             <Form.Group controlId="formBasicEmail">
-              
               <input
                 type="text"
                 placeholder="Update Title of the module"
-                name="titl" 
+                name="title"
                 className="input_title"
                 onChange={this.handleChange}
                 value={this.state.title}
               />
-            
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -92,8 +90,6 @@ class UpdateModule extends React.Component {
               />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
-            
-
               <textarea
                 className="form_module_update"
                 as="textarea"

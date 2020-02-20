@@ -7881,7 +7881,6 @@ button.bg-dark:focus {
   -webkit-box-align: stretch !important;
   -ms-flex-align: stretch !important;
   align-items: stretch !important;
-  padding-top: 3.6rem;
 }
 
 .align-content-start {
@@ -11076,11 +11075,14 @@ h5,
 }
 .add_mod {
   position: absolute;
-  right: -4.5rem;
+  right: -5.2rem;
   font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.8);
+  color: #fff;
   font-weight: 200;
   transition: all 0.5s;
+  background-color: rgba(0,0,0,1);
+  padding: .2rem .4rem;
+  border-radius: .2rem;
   opacity: 0;
 }
 .add_module {

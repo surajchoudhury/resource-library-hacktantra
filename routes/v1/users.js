@@ -24,6 +24,8 @@ router.post("/signup", users.signup);
 
 router.post("/login", users.login);
 
+router.post('/updateProfile',auth.verifyToken,users.updateProfile)
+
 router.get("/auth/github", passport.authenticate("github"));
 
 router.get(

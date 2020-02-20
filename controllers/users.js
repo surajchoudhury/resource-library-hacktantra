@@ -1,6 +1,7 @@
 var Student = require("../Models/Student");
 var Mentor = require("../Models/Mentor");
 var auth = require("../auth/auth");
+var bcrypt = require('bcryptjs')
 
 module.exports = {
   login: async (req, res) => {
@@ -42,6 +43,23 @@ module.exports = {
       }
     } catch (error) {
       res.status(200).json(error);
+    }
+  },
+  updateProfile: async (req,res) => {
+    try {
+      if(req.user.isMentor){
+       req.body.password = bcrypt.hashSync(req.body.password,10)
+       let user = await Mentor.findByIdAndUpdate(req.user.userID,req.body,{new:true})
+       res.json({ success: true, user });
+      }
+      else{
+        req.body.password = bcrypt.hashSync(req.body.password,10)
+        let user = await Student.findByIdAndUpdate(req.user.userID,req.body,{new:true})
+        res.json({success:true, user})
+      }
+      
+    }catch(error){
+      res.status(400).json(error)
     }
   }
 };

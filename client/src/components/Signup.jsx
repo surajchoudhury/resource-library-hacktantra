@@ -3,6 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import { GoMarkGithub } from "react-icons/go";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { connect } from "react-redux";
+import { FaBookOpen } from "react-icons/fa";
 
 ////
 
@@ -51,15 +52,10 @@ class Signup extends React.Component {
                 class="login100-form validate-form"
                 onSubmit={this.handleSignup}
               >
-                <span class="login100-form-title p-b-26">Welcome</span>
-                <span class="login100-form-title p-b-48">
-                  <i class="zmdi zmdi-font">
-                    <a href="https://resource-library-alt.herokuapp.com/api/v1/users/auth/github">
-                      <GoMarkGithub className="github_logo" />
-                    </a>
-                  </i>
-                </span>
-
+                <div className="resc-logo-container">
+                  <FaBookOpen className="book_logo2" />
+                  <span className="resource-logo">Resource Library</span>
+                </div>
                 <div
                   class="wrap-input100 validate-input"
                   data-validate="Valid email is: a@b.c"
@@ -113,17 +109,22 @@ class Signup extends React.Component {
                     </p>
                   ) : null}
                 </div>
-
                 <div class="container-login100-form-btn">
                   <div class="wrap-login100-form-btn">
                     <div class="login100-form-bgbtn"></div>
                     <button class="login100-form-btn">Sign Up</button>
                   </div>
                 </div>
+                <span class="txt1 txt-1">Or Sign up with</span>
 
+                <a href="https://resource-library-alt.herokuapp.com/api/v1/users/auth/github">
+                  <div class="btn-2">
+                    <GoMarkGithub className="github_logo" />
+                  </div>
+                </a>
                 <div class="text-center p-t-115">
-                  <span class="txt1">Already have an account?</span>
-                  {" "}<Link to="/"> Sign In</Link>
+                  <span class="txt1">Already have an account?</span>{" "}
+                  <Link to="/"> Sign In</Link>
                 </div>
               </form>
             </div>

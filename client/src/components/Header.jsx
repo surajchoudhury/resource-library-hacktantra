@@ -8,13 +8,14 @@ import { connect } from "react-redux";
 const Logout = dispatch => {
   localStorage.removeItem("token");
   dispatch(isLogged(false));
+  window.location.reload(false);
 };
 
 const Header = props => {
   return (
     <>
       <header className="header">
-        <Navbar bg="dark" variant="dark" >
+        <Navbar bg="dark" variant="dark">
           <Navbar.Brand href="#home">
             <Link className="link" to="/">
               {" "}
@@ -30,11 +31,14 @@ const Header = props => {
             <Nav.Link href="#features"></Nav.Link>
             <Nav.Link href="#pricing"></Nav.Link>
           </Nav>
+
           <Link to="/">
-            <FaPowerOff
-              className="logout"
-              onClick={() => Logout(props.dispatch)}
-            />
+            {props.isLogged ? (
+              <FaPowerOff
+                className="logout"
+                onClick={() => Logout(props.dispatch)}
+              />
+            ) : null}
           </Link>
         </Navbar>
       </header>

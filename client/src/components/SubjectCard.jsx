@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { deleteSubject } from "../Actions";
 import { Button, Modal } from "react-bootstrap";
-import { Link, withRouter } from "react-router-dom";
-import { FiDelete } from "react-icons/fi";
+import { Link} from "react-router-dom";
 import { setSubId, fetchSubject } from "../Actions";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 
 import { connect } from "react-redux";
 
-const DeleteModal = (show, handleClose, handleShow, subject, dispatch) => {
+const getModel = (subject, dispatch) => {
+  dispatch(fetchSubject(subject._id));
+  dispatch(setSubId(subject._id));
+
+};
+
+const DeleteModal = (show, handleClose, subject, dispatch) => {
   function handleConfirm() {
     dispatch(deleteSubject(subject._id));
     handleClose();
@@ -43,51 +48,44 @@ const SubjectCard = props => {
 
   let { subject } = props;
   return (
-    <div className="card card-dashboard">
-      <header className="delete_btn_dashboard">
-        <div className="edit_update_container">
-          ...
-          <div className="container_edit_update">
-            <span
-              className="update_mod_container"
-              // onClick={() =>
-              //   fetchModule(props.module.subject._id, props.module._id)
-              // }
-            >
-              <Link to="/" className="delete_icon_module">
-                <AiOutlineEdit className="icon-delete" /> Update
-              </Link>
-            </span>
-            <span className="delete_mod_container" onClick={handleShow}>
-              {" "}
-              <AiOutlineDelete className="icon-delete" /> Delete
-            </span>
+    <section className="card-dashboard">
+      <div className="subject-img-container">
+        <img src={subject.image} className="subject-img" alt="" />
+      </div>
+      <div className="subject-content-container">
+        {props.isMentor ? (
+          <div className="edit_update_container">
+            ...
+            <div className="container_edit_update">
+              <span className="delete_mod_container" onClick={handleShow}>
+                <AiOutlineDelete className="icon-delete" /> Delete
+              </span>
+            </div>
           </div>
+        ) : null}
+        <div className="collection_container">
+          <p className="collection_name">collection</p>
+          <p className="collection_no">
+            {props.collection < 10 ? 0 : null}
+            {props.collection + 1}
+          </p>
         </div>
-      </header>
-      <div className="dashboard-img-container">
-        <img src={subject.image} className="card-img-top" alt="..." />
-      </div>
-      <div className="card-body">
-        <h5 className="card-title text-center"> {subject.title}</h5>
-        <p className="card-text">{subject.description}</p>
-      </div>
-      <a href="" className=" my-btn-dash">
         <Link
           to={`/modules/${"=" + subject._id}`}
           className="link"
-          onClick={() => {
-            props.dispatch(
-              fetchSubject(subject._id),
-              props.dispatch(setSubId(subject._id))
-            );
-          }}
+          onClick={() => getModel(subject, props.dispatch)}
         >
-          Start Learning
+          <p className="subject_title">{subject.title}</p>
         </Link>
-      </a>
-      {DeleteModal(show, handleClose, handleShow, subject, props.dispatch)}
-    </div>
+        <p className="subject_description">{subject.description}</p>
+        <p className="collection_name">modules</p>
+        <p>
+          {subject.modules.length < 10 ? 0 : null}
+          {subject.modules.length}
+        </p>
+      </div>
+      {DeleteModal(show, handleClose, subject, props.dispatch)}
+    </section>
   );
 };
 

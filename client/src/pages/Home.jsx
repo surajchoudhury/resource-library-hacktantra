@@ -13,6 +13,7 @@ import Header from "../components/Header";
 import Modules from "./Modules";
 import UpdateModule from "./UpdateModule";
 import UpdateChapter from "./UpdateChapter";
+import Footer from "../components/Footer";
 import { fetchUser, isLogged } from "../Actions";
 
 class Home extends React.Component {
@@ -93,12 +94,13 @@ class Home extends React.Component {
     let isMentor = this.props.user && this.props.user.user.isMentor;
     return (
       <main className="App">
-        {this.props.isLogged && localStorage.token ? <Header /> : null}
+        <Header isLogged={this.props.isLogged} />
         <Switch>
           {localStorage.token || this.props.isLogged
             ? this.protectedRoutes(isMentor)
             : this.publicRoutes()}
         </Switch>
+        <Footer />
       </main>
     );
   }

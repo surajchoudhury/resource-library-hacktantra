@@ -5,7 +5,7 @@ module.exports = {
   createSubject: async (req, res) => {
     try {
       var subject = await Subject.create(req.body);
-      res.json({ succes: true, subject });
+      res.json({ success: true, subject });
     } catch (error) {
       res.status(400).json(error);
     }

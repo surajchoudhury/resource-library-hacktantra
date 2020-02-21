@@ -153,6 +153,14 @@
   color: rgba(255, 255, 255, 0.7);
   width: 100%;
 }
+.chapter_title_small_2 {
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  width: 100%;
+}
 
 //////
 main {
@@ -285,6 +293,8 @@ b {
   padding: 20px 20px 30px 20px;
   line-height: 21px;
   font-size: 15px;
+  min-height: 100vh;
+  // overflow: auto;
 }
 
 /* faq_section*/
@@ -11080,9 +11090,9 @@ h5,
   color: #fff;
   font-weight: 200;
   transition: all 0.5s;
-  background-color: rgba(0,0,0,1);
-  padding: .2rem .4rem;
-  border-radius: .2rem;
+  background-color: rgba(0, 0, 0, 1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.2rem;
   opacity: 0;
 }
 .add_module {
@@ -11090,6 +11100,11 @@ h5,
   &:hover ~ .add_mod {
     opacity: 1;
   }
+}
+
+.add_module_non {
+  font-size: 1.8rem;
+  opacity: 0;
 }
 #sidebar ul.components {
   padding: 0;

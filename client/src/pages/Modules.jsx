@@ -8,7 +8,6 @@ import { fetchModule, fetchSubject, fetchChapter } from "../Actions";
 import { connect } from "react-redux";
 import Loader from "../components/Loader";
 import { Link, withRouter } from "react-router-dom";
-import Prism from "prismjs";
 
 class Modules extends React.Component {
   constructor() {
@@ -57,7 +56,7 @@ class Modules extends React.Component {
   };
 
   renderTooltip = props => {
-    return <Tooltip {...props}>Add a Model</Tooltip>;
+    return <Tooltip {...props}>Add a Module</Tooltip>;
   };
 
   render() {
@@ -154,7 +153,9 @@ class Modules extends React.Component {
                               <span className="add_mod">Add a Chapter</span>
                             </Link>
                           ) : (
-                            <span className="add_module"></span>
+                            <span className="link">
+                              <AiOutlinePlusCircle className="add_module_non" />
+                            </span>
                           )}
                         </div>
 
@@ -177,7 +178,7 @@ class Modules extends React.Component {
                           ))
                         ) : (
                           <span className="chapters_cont">
-                            <p className="chapter_title_small">
+                            <p className="chapter_title_small_2">
                               NO Chapters created yet!
                             </p>
                           </span>
@@ -187,10 +188,10 @@ class Modules extends React.Component {
                   ))
                 ) : (
                   <li className="active">
-                    <a href="#">
+                    <span className="chapter_title_small_2">
                       <span className="fa fa-home mr-3"></span> No Modules
                       created yet!
-                    </a>
+                    </span>
                   </li>
                 )}
               </ul>
@@ -199,7 +200,10 @@ class Modules extends React.Component {
             {!this.state.chapter ? (
               <div id="content" className="p-4 p-md-5 pt-5">
                 {this.props.module ? (
-                  <ModulesView module={this.props.module} />
+                  <ModulesView
+                    module={this.props.module}
+                    isMentor={this.props.isMentor}
+                  />
                 ) : (
                   <p>Click on a module to read</p>
                 )}
@@ -207,7 +211,10 @@ class Modules extends React.Component {
             ) : (
               <div id="content" className="p-4 p-md-5 pt-5">
                 {this.props.chapter ? (
-                  <ChaptersView chapter={this.props.chapter} />
+                  <ChaptersView
+                    chapter={this.props.chapter}
+                    isMentor={this.props.isMentor}
+                  />
                 ) : (
                   <Loader />
                 )}

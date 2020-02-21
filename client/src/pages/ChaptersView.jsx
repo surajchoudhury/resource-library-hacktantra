@@ -24,13 +24,14 @@ class ChaptersView extends React.Component {
     this.props.dispatch(deleteChapter(subid, modid, chapterID));
   };
 
-
-
   render() {
     return (
       <main>
         {this.props.chapter ? (
-          <ChapterCard chapter={this.props.chapter.chapter} />
+          <ChapterCard
+            chapter={this.props.chapter.chapter}
+            isMentor={this.props.isMentor}
+          />
         ) : (
           <Loader />
         )}

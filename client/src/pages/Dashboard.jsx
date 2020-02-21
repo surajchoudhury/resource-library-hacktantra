@@ -45,12 +45,17 @@ class Dashboard extends React.Component {
         {this.props.subjects ? (
           <section className="container-dashboard-big">
             <section className="container-dashboard">
-              {this.props.subjects.map(subject => (
-                <SubjectCard subject={subject} />
+              {this.props.subjects.map((subject, i) => (
+                <SubjectCard
+                  subject={subject}
+                  isMentor={this.props.isMentor}
+                  collection={i}
+                />
               ))}
             </section>
-            {this.props.isMentor ? (
-              <section className="section2_container">
+
+            <section className="section2_container">
+              {this.props.isMentor ? (
                 <Accordion defaultActiveKey="0" className="according_container">
                   <Card className="my-card_container">
                     <Card.Header>
@@ -62,39 +67,30 @@ class Dashboard extends React.Component {
                     <Accordion.Collapse eventKey="1">
                       <Card.Body>
                         <Form onSubmit={this.handleCreate}>
-                          <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Add a title</Form.Label>
-                            <Form.Control
-                              type="text"
-                              placeholder="Enter a title"
-                              name="title"
-                              onChange={this.handleChange}
-                            />
-                            <Form.Text className="text-muted">
-                              We'll never share your email with anyone else.
-                            </Form.Text>
-                          </Form.Group>
+                          <input
+                            autoComplete="off"
+                            className="input-subject-title"
+                            type="text"
+                            placeholder="Enter a title"
+                            name="title"
+                            onChange={this.handleChange}
+                          />
 
-                          <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Description</Form.Label>
-                            <Form.Control
-                              as="textarea"
-                              rows="3"
-                              name="description"
-                              onChange={this.handleChange}
-                              placeholder="Add a short description"
-                            />
-                          </Form.Group>
+                          <textarea
+                            autoComplete="off"
+                            name="description"
+                            className="input-subject-description"
+                            onChange={this.handleChange}
+                            placeholder="Add a short description"
+                          />
 
-                          <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Image</Form.Label>
-                            <Form.Control
-                              type="text"
-                              placeholder="image"
-                              name="image"
-                              onChange={this.handleChange}
-                            />
-                          </Form.Group>
+                          <input
+                            className="input-subject-img"
+                            type="text"
+                            placeholder="image"
+                            name="image"
+                            onChange={this.handleChange}
+                          />
 
                           <Button variant="primary" type="submit">
                             Create +
@@ -104,8 +100,8 @@ class Dashboard extends React.Component {
                     </Accordion.Collapse>
                   </Card>
                 </Accordion>
-              </section>
-            ) : null}
+              ) : null}
+            </section>
           </section>
         ) : (
           <Loader />

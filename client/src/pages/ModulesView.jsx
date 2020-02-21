@@ -27,7 +27,10 @@ class ModulesView extends React.Component {
     return (
       <main>
         {this.props.module ? (
-          <ModuleCard module={this.props.module.module} />
+          <ModuleCard
+            module={this.props.module.module}
+            isMentor={this.props.isMentor}
+          />
         ) : (
           <Loader />
         )}

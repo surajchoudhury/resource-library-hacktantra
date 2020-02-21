@@ -115,7 +115,10 @@ export function createSubject(title, description, image) {
     })
       .then(res => res.json())
       .then(subject => {
-        dispatch(fetchSubjects());
+        if (subject.success) {
+          window.location.reload(false);
+          dispatch(fetchSubjects());
+        }
       });
   };
 }
@@ -175,7 +178,6 @@ export function createModule(id, title, description, body, faq, history) {
       .then(modules => {
         if (modules.success) {
           dispatch(fetchSubject(id));
-          dispatch(fetchSubjects());
           history.push(`/modules/${"=" + id}`);
         }
       });
@@ -328,7 +330,6 @@ export function updateChapter(
         if (chapter.success) {
           history.push(`/modules/${"=" + subid}`);
           dispatch(fetchSubject(subid));
-          dispatch(fetchModule(subid, moduleID));
           dispatch(fetchChapter(subid, moduleID, chapterID));
         }
       });

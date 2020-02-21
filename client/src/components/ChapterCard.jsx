@@ -45,37 +45,36 @@ const ChapterCard = props => {
           <div className="topic_title">
             <span>{props.chapter.title}</span>
             <span>
-              <div className="edit_update_container">
-                ...
-                <div className="container_edit_update">
-                  <span
-                    className="update_mod_container"
-                    onClick={() =>
-                      props.dispatch(
-                        fetchChapter(
-                          props.chapter.module.subject,
-                          props.chapter.module._id,
-                          props.chapter._id
+              {props.isMentor ? (
+                <div className="edit_update_container">
+                  ...
+                  <div className="container_edit_update">
+                    <span
+                      className="update_mod_container"
+                      onClick={() =>
+                        props.dispatch(
+                          fetchChapter(
+                            props.chapter.module.subject,
+                            props.chapter.module._id,
+                            props.chapter._id
+                          )
                         )
-                      )
-                    }
-                  >
-                    <Link
-                      to="/modules/chapter/update"
-                      className="delete_icon_module"
+                      }
                     >
-                      <AiOutlineEdit className="icon-delete" /> Update
-                    </Link>
-                  </span>
-                  <span
-                    className="delete_mod_container"
-                    onClick={handleShow}
-                  >
-                    {" "}
-                    <AiOutlineDelete className="icon-delete" /> Delete
-                  </span>
+                      <Link
+                        to="/modules/chapter/update"
+                        className="delete_icon_module"
+                      >
+                        <AiOutlineEdit className="icon-delete" /> Update
+                      </Link>
+                    </span>
+                    <span className="delete_mod_container" onClick={handleShow}>
+                      {" "}
+                      <AiOutlineDelete className="icon-delete" /> Delete
+                    </span>
+                  </div>
                 </div>
-              </div>{" "}
+              ) : null}
             </span>
           </div>
           <div>
@@ -87,6 +86,10 @@ const ChapterCard = props => {
           <div className="author_publishDate_container">
             <span className="topic_author_name">
               <b>publish date</b> :{" "}
+              {new Date(props.chapter.createdAt).toDateString()}
+            </span>
+            <span className="topic_author_name">
+              <b>Updated on</b> :{" "}
               {new Date(props.chapter.updatedAt).toDateString()}
             </span>
           </div>

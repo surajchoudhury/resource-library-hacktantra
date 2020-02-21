@@ -163,7 +163,6 @@ router.get(
 router.get(
   "/:subjectid/modules/:moduleid/chapters/:chapterid",
   auth.verifyToken,
-  auth.isMentor,
   async (req, res) => {
     try {
       req.body.chapter = req.params.chapterid;

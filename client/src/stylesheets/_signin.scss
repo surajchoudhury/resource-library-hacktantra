@@ -289,6 +289,11 @@ iframe {
   color: #666666;
   line-height: 1.5;
 }
+.txt-1 {
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+}
 
 .txt2 {
   font-size: 13px;
@@ -296,6 +301,33 @@ iframe {
   line-height: 1.5;
 }
 
+.github_logo {
+  font-size: 1.8rem;
+  color: rgb(95, 102, 109);
+  transition: all 0.3s;
+}
+.btn-2 {
+  width: 100%;
+  display: block;
+  border-radius: 25px;
+  padding: 0.5rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 100%;
+  transition: all 0.3s;
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    .github_logo {
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+}
+
+.resc-logo-container {
+  padding: 0 0 1rem 0;
+}
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
 
@@ -360,15 +392,29 @@ iframe {
   font-size: 60px;
 }
 
-.github_logo {
-  font-size: 2.5rem;
-  color: rgb(95, 102, 109);
-  transition: all 0.3s;
-  &:hover {
-    color: #343a40;
-  }
+.book-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.4);
+  margin: 1rem 0;
 }
-
+.book-login span {
+  font-size: 1rem;
+}
+.book_logo2 {
+  font-size: 4rem;
+  width: 100%;
+  color: #585f66;
+  text-align: center;
+}
+.resource-logo {
+  font-size: 1.2rem;
+  display: block;
+  padding: 0.5rem 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+}
 /*------------------------------------------------------------------
 [ Input ]*/
 

@@ -43,34 +43,27 @@ const ModuleCard = props => {
           <div className="topic_title">
             <span>{props.module.title}</span>
             <span>
-              <div className="edit_update_container">
-                ...
-                <div className="container_edit_update">
-                  <span
-                    className="update_mod_container"
-                    onClick={() =>
-                      fetchModule(props.module.subject._id, props.module._id)
-                    }
-                  >
-                    <Link to="/update" className="delete_icon_module">
-                      <AiOutlineEdit className="icon-delete" /> Update
-                    </Link>
-                  </span>
-                  <span
-                    className="delete_mod_container"
-                    // onClick={() =>
-                    //   this.handledelete(
-                    //     props.module.module.subject._id,
-                    //     props.module.module._id
-                    //   )
-                    // }
-                    onClick={handleShow}
-                  >
-                    {" "}
-                    <AiOutlineDelete className="icon-delete" /> Delete
-                  </span>
+              {props.isMentor ? (
+                <div className="edit_update_container">
+                  ...
+                  <div className="container_edit_update">
+                    <span
+                      className="update_mod_container"
+                      onClick={() =>
+                        fetchModule(props.module.subject._id, props.module._id)
+                      }
+                    >
+                      <Link to="/update" className="delete_icon_module">
+                        <AiOutlineEdit className="icon-delete" /> Update
+                      </Link>
+                    </span>
+                    <span className="delete_mod_container" onClick={handleShow}>
+                      {" "}
+                      <AiOutlineDelete className="icon-delete" /> Delete
+                    </span>
+                  </div>
                 </div>
-              </div>{" "}
+              ) : null}
             </span>
           </div>
           <div>
@@ -86,6 +79,10 @@ const ModuleCard = props => {
             </span>
             <span className="topic_author_name">
               <b>publish date</b> :{" "}
+              {new Date(props.module.createdAt).toDateString()}
+            </span>
+            <span className="topic_author_name">
+              <b>Updated on</b> :{" "}
               {new Date(props.module.updatedAt).toDateString()}
             </span>
           </div>

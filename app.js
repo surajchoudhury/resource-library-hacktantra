@@ -44,7 +44,7 @@ require("./auth/passport");
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/subjects", subjectsRouter);
 app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/build', 'public/index.html'));
+	response.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 module.exports = app;

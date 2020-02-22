@@ -11,8 +11,7 @@ class UpdateModule extends React.Component {
     this.state = {
       title: null,
       description: null,
-      body: null,
-      faq: null
+      body: null
     };
   }
 
@@ -55,7 +54,6 @@ class UpdateModule extends React.Component {
         this.state.title,
         this.state.description,
         this.state.body,
-        this.state.faq,
         this.props.history
       )
     );
@@ -63,10 +61,7 @@ class UpdateModule extends React.Component {
   render() {
     return (
       <section className="update_form_container">
-        {this.state.title ||
-        this.state.description ||
-        this.state.body ||
-        this.state.faq ? (
+        {this.state.title || this.state.description || this.state.body ? (
           <Form onSubmit={this.handleUpdate}>
             <Form.Group controlId="formBasicEmail">
               <input
@@ -98,21 +93,6 @@ class UpdateModule extends React.Component {
                 onChange={this.handleChange}
                 value={this.state.body}
                 placeholder="Update your content in Mark down"
-              ></textarea>
-
-              <Form.Text className="text-muted"></Form.Text>
-            </Form.Group>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>FAQ</Form.Label>
-
-              <textarea
-                className="form_module-faq_update"
-                as="textarea"
-                rows="30"
-                name="faq"
-                value={this.state.faq}
-                onChange={this.handleChange}
-                placeholder="Update faq in Mark down"
               ></textarea>
 
               <Form.Text className="text-muted"></Form.Text>

@@ -33,7 +33,7 @@ passport.use(new GitHubStrategy({
     }
     else{
     Student.findOne({username: profile.username},((err, student) => {
-      if(student === null){
+      if(student == null){
         Student.create({ username: profile.username,
           email:profile._json.email,
           password:'password'

@@ -33,18 +33,26 @@ module.exports = {
   },
   signup: async (req, res) => {
     try {
-      let mentors = [
-        "itzsunny",
-        "chaharshivam",
-        "ravi11o",
-        "prank7",
-        "nnnkit",
-        "suraj122",
-        "puneettiwari61",
-        "reettik97"
-      ];
-
-      if (mentors.includes(req.body.username)) {
+      // let mentors = [
+      //   "itzsunny",
+      //   "chaharshivam",
+      //   "ravi11o",
+      //   "prank7",
+      //   "nnnkit",
+      //   "suraj122",
+      //   "puneettiwari61",
+      //   "reettik97"
+      // ];
+      if (
+        req.body.username == "itzsunny" ||
+        req.body.username == "chaharshivam" ||
+        req.body.username == "ravi11o" ||
+        req.body.username == "prank7" ||
+        req.body.username == "nnnkit" ||
+        req.body.username == "suraj122" ||
+        req.body.username == "puneettiwari61" ||
+        req.body.username == "reettik97"
+      ) {
         let user = await Mentor.create(req.body);
         res.json({ success: true, user });
       } else {

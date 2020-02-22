@@ -14,17 +14,23 @@ passport.use(
         "https://resource-library-alt.herokuapp.com/api/v1/users/auth/github/callback"
     },
     function(accessToken, refreshToken, profile, cb) {
-      let mentors = [
-        "itzsunny",
-        "chaharshivam",
-        "ravi11o",
-        "prank7",
-        "nnnkit",
-        "suraj122",
-        "puneettiwari61",
-        "reettik97"
-      ];
-      if (mentors.includes(profile.username)) {
+      // let mentors = [
+      //   "itzsunny",
+      //   "chaharshivam",
+      //   "ravi11o",
+      //   "prank7",
+      //   "nnnkit",
+      //   "suraj122"
+      // ];
+      if (
+        profile.username == "reettik97" ||
+        profile.username == "itzsunny" ||
+        profile.username == "chaharshivam" ||
+        profile.username == "ravi11o" ||
+        profile.username == "prank7" ||
+        profile.username == "nnnkit" ||
+        profile.username == "suraj122"
+      ) {
         Mentor.findOne({ username: profile.username }, (error, mentor) => {
           if (mentor == null) {
             Mentor.create(

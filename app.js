@@ -33,6 +33,9 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
 app.use(passport.initialize());
 require("./auth/passport");
 // app.use(passport.session());
@@ -40,8 +43,8 @@ require("./auth/passport");
 // app.use('/', indexRouter);
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/subjects", subjectsRouter);
-app.get("*", (req, res, next) => {
-  res.sendFile(__dirname, "public/index.html");
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'public/index.html'));
 });
 
 module.exports = app;

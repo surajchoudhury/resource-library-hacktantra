@@ -73,7 +73,7 @@ class CreateModule extends React.Component {
 
                     <Form.Text className="text-muted"></Form.Text>
                   </Form.Group>
-                  <Form.Group controlId="formBasicEmail">
+                  {/* <Form.Group controlId="formBasicEmail">
                     <textarea
                       className="form_module-faq"
                       as="textarea"
@@ -84,7 +84,7 @@ class CreateModule extends React.Component {
                     ></textarea>
 
                     <Form.Text className="text-muted"></Form.Text>
-                  </Form.Group>
+                  </Form.Group> */}
                   <Button variant="primary" type="submit">
                     Create +
                   </Button>

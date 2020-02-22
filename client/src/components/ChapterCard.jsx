@@ -103,7 +103,7 @@ const ChapterCard = props => {
             __html: props.chapter.body
           }}
         ></div>
-        <hr />
+        {/* <hr />
         <div className="faq_section">
           <h3 className="faq_heading">Faqs</h3>
           <div className="faq_container">
@@ -126,7 +126,7 @@ const ChapterCard = props => {
               to register yourself for any Hackathon on HackerEarth.
             </h4>
           </div>
-        </div>
+        </div> */}
         {DeleteModal(
           show,
           handleClose,

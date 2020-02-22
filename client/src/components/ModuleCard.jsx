@@ -89,7 +89,7 @@ const ModuleCard = props => {
         </div>
         <div className="tutorial_nav">
           <span className="nav-topic underline">Article</span>
-          <span className="nav-topic">faq</span>
+          {/* <span className="nav-topic">faq</span> */}
         </div>
         <div
           className="main_tutorial_area"
@@ -97,8 +97,8 @@ const ModuleCard = props => {
             __html: props.module.body
           }}
         ></div>
-        <hr />
-        <div className="faq_section">
+        {/* <hr /> */}
+        {/* <div className="faq_section">
           <h3 className="faq_heading">Faqs</h3>
           <div className="faq_container">
             <h4 className="question">
@@ -120,7 +120,7 @@ const ModuleCard = props => {
               to register yourself for any Hackathon on HackerEarth.
             </h4>
           </div>
-        </div>
+        </div> */}
         {DeleteModal(
           show,
           handleClose,

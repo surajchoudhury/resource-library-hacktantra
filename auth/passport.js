@@ -44,7 +44,6 @@ passport.use(new GitHubStrategy({
               res.json({success:true, token})
               return cb(error,token)
             } )
-           return cb(error, student)
          })
       }
       else {

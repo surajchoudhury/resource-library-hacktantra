@@ -83,7 +83,6 @@ passport.use(
                     return cb(error, token);
                   }
                 );
-                return cb(error, student);
               }
             );
           } else {

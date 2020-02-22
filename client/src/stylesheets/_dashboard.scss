@@ -1,5 +1,4 @@
 .container-dashboard-big {
-  display: flex;
   padding: 1rem;
   padding-top: 3.6rem;
   max-width: 1200px;
@@ -8,9 +7,24 @@
   grid-template-columns: 2fr 1fr;
   min-height: 100vh;
 }
+.container-dashboard-big-user {
+  padding: 1rem;
+  padding-top: 3.6rem;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+}
 
 .container-dashboard {
   padding: 0 1rem;
+}
+.container-dashboard-user {
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-gap: 1rem;
 }
 
 .card-dashboard {
@@ -93,7 +107,7 @@
   width: 20rem;
   align-items: center;
   flex-flow: column;
-  background-color: transparent;
+  background-color: #fff;
 }
 .add_subject {
   font-size: 1.5rem;

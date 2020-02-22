@@ -1,7 +1,7 @@
 var Student = require("../Models/Student");
 var Mentor = require("../Models/Mentor");
 var auth = require("../auth/auth");
-var bcrypt = require('bcryptjs')
+var bcrypt = require("bcryptjs");
 
 module.exports = {
   login: async (req, res) => {
@@ -33,33 +33,46 @@ module.exports = {
   },
   signup: async (req, res) => {
     try {
-      if (req.body.username == "itzsunny") {
+      let mentors = [
+        "itzsunny",
+        "chaharshivam",
+        "ravi11o",
+        "prank7",
+        "nnnkit",
+        "suraj122",
+        "puneettiwari61",
+        "reettik97"
+      ];
+
+      if (mentors.includes(req.body.username)) {
         let user = await Mentor.create(req.body);
         res.json({ success: true, user });
       } else {
         // let user = await Student.create(req.body);
-        let user = await new Student(req.body).save()
+        let user = await new Student(req.body).save();
         res.json({ success: true, user });
       }
     } catch (error) {
       res.status(200).json(error);
     }
   },
-  updateProfile: async (req,res) => {
+  updateProfile: async (req, res) => {
     try {
-      if(req.user.isMentor){
-       req.body.password = bcrypt.hashSync(req.body.password,10)
-       let user = await Mentor.findByIdAndUpdate(req.user.userID,req.body,{new:true})
-       res.json({ success: true, user });
+      if (req.user.isMentor) {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+        let user = await Mentor.findByIdAndUpdate(req.user.userID, req.body, {
+          new: true
+        });
+        res.json({ success: true, user });
+      } else {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+        let user = await Student.findByIdAndUpdate(req.user.userID, req.body, {
+          new: true
+        });
+        res.json({ success: true, user });
       }
-      else{
-        req.body.password = bcrypt.hashSync(req.body.password,10)
-        let user = await Student.findByIdAndUpdate(req.user.userID,req.body,{new:true})
-        res.json({success:true, user})
-      }
-      
-    }catch(error){
-      res.status(400).json(error)
+    } catch (error) {
+      res.status(400).json(error);
     }
   }
 };

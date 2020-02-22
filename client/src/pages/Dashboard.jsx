@@ -43,8 +43,20 @@ class Dashboard extends React.Component {
     return (
       <>
         {this.props.subjects ? (
-          <section className="container-dashboard-big">
-            <section className="container-dashboard">
+          <section
+            className={
+              this.props.isMentor
+                ? "container-dashboard-big"
+                : "container-dashboard-big-user"
+            }
+          >
+            <section
+              className={
+                this.props.isMentor
+                  ? "container-dashboard"
+                  : "container-dashboard-user"
+              }
+            >
               {this.props.subjects.map((subject, i) => (
                 <SubjectCard
                   subject={subject}
@@ -53,9 +65,8 @@ class Dashboard extends React.Component {
                 />
               ))}
             </section>
-
-            <section className="section2_container">
-              {this.props.isMentor ? (
+            {this.props.isMentor ? (
+              <section className="section2_container">
                 <Accordion defaultActiveKey="0" className="according_container">
                   <Card className="my-card_container">
                     <Card.Header>
@@ -100,8 +111,8 @@ class Dashboard extends React.Component {
                     </Accordion.Collapse>
                   </Card>
                 </Accordion>
-              ) : null}
-            </section>
+              </section>
+            ) : null}
           </section>
         ) : (
           <Loader />

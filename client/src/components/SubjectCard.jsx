@@ -48,7 +48,7 @@ const SubjectCard = props => {
 
   let { subject } = props;
   return (
-    <section className="card-dashboard">
+    <section className="shadow-sm rounded border card-dashboard">
       <div className="subject-img-container">
         <img src={subject.image} className="subject-img" alt="" />
       </div>

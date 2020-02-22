@@ -68,7 +68,7 @@ class Dashboard extends React.Component {
             {this.props.isMentor ? (
               <section className="section2_container">
                 <Accordion defaultActiveKey="0" className="according_container">
-                  <Card className="my-card_container">
+                  <Card className="shadow-sm rounded border my-card_container">
                     <Card.Header>
                       <Accordion.Toggle as={Button} variant="link" eventKey="1">
                         <GiWhiteBook className="add_subject" />
@@ -80,7 +80,7 @@ class Dashboard extends React.Component {
                         <Form onSubmit={this.handleCreate}>
                           <input
                             autoComplete="off"
-                            className="input-subject-title"
+                            className="border rounded input-subject-title"
                             type="text"
                             placeholder="Enter a title"
                             name="title"
@@ -90,13 +90,13 @@ class Dashboard extends React.Component {
                           <textarea
                             autoComplete="off"
                             name="description"
-                            className="input-subject-description"
+                            className="mt-2 border rounded input-subject-description"
                             onChange={this.handleChange}
                             placeholder="Add a short description"
                           />
 
                           <input
-                            className="input-subject-img"
+                            className="mb-2 border rounded input-subject-img"
                             type="text"
                             placeholder="image"
                             name="image"

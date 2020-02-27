@@ -29,10 +29,11 @@ passport.use(
         profile.username == "ravi11o" ||
         profile.username == "prank7" ||
         profile.username == "nnnkit" ||
+        profile.username == "puneettiwari61" ||
         profile.username == "suraj122"
       ) {
         Mentor.findOne({ username: profile.username }, (error, mentor) => {
-          if (mentor == null) {
+          if (!mentor) {
             Mentor.create(
               {
                 username: profile.username,
@@ -56,13 +57,12 @@ passport.use(
               }
             );
           } else {
-            // req.user = mentor
             return cb(error, mentor);
           }
         });
       } else {
         Student.findOne({ username: profile.username }, (err, student) => {
-          if (student === null) {
+          if (!student) {
             Student.create(
               {
                 username: profile.username,

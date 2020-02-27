@@ -190,7 +190,7 @@ export function fetchModule(id, moduleID) {
       method: "GET",
       headers: {
         "content-type": "application/json",
-        authorization: localStorage.token
+        Authorization: localStorage.token
       }
     })
       .then(res => res.json())
@@ -202,32 +202,26 @@ export function fetchModule(id, moduleID) {
   };
 }
 
-export function updateModule(
-  id,
-  moduleID,
-  title,
-  description,
-  body,
-  faq,
-  history
-) {
+export function updateModule(id, moduleID, title, description, body, history) {
+  console.log("point 1");
   return dispatch => {
     fetch(`/api/v1/subjects/${id}/modules/${moduleID}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
-        authorization: localStorage.token
+        Authorization: localStorage.token
       },
       body: JSON.stringify({
         title,
         description,
-        body,
-        faq
+        body
       })
     })
       .then(res => res.json())
       .then(modules => {
+        console.log("point 2", modules);
         if (modules.success) {
+          console.log("point 3", modules);
           history.push(`/modules/${"=" + id}`);
           dispatch(fetchModule(id, moduleID));
           dispatch(fetchSubject(id));

@@ -38,8 +38,7 @@ class UpdateModule extends React.Component {
           this.setState({
             title: Module.MDmodule && Module.MDmodule.title,
             description: Module.MDmodule && Module.MDmodule.description,
-            body: Module.MDmodule && Module.MDmodule.body,
-            faq: Module.MDmodule && Module.MDmodule.faq
+            body: Module.MDmodule && Module.MDmodule.body
           });
         }
       });

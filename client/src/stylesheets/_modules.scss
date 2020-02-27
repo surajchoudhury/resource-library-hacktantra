@@ -4,6 +4,31 @@
   justify-content: space-evenly;
 }
 
+///check 
+#side_chk {
+  display: none;
+}
+.fold,.unfold {
+  position: absolute;
+  right:-30px;
+  background-color: #343A40;
+  top:-8px;
+  font-size: 20px;
+  padding: 2px 5px;
+  z-index: 2;
+  display:none;
+  color: #2f89fb;
+}
+.unfold {
+  top:6.5px;
+  padding: 0 5px;
+  right:0px;
+} 
+#side_chk:checked ~ #sidebar  {
+    margin-left: 0;
+  }
+
+
 //edit update
 
 .edit_update_container {
@@ -178,7 +203,7 @@ main {
 }
 
 .topic-container {
-  width: 978px;
+  max-width: 978px;
   background-color: white;
 }
 
@@ -199,7 +224,7 @@ main {
 }
 
 .topic_title {
-  font-size: 24px;
+  font-size: 1.8rem;
   font-weight: 600;
   color: #252c33;
   line-height: 25px;
@@ -295,6 +320,90 @@ b {
   font-size: 15px;
   min-height: 100vh;
   // overflow: auto;
+  img {
+    width: 100%;
+  }
+  a {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1rem;
+    text-decoration: underline;
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+    margin-block-start: 0.67rem;
+    margin-block-end: 0.67rem;
+    color: rgba(0, 0, 0, 0.8);
+  }
+  h2 {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+  }
+  h3 {
+    display: block;
+    font-size: 1.17rem;
+    font-weight: bold;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h5 {
+    font-size: 0.8rem;
+  }
+  h6 {
+    font-size: 0.7rem;
+  }
+
+  ul,
+  li {
+    list-style-type: disc;
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  strong {
+    line-height: 33px;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 33px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.84);
+    strong {
+      font-size: 1.1rem;
+      color: rgba(0, 0, 0, 0.8);
+      font-weight: 700;
+    }
+  }
+  em {
+    line-height: 33px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  blockquote {
+    font-size: 1.4em;
+    margin: 50px auto;
+    font-family: Open Sans;
+    font-style: italic;
+    color: #555555;
+    padding: 1.2em 30px 1.2em 75px;
+    border-left: 8px solid rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    position: relative;
+    background: #ededed;
+  }
 }
 
 /* faq_section*/
@@ -915,26 +1024,6 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-}
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
 }
 
 .container-fluid {
@@ -11048,6 +11137,7 @@ h5,
 
 .wrapper {
   width: 100%;
+  overflow: hidden;
 }
 
 #sidebar {
@@ -11058,6 +11148,7 @@ h5,
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+  z-index: 1;
   position: relative;
 }
 #sidebar .h6 {
@@ -11109,7 +11200,6 @@ h5,
 #sidebar ul.components {
   padding: 0;
   overflow: hidden;
-
 }
 #sidebar ul li {
   font-size: 16px;
@@ -11139,18 +11229,7 @@ h5,
   background: #2f89fc;
   border-bottom: 1px solid #2f89fc;
 }
-@media (max-width: 991.98px) {
-  #sidebar {
-    margin-left: -250px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-  #sidebar .custom-menu {
-    margin-right: -60px !important;
-    top: 10px !important;
-  }
-}
+
 #sidebar .custom-menu {
   display: inline-block;
   position: absolute;
@@ -11161,13 +11240,7 @@ h5,
   -o-transition: 0.3s;
   transition: 0.3s;
 }
-@media (prefers-reduced-motion: reduce) {
-  #sidebar .custom-menu {
-    -webkit-transition: none;
-    -o-transition: none;
-    transition: none;
-  }
-}
+
 #sidebar .custom-menu .btn.btn-primary {
   background: transparent;
   border-color: transparent;
@@ -11196,15 +11269,9 @@ a[data-toggle="collapse"] {
   transform: translateY(-50%);
 }
 
-@media (max-width: 991.98px) {
-  #sidebarCollapse span {
-    display: none;
-  }
-}
-
 #content {
   width: 100%;
-  padding: 0;
+  padding: 2rem;
   min-height: 100vh;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;

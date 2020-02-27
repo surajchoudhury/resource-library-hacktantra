@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 const Logout = dispatch => {
   localStorage.removeItem("token");
   dispatch(isLogged(false));
-  window.location.reload(false);
+  window.location.href = "/";
 };
 
 const Header = props => {

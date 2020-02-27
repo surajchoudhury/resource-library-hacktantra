@@ -94,7 +94,7 @@
 }
 
 .my-card {
-  width: 10rem;
+  max-width: 10rem;
 }
 .according_container {
   text-align: right;
@@ -104,9 +104,10 @@
 }
 .my-card_container {
   display: flex;
-  width: 20rem;
+  width: 320px;
   align-items: center;
   flex-flow: column;
+  margin-bottom: 1rem;
   background-color: #fff;
 }
 .add_subject {

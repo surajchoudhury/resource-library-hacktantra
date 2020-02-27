@@ -3,7 +3,11 @@ import ModulesView from "./ModulesView";
 import ChaptersView from "./ChaptersView";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import { IoIosArrowDown } from "react-icons/io";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import {
+  AiOutlinePlusCircle,
+  AiOutlineMenuUnfold,
+  AiOutlineMenuFold
+} from "react-icons/ai";
 import { fetchModule, fetchSubject, fetchChapter } from "../Actions";
 import { connect } from "react-redux";
 import Loader from "../components/Loader";
@@ -19,7 +23,8 @@ class Modules extends React.Component {
       body: null,
       faq: null,
       chapter: false,
-      current: null
+      current: null,
+      checked: true
     };
   }
 
@@ -64,7 +69,18 @@ class Modules extends React.Component {
       <main>
         {this.props.subject ? (
           <div className="wrapper d-flex align-items-stretch">
+            <input type="checkbox" id="side_chk" checked={this.state.checked} />
             <nav id="sidebar">
+              <label
+                htmlFor="side_chk"
+                className="fold"
+                onClick={() => this.setState({ checked: !this.state.checked })}
+              >
+                <AiOutlineMenuFold />
+              </label>
+              {/* <label htmlFor="side_chk" className="unfold">
+                <AiOutlineMenuUnfold />
+              </label> */}
               <div className="custom-menu">
                 <button
                   type="button"
@@ -77,7 +93,9 @@ class Modules extends React.Component {
               </div>
               <h1>
                 <span className="logo">
-                  <span>Modules</span>
+                  <span onClick={() => this.setState({ checked: false })}>
+                    Modules
+                  </span>
                   {this.props.isMentor ? (
                     <Link to="/create" className="link">
                       <OverlayTrigger
@@ -127,13 +145,14 @@ class Modules extends React.Component {
                           </label>
                           <span
                             className="active"
-                            onClick={event =>
+                            onClick={event => {
                               this.handleGetModule(
                                 event,
                                 this.props.subject.subject._id,
                                 model._id
-                              )
-                            }
+                              );
+                              this.setState({ checked: false });
+                            }}
                           >
                             {model.title}
                           </span>{" "}
@@ -170,6 +189,7 @@ class Modules extends React.Component {
                                     model._id,
                                     chapter._id
                                   );
+                                  this.setState({ checked: false });
                                 }}
                               >
                                 {chapter.title}
@@ -198,7 +218,7 @@ class Modules extends React.Component {
             </nav>
 
             {!this.state.chapter ? (
-              <div id="content" className="p-4 p-md-5 pt-5">
+              <div id="content">
                 {this.props.module ? (
                   <ModulesView
                     module={this.props.module}
@@ -209,7 +229,7 @@ class Modules extends React.Component {
                 )}
               </div>
             ) : (
-              <div id="content" className="p-4 p-md-5 pt-5">
+              <div id="content">
                 {this.props.chapter ? (
                   <ChaptersView
                     chapter={this.props.chapter}

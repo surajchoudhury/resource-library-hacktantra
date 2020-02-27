@@ -12,7 +12,7 @@ pre {
   background: none;
   text-shadow: 0 1px white;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  font-size: 1em;
+  font-size: 1rem;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -55,8 +55,8 @@ code ::selection {
 
 /* Code blocks */
 pre {
-  padding: 1em;
-  margin: 0.5em 0;
+  padding: 1rem;
+  margin: 0.5rem 0;
   overflow: auto;
 }
 
@@ -67,8 +67,8 @@ pre {
 
 /* Inline code */
 :not(pre) > code {
-  padding: 0.1em;
-  border-radius: 0.3em;
+  padding: 0.1rem;
+  border-radius: 0.3rem;
   white-space: normal;
 }
 

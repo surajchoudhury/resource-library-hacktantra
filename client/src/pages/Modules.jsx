@@ -3,11 +3,8 @@ import ModulesView from "./ModulesView";
 import ChaptersView from "./ChaptersView";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import { IoIosArrowDown } from "react-icons/io";
-import {
-  AiOutlinePlusCircle,
-  AiOutlineMenuUnfold,
-  AiOutlineMenuFold
-} from "react-icons/ai";
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import { FiMenu } from "react-icons/fi";
 import { fetchModule, fetchSubject, fetchChapter } from "../Actions";
 import { connect } from "react-redux";
 import Loader from "../components/Loader";
@@ -76,7 +73,7 @@ class Modules extends React.Component {
                 className="fold"
                 onClick={() => this.setState({ checked: !this.state.checked })}
               >
-                <AiOutlineMenuFold />
+                <FiMenu />
               </label>
               {/* <label htmlFor="side_chk" className="unfold">
                 <AiOutlineMenuUnfold />

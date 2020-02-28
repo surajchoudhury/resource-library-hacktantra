@@ -78,6 +78,7 @@
   #content {
     max-width: 100vw;
     padding: 0.5rem;
+    // text-align: justify;
   }
   // .p-4,.p-md-5,.pt-5 {
   //   padding: .5rem;
@@ -115,6 +116,7 @@
     display: block;
   }
   .main_tutorial_area {
+    text-align: left;
     ul,
     li {
       margin-left: 0.5rem;

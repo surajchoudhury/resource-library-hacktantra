@@ -39,7 +39,7 @@ class CreateChapter extends React.Component {
     return (
       <>
         {this.props.module ? (
-          <div id="content" className="p-4 p-md-5 pt-5">
+          <div id="content">
             <Accordion>
               <Card.Body>
                 <Form onSubmit={this.handleCreateChapter}>

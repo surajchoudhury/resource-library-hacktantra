@@ -39,7 +39,7 @@ class CreateModule extends React.Component {
     return (
       <>
         {this.props.subject ? (
-          <div id="content" class="p-4 p-md-5 pt-5">
+          <div id="content">
             <Accordion>
               <Card.Body>
                 <Form onSubmit={this.handleCreateModule}>

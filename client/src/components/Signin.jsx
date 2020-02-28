@@ -2,11 +2,13 @@ import React from "react";
 import { GoMarkGithub } from "react-icons/go";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaBookOpen } from "react-icons/fa";
+import {Spinner} from 'react-bootstrap'
 
 //////////
 
 import { loginUser } from "../Actions";
 import { connect } from "react-redux";
+
 import { Link, withRouter } from "react-router-dom";
 
 class Signin extends React.Component {
@@ -15,7 +17,8 @@ class Signin extends React.Component {
     this.state = {
       username: null,
       password: null,
-      visible: false
+      visible: false,
+      github: false
     };
   }
 
@@ -96,8 +99,15 @@ class Signin extends React.Component {
               </div>
               <span class="txt1 txt-1">Or Login with</span>
               <a href="https://resource-library-alt.herokuapp.com/api/v1/users/auth/github">
-                <div class="btn-2">
-                  <GoMarkGithub className="github_logo" />
+                <div
+                  class="btn-2"
+                  onClick={() => this.setState({ github: true })}
+                >
+                  {this.state.github ? (
+                    <Spinner animation="border" className="github_spinner"  />
+                  ) : (
+                    <GoMarkGithub className="github_logo" />
+                  )}
                 </div>
               </a>
 

@@ -43,7 +43,7 @@ const ChapterCard = props => {
       <div className="topic-container">
         <div className="topic_header_container">
           <div className="topic_title">
-            <span>{props.chapter.title}</span>
+            <span className="topic_title_small">{props.chapter.title}</span>
             <span>
               {props.isMentor ? (
                 <div className="edit_update_container">

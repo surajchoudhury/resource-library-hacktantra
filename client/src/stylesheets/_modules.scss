@@ -110,12 +110,29 @@
   font-size: 2.5rem;
   width: 100%;
   padding: 1rem;
+  border-bottom: 2px solid transparent;
+  transition: all .3s;
+  &:focus{
+    border-bottom: 2px solid rgba(#2f89fb,.5);
+  }
+ 
 }
+.input_title:focus::placeholder {
+  color:rgba(#2f89fb,.5);
+ }
 .textarea_desc {
   font-size: 1.2rem;
   padding: 1rem;
   width: 100%;
+  transition: all .3s;
+  border-bottom: 2px solid transparent;
+  &:focus {
+    border-bottom: 2px solid rgba(#2f89fb,.5);
+  }
 }
+.textarea_desc:focus::placeholder {
+  color:rgba(#2f89fb,.5);
+ }
 
 .models_cont {
   display: flex;
@@ -260,6 +277,24 @@ main {
   width: 100%;
   font-size: 0.95rem;
   padding: 1rem;
+  transition: all .3s;
+  border-left: 2px solid transparent;
+  &:focus {
+    border-left: 2px solid rgba(#2f89fb,.5);
+  }
+}
+.form_module:focus::placeholder {
+  color:rgba(#2f89fb,.5);
+ }
+.form_module_update {
+  transition: all .3s;
+  border-left: 2px solid transparent;
+  &:focus {
+    border-left: 2px solid rgba(#2f89fb,.5);
+  }
+}
+.form_module_update:focus .form_module_update::placeholder {
+ color:#2f89fb;
 }
 .form_module-faq {
   height: 20rem;
@@ -708,7 +743,7 @@ button:focus {
   outline: 5px auto -webkit-focus-ring-color;
 }
 
-input,
+
 button,
 select,
 optgroup,
@@ -719,8 +754,7 @@ textarea {
   line-height: inherit;
 }
 
-button,
-input {
+button {
   overflow: visible;
 }
 
@@ -2545,6 +2579,9 @@ pre code {
   outline: 0;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  input {
+    border-bottom: 1px solid;
+  }
 }
 .form-control::-webkit-input-placeholder {
   color: #6c757d;
@@ -11337,3 +11374,7 @@ a[data-toggle="collapse"] {
 .subscribe-form .form-control {
   background: #4897fc;
 }
+
+
+
+///////////

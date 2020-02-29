@@ -80,9 +80,9 @@ class Dashboard extends React.Component {
                         <Form onSubmit={this.handleCreate}>
                           <input
                             autoComplete="off"
-                            className="border rounded input-subject-title"
+                            className=" rounded input-subject-title"
                             type="text"
-                            placeholder="Enter a title"
+                            placeholder="Title"
                             name="title"
                             onChange={this.handleChange}
                           />
@@ -90,15 +90,15 @@ class Dashboard extends React.Component {
                           <textarea
                             autoComplete="off"
                             name="description"
-                            className="mt-2 border rounded input-subject-description"
+                            className="rounded input-subject-description"
                             onChange={this.handleChange}
                             placeholder="Add a short description"
                           />
 
                           <input
-                            className="mb-2 border rounded input-subject-img"
-                            type="text"
-                            placeholder="image"
+                            className="rounded input-subject-img"
+                            type="url"
+                            placeholder="Image URL"
                             name="image"
                             onChange={this.handleChange}
                           />

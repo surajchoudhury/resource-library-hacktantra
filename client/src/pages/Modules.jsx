@@ -9,11 +9,11 @@ import { fetchModule, fetchSubject, fetchChapter } from "../Actions";
 import { connect } from "react-redux";
 import Loader from "../components/Loader";
 import { Link, withRouter } from "react-router-dom";
+// import SidebarModule from "../components/SidebarModule";
 
 class Modules extends React.Component {
   constructor() {
     super();
-
     this.state = {
       title: null,
       description: null,
@@ -51,6 +51,9 @@ class Modules extends React.Component {
       current: id
     });
   };
+  handleToggle = () => {
+    this.setState({ checked: false });
+  };
 
   getChapter = (subid, modid, chid) => {
     this.setState({ chapter: true });
@@ -68,6 +71,7 @@ class Modules extends React.Component {
           <div className="wrapper d-flex align-items-stretch">
             <input type="checkbox" id="side_chk" checked={this.state.checked} />
             <nav id="sidebar">
+              {/* <section className="sidebar_contents"> */}
               <label
                 htmlFor="side_chk"
                 className="fold"
@@ -106,8 +110,31 @@ class Modules extends React.Component {
                   ) : null}
                 </span>
               </h1>
+              {/* <ul className="list-unstyled components mb-5 ">
+                {this.props.subject.subject.modules.length ? (
+                  this.props.subject.subject.modules.map((model, index) => (
+                    <SidebarModule
+                      model={model}
+                      index={index}
+                      current={this.state.current}
+                      toggle={this.handleToggle}
+                      subject={this.props.subject}
+                      isMentor={this.props.isMentor}
+                      handleGetModule={this.handleGetModule}
+                      getChapter={this.getChapter}
+                    />
+                  ))
+                ) : (
+                  <li className="active">
+                    <span className="chapter_title_small_2">
+                      <span className="fa fa-home mr-3"></span> No Modules
+                      created yet!
+                    </span>
+                  </li>
+                )}
+              </ul> */}
 
-              <ul className="list-unstyled components mb-5">
+              <ul className="list-unstyled components mb-5 ">
                 {this.props.subject.subject.modules.length ? (
                   this.props.subject.subject.modules.map((model, index) => (
                     <span>
@@ -200,7 +227,7 @@ class Modules extends React.Component {
                             </p>
                           </span>
                         )}
-                      </span>{" "}
+                      </span>
                     </span>
                   ))
                 ) : (
@@ -211,31 +238,36 @@ class Modules extends React.Component {
                     </span>
                   </li>
                 )}
-              </ul>
+              </ul> 
+              {/* </section> */}
             </nav>
 
             {!this.state.chapter ? (
-              <div id="content">
-                {this.props.module ? (
-                  <ModulesView
-                    module={this.props.module}
-                    isMentor={this.props.isMentor}
-                  />
-                ) : (
-                  <p>Click on a module to read</p>
-                )}
-              </div>
+              <section className="article_content">
+                <div id="content">
+                  {this.props.module ? (
+                    <ModulesView
+                      module={this.props.module}
+                      isMentor={this.props.isMentor}
+                    />
+                  ) : (
+                    <p>Click on a module to read</p>
+                  )}
+                </div>
+              </section>
             ) : (
-              <div id="content">
-                {this.props.chapter ? (
-                  <ChaptersView
-                    chapter={this.props.chapter}
-                    isMentor={this.props.isMentor}
-                  />
-                ) : (
-                  <Loader />
-                )}
-              </div>
+              <section className="article_content">
+                <div id="content">
+                  {this.props.chapter ? (
+                    <ChaptersView
+                      chapter={this.props.chapter}
+                      isMentor={this.props.isMentor}
+                    />
+                  ) : (
+                    <Loader />
+                  )}
+                </div>
+              </section>
             )}
           </div>
         ) : (

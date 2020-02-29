@@ -3,6 +3,9 @@
     max-width: 320px;
     // margin: 1rem;
   }
+  .article_content {
+    height: fit-content;
+  }
   #sidebar {
     margin-left: -100vw;
     min-width: 100vw;
@@ -60,6 +63,9 @@
 @media all and (max-width: 760px) {
   html {
     font-size: 15px;
+  }
+  .article_content {
+    height: fit-content;
   }
   .nav-topic {
     margin: 0;

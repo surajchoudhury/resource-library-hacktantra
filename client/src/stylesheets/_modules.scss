@@ -221,7 +221,7 @@ main {
 }
 
 .topic-container {
-  max-width: 978px;
+  width: 100%;
   background-color: white;
 }
 
@@ -690,7 +690,7 @@ kbd,
 samp {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
-  font-size: 1em;
+  font-size: 13px;
 }
 
 pre {
@@ -1054,7 +1054,7 @@ pre {
   color: #212529;
 }
 pre code {
-  font-size: inherit;
+  font-size: 13px;
   color: inherit;
   word-break: normal;
 }

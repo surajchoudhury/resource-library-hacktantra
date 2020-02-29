@@ -1,6 +1,4 @@
-
 @media all and (max-width: 990px) {
-
   .my-card_container {
     max-width: 320px;
     // margin: 1rem;
@@ -60,11 +58,13 @@
 }
 
 @media all and (max-width: 760px) {
-  
-  .nav-topic{
+  html {
+    font-size: 15px;
+  }
+  .nav-topic {
     margin: 0;
     padding: 5px 0;
-  }  
+  }
   .container-dashboard-big {
     margin: auto;
     display: flex;
@@ -91,14 +91,15 @@
   // .p-4,.p-md-5,.pt-5 {
   //   padding: .5rem;
   // }
-  .input_title,.textarea_desc {
+  .input_title,
+  .textarea_desc {
     font-size: 1rem;
   }
   .topic_header_container {
     padding: 0;
   }
   .card-body {
-    padding:0;
+    padding: 0;
   }
   .topic-container {
     max-width: 100%;
@@ -138,7 +139,6 @@
     display: block;
   }
 }
-
 
 // @media (min-width: 576px) {
 //   .container {

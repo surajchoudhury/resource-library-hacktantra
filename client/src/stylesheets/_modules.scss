@@ -190,7 +190,6 @@
 }
 .chapter_title_small {
   padding: 0.5rem;
-  font-size: 1rem;
   text-align: center;
   margin: 0;
   color: rgba(255, 255, 255, 0.7);
@@ -360,9 +359,13 @@ b {
     width: 100%;
   }
   a {
-    color: rgba(0, 0, 0, 0.5);
+    color: #3C8FFB;
     font-size: 1rem;
+    transition: all .3s;
+  &:hover {
+    color: #0056b3;
     text-decoration: underline;
+  }
   }
   h1 {
     font-size: 2rem;
@@ -402,31 +405,37 @@ b {
     font-size: 0.7rem;
     color: rgba(0, 0, 0, 0.7);
   }
+  ol {
+    li {
+    list-style-type: decimal;
+    margin-left: 1rem;
+    font-size: 1rem;
+    line-height: 31px;
+    color: rgba(0, 0, 0, 0.7);
+    }
+  }
 
-  ul,
-  li {
+  ul {
+    li {
     list-style-type: disc;
     margin-left: 1rem;
     font-size: 1rem;
     line-height: 31px;
     color: rgba(0, 0, 0, 0.7);
+    }
   }
-  strong {
-    line-height: 33px;
-    color: rgba(0, 0, 0, 0.8);
-    font-weight: 600;
-    font-size: 1.5rem;
-  }
+
   p {
     font-size: 1.1rem;
     line-height: 33px;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.84);
-    strong {
-      font-size: 1.1rem;
-      color: rgba(0, 0, 0, 0.8);
-      font-weight: 700;
-    }
+  
+  }
+  strong {
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 700;
   }
   em {
     line-height: 33px;

@@ -50,8 +50,8 @@ passport.use(
                   process.env.SECRET,
                   (err, token) => {
                     if (err) return next(err);
-                    res.json({ success: true, token });
-                    return cb(error, token);
+                    // res.json({ success: true, token });
+                    return cb(error, mentor);
                   }
                 );
               }
@@ -79,8 +79,8 @@ passport.use(
                   process.env.SECRET,
                   (err, token) => {
                     if (err) return next(err);
-                    res.json({ success: true, token });
-                    return cb(error, token);
+                    // res.json({ success: true, token });
+                    return cb(error, student);
                   }
                 );
               }

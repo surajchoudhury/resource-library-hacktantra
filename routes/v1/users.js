@@ -40,6 +40,6 @@ router.get(
     res.redirect(`/oauth/?t=${token}`);
     // res.send('success');
   }
-);
+)
 
 module.exports = router;

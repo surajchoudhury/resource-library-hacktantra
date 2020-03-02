@@ -1,6 +1,7 @@
 body {
   text-align: center;
   font-family: "Open Sans", sans-serif;
+
   background-color: #f3f3f3;
 }
 body ~ ::-webkit-scrollbar {
@@ -28,8 +29,4 @@ body ~ ::-webkit-scrollbar {
 .loading {
   padding-left: 0.8rem;
 }
-img {
-  margin: auto;
-  width: 100%;
-  object-fit: contain;
-}
+

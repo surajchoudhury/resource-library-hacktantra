@@ -375,12 +375,13 @@ b {
 .main_tutorial_area {
   cursor: default;
   padding: 20px 20px 30px 20px;
-  // line-height: 21px;
   font-size: 15px;
   min-height: 100vh;
-  // overflow: auto;
   img {
-    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    object-fit: contain;
+    margin: auto;
   }
   a {
     color: #3C8FFB;
@@ -456,6 +457,7 @@ b {
     color: rgba(0, 0, 0, 0.84);
   
   }
+ 
   strong {
     font-size: 1.1rem;
     color: rgba(0, 0, 0, 0.8);
@@ -736,10 +738,11 @@ figure {
   margin: 0 0 1rem;
 }
 
-img {
-  vertical-align: middle;
-  border-style: none;
-}
+// img {
+//   vertical-align: middle;
+//   border-style: none;
+// }
+
 
 svg {
   overflow: hidden;
@@ -11231,6 +11234,7 @@ h5,
   -o-transition: all 0.4s;
   transition: all 0.4s;
   z-index: 1;
+  // overflow-y: scroll;
   position: relative;
 }
 #sidebar .h6 {

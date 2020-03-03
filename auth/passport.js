@@ -11,7 +11,7 @@ passport.use(
       clientID: process.env.Client_ID,
       clientSecret: process.env.Client_Secret,
       callbackURL:
-        "https://resource-library-alt.herokuapp.com/api/v1/users/auth/github/callback"
+        "/api/v1/users/auth/github/callback"
     },
     function(accessToken, refreshToken, profile, cb) {
       // let mentors = [

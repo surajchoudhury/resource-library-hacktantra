@@ -35,9 +35,10 @@ router.get(
     session: false
   }),
   async function(req, res) {
+    console.log('inside callback', req.user);
     var token = await auth.generateJWT(req.user);
-    // res.redirect(`http://localhost:3000/oauth/?t=${token}`);
-    res.redirect(`/oauth/?t=${token}`);
+    res.redirect(`http://localhost:3000/oauth/?t=${token}`);
+    // res.redirect(`/oauth/?t=${token}`);
   }
 )
 

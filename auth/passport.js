@@ -8,12 +8,12 @@ var jwt = require("jsonwebtoken");
 passport.use(
   new GitHubStrategy(
     {
-      clientID: process.env.Client_ID,
-      clientSecret: process.env.Client_Secret,
-      callbackURL:
-        "/api/v1/users/auth/github/callback"
+      clientID: "90f3685d9788c63b98ef",
+      clientSecret: "e5defdef491e4b712de81e5d56736a60bdd645ee",
+      callbackURL: "/api/v1/users/auth/github/callback"
     },
     function(accessToken, refreshToken, profile, cb) {
+      // console.log(profile);
       // let mentors = [
       //   "itzsunny",
       //   "chaharshivam",
@@ -41,18 +41,8 @@ passport.use(
                 password: "password"
               },
               (error, mentor) => {
-                jwt.sign(
-                  {
-                    userID: mentor.id,
-                    email: mentor.email,
-                    isMentor: mentor.isMentor
-                  },
-                  process.env.SECRET,
-                  (err, token) => {
-                    if (err) return next(err);
-                    return cb(error, mentor);
-                  }
-                );
+                if (err) return next(err);
+                return cb(error, mentor);
               }
             );
           } else {
@@ -61,6 +51,7 @@ passport.use(
         });
       } else {
         Student.findOne({ username: profile.username }, (err, student) => {
+          // console.log(err, student, "inside student clause")
           if (!student) {
             Student.create(
               {
@@ -69,18 +60,9 @@ passport.use(
                 password: "password"
               },
               (error, student) => {
-                jwt.sign(
-                  {
-                    userID: student.id,
-                    email: student.email,
-                    isMentor: student.isMentor
-                  },
-                  process.env.SECRET,
-                  (err, token) => {
-                    if (err) return next(err);
-                    return cb(error, student);
-                  }
-                );
+                // console.log('student create', err, student);
+                if (err) return next(err);
+                return cb(error, student);
               }
             );
           } else {

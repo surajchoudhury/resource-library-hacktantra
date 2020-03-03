@@ -10,7 +10,7 @@ passport.use(
     {
       clientID: "90f3685d9788c63b98ef",
       clientSecret: "e5defdef491e4b712de81e5d56736a60bdd645ee",
-      callbackURL: "/api/v1/users/auth/github/callback"
+      callbackURL: "https://resource-library-alt.herokuapp.com/api/v1/users/auth/github/callback"
     },
     function(accessToken, refreshToken, profile, cb) {
       // console.log(profile);

@@ -98,7 +98,7 @@ class Signin extends React.Component {
                 </div>
               </div>
               <span class="txt1 txt-1">Or Login with</span>
-              <a href="https://resource-library-alt.herokuapp.com/api/v1/users/auth/github">
+              <a href="/api/v1/users/auth/github">
                 <div
                   class="btn-2"
                   onClick={() => this.setState({ github: true })}

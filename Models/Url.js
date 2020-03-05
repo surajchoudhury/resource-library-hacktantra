@@ -8,11 +8,7 @@ const urlSchema = new Schema(
       trim: true,
       required: true
     },
-    description: {
-      type: String,
-      trim: true
-    }, 
-    url: {
+    body: {
       type: String,
       trim: true,
       required: true

@@ -3,11 +3,10 @@ var router = express.Router();
 var Mentor = require("../../Models/Mentor");
 var Url = require('../../Models/Url')
 var auth = require('../../auth/auth')
-
+var showdown = require("showdown");
 
 router.post('/',auth.verifyToken, auth.isMentor, async (req,res) => {
   try {
-    console.log(req.body)
     req.body.author = req.user.userID
     var url = await Url.create(req.body)
     res.json({success:true, url})
@@ -16,15 +15,31 @@ router.post('/',auth.verifyToken, auth.isMentor, async (req,res) => {
   }
 })
 
-
+//get all
 router.get('/', auth.verifyToken, async (req,res) => {
   try {
-    var url = await Url.find({})
+    var url = await Url.find({}).populate('author')
     res.json({success:true, url})
   } catch(err){
     res.json({success:false, err})
   }
 })
+
+// getbyid
+router.get('/:id', auth.verifyToken, async (req,res) => {
+  try {
+    var url = await Url.findById(req.params.id).populate('author')
+    (converter = new showdown.Converter()),
+    text = url.body,
+    html = await converter.makeHtml(text);
+    url.body = html;
+    res.json({success:true, url})
+  } catch(err){
+    res.json({success:false, err})
+  }
+})
+
+
 
 router.put('/:id',auth.verifyToken, auth.isMentor, async(req,res) => {
   try{

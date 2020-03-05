@@ -9,6 +9,7 @@ require("dotenv").config();
 // var indexRouter = require('./routes/index');
 var usersRouter = require("./routes/v1/users");
 var subjectsRouter = require("./routes/v1/subjects");
+var urlRouter = require("./routes/v1/url");
 
 // mongoose connect to database
 mongoose.connect(
@@ -40,7 +41,7 @@ app.use(passport.initialize());
 require("./auth/passport");
 // app.use(passport.session());
 
-// app.use('/', indexRouter);
+app.use('/api/v1/url', urlRouter);
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/subjects", subjectsRouter);
 app.get("*", (request, response) => {

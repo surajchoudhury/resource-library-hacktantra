@@ -35,11 +35,29 @@ router.put("/:id", auth.verifyToken, auth.isMentor, subjects.updateSubject);
 router.delete("/:id", auth.verifyToken, auth.isMentor, subjects.deleteSubject);
 
 //get all modules
+
 router.get("/:subjectid/modules", auth.verifyToken, async (req, res) => {
   try {
     var modules = await Module.find({ subject: req.params.subjectid }).populate(
-      "author subject"
+      {
+        path: "author subject chapters",
+        populate: {
+          path: "module"
+        }
+      }
     );
+    modules.forEach(module => {
+      (converter = new showdown.Converter()),
+        (text = module.body),
+        (html = converter.makeHtml(text));
+      module.body = html;
+      module.chapters.forEach(chapter => {
+        (converter = new showdown.Converter()),
+          (text = chapter.body),
+          (html = converter.makeHtml(text));
+        chapter.body = html;
+      });
+    });
     res.json({ success: true, module: modules });
   } catch (error) {
     res.status(400).json(error);
@@ -59,11 +77,17 @@ router.get(
       var MDmodule = await Module.findById(req.params.moduleid).populate(
         "author subject chapters"
       );
-
+      getModule.chapters.forEach(chapter => {
+        (converter = new showdown.Converter()),
+          (text = chapter.body),
+          (html = converter.makeHtml(text));
+        chapter.body = html;
+      });
       (converter = new showdown.Converter()),
         (text = getModule.body),
         (html = await converter.makeHtml(text));
       getModule.body = html;
+
       res.json({ success: true, module: getModule, MDmodule });
     } catch (error) {
       res.status(400).json(error);
@@ -84,9 +108,6 @@ router.post(
       var newModule = await Module.create(req.body);
       await Subject.findByIdAndUpdate(req.params.subjectid, {
         $push: { modules: newModule._id }
-      });
-      await Mentor.findByIdAndUpdate(req.body.author, {
-        $push: { createdModules: newModule._id }
       });
       res.json({ success: true, newModule });
     } catch (error) {
@@ -129,9 +150,6 @@ router.delete(
         req.params.subjectid,
         { $pull: { modules: req.params.moduleid } }
       );
-      await Mentor.findByIdAndUpdate(req.body.author, {
-        $pull: { createdModules: req.params.moduleid }
-      });
       res.json({
         success: true,
         msg: `successfully deleted ${deletedModule.title}`
@@ -151,6 +169,12 @@ router.get(
   async (req, res) => {
     try {
       var chapter = await Chapter.find({});
+      chapter.forEach(chapter => {
+        (converter = new showdown.Converter()),
+          (text = chapter.body),
+          (html = converter.makeHtml(text));
+        chapter.body = html;
+      });
       res.json({ success: true, chapter });
     } catch (error) {
       res.status(400).json(error);

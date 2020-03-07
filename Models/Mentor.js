@@ -22,13 +22,7 @@ const mentorSchema = new Schema(
     isMentor: {
       type: Boolean,
       default: true
-    },
-    createdModules: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Module"
-      }
-    ]
+    }
   },
   { timestamps: true }
 );
@@ -46,8 +40,8 @@ mentorSchema.pre("save", function(next) {
 });
 
 mentorSchema.methods.verifyPassword = async function(password) {
-    return await bcrypt.compare(password, this.password)
-  }
+  return await bcrypt.compare(password, this.password);
+};
 
 const Mentor = mongoose.model("Mentor", mentorSchema);
 module.exports = Mentor;

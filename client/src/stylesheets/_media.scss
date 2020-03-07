@@ -6,8 +6,12 @@
   .article_content {
     height: fit-content;
   }
+  .sidebar_contents {
+    position: static;
+    min-width: 100vw;
+  }
   #sidebar {
-    margin-left: -100vw;
+    margin-right: -100vw;
     min-width: 100vw;
   }
   #content {
@@ -85,8 +89,12 @@
     max-width: 320px;
     // margin: 1rem;
   }
+  .sidebar_contents {
+    position: static;
+    min-width: 100vw;
+  }
   #sidebar {
-    margin-left: -100vw;
+    margin-right: -100vw;
     min-width: 100vw;
   }
   #content {

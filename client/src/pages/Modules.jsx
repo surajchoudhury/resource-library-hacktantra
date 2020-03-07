@@ -1,14 +1,20 @@
 import React from "react";
-import ModulesView from "./ModulesView";
-import ChaptersView from "./ChaptersView";
+import AllModules from "./AllModules";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import { IoIosArrowDown } from "react-icons/io";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
-import { fetchModule, fetchSubject, fetchChapter } from "../Actions";
+import {
+  fetchModule,
+  fetchSubject,
+  fetchChapter,
+  fetchModules
+} from "../Actions";
 import { connect } from "react-redux";
 import Loader from "../components/Loader";
-import { Link, withRouter } from "react-router-dom";
+import { Link as AncLink, withRouter } from "react-router-dom";
+import { Link, animateScroll as scroll } from "react-scroll";
+
 // import SidebarModule from "../components/SidebarModule";
 
 class Modules extends React.Component {
@@ -18,9 +24,6 @@ class Modules extends React.Component {
       title: null,
       description: null,
       body: null,
-      faq: null,
-      chapter: false,
-      current: null,
       checked: true
     };
   }
@@ -29,7 +32,13 @@ class Modules extends React.Component {
     this.props.dispatch(
       fetchSubject(this.props.location.pathname.split("=")[1])
     );
+    this.props.dispatch(
+      fetchModules(this.props.location.pathname.split("=")[1])
+    );
   }
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
 
   handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
@@ -41,16 +50,6 @@ class Modules extends React.Component {
     this.props.dispatch(fetchModule(id, moduleID));
   };
 
-  handleCheck = id => {
-    this.setState({
-      current: id
-    });
-  };
-  handleUncheck = id => {
-    this.setState({
-      current: id
-    });
-  };
   handleToggle = () => {
     this.setState({ checked: false });
   };
@@ -67,121 +66,66 @@ class Modules extends React.Component {
   render() {
     return (
       <main>
-        {this.props.subject ? (
+        {this.props.modules && this.props.subject && this.props.modules.success ? (
           <div className="wrapper d-flex align-items-stretch">
+            <article className="article_content">
+              <div id="content">
+                {this.props.modules.module.map(module => (
+                  <AllModules {...module} isMentor={this.props.isMentor} />
+                ))}
+              </div>
+            </article>
             <input type="checkbox" id="side_chk" checked={this.state.checked} />
             <nav id="sidebar">
-              {/* <section className="sidebar_contents"> */}
-              <label
-                htmlFor="side_chk"
-                className="fold"
-                onClick={() => this.setState({ checked: !this.state.checked })}
-              >
-                <FiMenu />
-              </label>
-              {/* <label htmlFor="side_chk" className="unfold">
-                <AiOutlineMenuUnfold />
-              </label> */}
-              <div className="custom-menu">
-                <button
-                  type="button"
-                  id="sidebarCollapse"
-                  className="btn btn-primary"
+              <section className="sidebar_contents">
+                <label
+                  htmlFor="side_chk"
+                  className="fold"
+                  onClick={() =>
+                    this.setState({ checked: !this.state.checked })
+                  }
                 >
-                  <i className="fa fa-bars"></i>
-                  <span className="sr-only">Toggle Menu</span>
-                </button>
-              </div>
-              <h1>
-                <span className="logo">
-                  <span onClick={() => this.setState({ checked: false })}>
-                    Modules
-                  </span>
-                  {this.props.isMentor ? (
-                    <Link to="/create" className="link">
-                      <OverlayTrigger
-                        placement="right"
-                        delay={{ show: 250, hide: 400 }}
-                        overlay={this.renderTooltip}
-                      >
-                        <AiOutlinePlusCircle className="add_module" />
-                      </OverlayTrigger>
-                    </Link>
-                  ) : null}
-                </span>
-              </h1>
-              {/* <ul className="list-unstyled components mb-5 ">
-                {this.props.subject.subject.modules.length ? (
-                  this.props.subject.subject.modules.map((model, index) => (
-                    <SidebarModule
-                      model={model}
-                      index={index}
-                      current={this.state.current}
-                      toggle={this.handleToggle}
-                      subject={this.props.subject}
-                      isMentor={this.props.isMentor}
-                      handleGetModule={this.handleGetModule}
-                      getChapter={this.getChapter}
-                    />
-                  ))
-                ) : (
-                  <li className="active">
-                    <span className="chapter_title_small_2">
-                      <span className="fa fa-home mr-3"></span> No Modules
-                      created yet!
+                  <FiMenu />
+                </label>
+                <h1>
+                  <span className="logo">
+                    {this.props.isMentor ? (
+                      <AncLink to="/create" className="link">
+                        <OverlayTrigger
+                          placement="left"
+                          delay={{ show: 250, hide: 400 }}
+                          overlay={this.renderTooltip}
+                        >
+                          <AiOutlinePlusCircle className="add_module" />
+                        </OverlayTrigger>
+                      </AncLink>
+                    ) : null}
+                    <span className="modules_text" onClick={this.scrollToTop}>
+                      Modules
                     </span>
-                  </li>
-                )}
-              </ul> */}
-
-              <ul className="list-unstyled components mb-5 ">
-                {this.props.subject.subject.modules.length ? (
-                  this.props.subject.subject.modules.map((model, index) => (
+                    <span className="link">
+                      <AiOutlinePlusCircle className="add_module_non" />
+                    </span>
+                  </span>
+                </h1>
+                {this.props.modules.module.length ? (
+                  this.props.modules.module.map((model, index) => (
                     <span>
                       <span className="models_cont_big">
-                        <input
-                          type="checkbox"
-                          name=""
-                          id="model_chk"
-                          checked={
-                            this.state.current === String(index) ? true : false
-                          }
-                        />
-                        <div className="models_cont">
-                          <label htmlFor="model_chk" id={index}>
-                            {" "}
-                            <IoIosArrowDown
-                              className="chk_chapter"
-                              onClick={event => {
-                                !this.state.checked
-                                  ? this.handleCheck(
-                                      event.target.parentElement.getAttribute(
-                                        "id"
-                                      )
-                                    )
-                                  : this.handleUncheck(
-                                      event.target.parentElement.getAttribute(
-                                        "id"
-                                      )
-                                    );
-                              }}
-                            />
-                          </label>
-                          <span
-                            className="active"
-                            onClick={event => {
-                              this.handleGetModule(
-                                event,
-                                this.props.subject.subject._id,
-                                model._id
-                              );
-                              this.setState({ checked: false });
-                            }}
-                          >
-                            {model.title}
-                          </span>{" "}
+                        <Link
+                          className="models_cont"
+                          activeClass="active_module"
+                          to={model._id}
+                          spy={true}
+                          smooth={true}
+                          offset={-70}
+                          duration={500}
+                        >
                           {this.props.isMentor ? (
-                            <Link to="/modules/chapters/new" className="link">
+                            <AncLink
+                              to="/modules/chapters/new"
+                              className="link"
+                            >
                               <AiOutlinePlusCircle
                                 className="add_module"
                                 onClick={() => {
@@ -194,19 +138,38 @@ class Modules extends React.Component {
                                 }}
                               />
                               <span className="add_mod">Add a Chapter</span>
-                            </Link>
-                          ) : (
-                            <span className="link">
-                              <AiOutlinePlusCircle className="add_module_non" />
-                            </span>
-                          )}
-                        </div>
+                            </AncLink>
+                          ) : null}
+                          <span
+                            className="module_title_small"
+                            onClick={event => {
+                              this.handleGetModule(
+                                event,
+                                this.props.subject.subject._id,
+                                model._id
+                              );
+                              this.setState({ checked: false });
+                            }}
+                          >
+                            {model.title}
+                          </span>{" "}
+                          <label htmlFor="model_chk" id={index}>
+                            {" "}
+                            <IoIosArrowDown className="chk_chapter" />
+                          </label>
+                        </Link>
 
                         {model.chapters.length ? (
                           model.chapters.map(chapter => (
                             <span className="chapters_cont">
-                              <p
+                              <Link
                                 className="chapter_title_small"
+                                activeClass="active_chapter"
+                                to={chapter._id}
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500}
                                 onClick={() => {
                                   this.getChapter(
                                     this.props.subject.subject._id,
@@ -216,8 +179,8 @@ class Modules extends React.Component {
                                   this.setState({ checked: false });
                                 }}
                               >
-                                {chapter.title}
-                              </p>
+                                <span>{chapter.title}</span>
+                              </Link>
                             </span>
                           ))
                         ) : (
@@ -238,37 +201,8 @@ class Modules extends React.Component {
                     </span>
                   </li>
                 )}
-              </ul> 
-              {/* </section> */}
+              </section>
             </nav>
-
-            {!this.state.chapter ? (
-              <section className="article_content">
-                <div id="content">
-                  {this.props.module ? (
-                    <ModulesView
-                      module={this.props.module}
-                      isMentor={this.props.isMentor}
-                    />
-                  ) : (
-                    <p>Click on a module to read</p>
-                  )}
-                </div>
-              </section>
-            ) : (
-              <section className="article_content">
-                <div id="content">
-                  {this.props.chapter ? (
-                    <ChaptersView
-                      chapter={this.props.chapter}
-                      isMentor={this.props.isMentor}
-                    />
-                  ) : (
-                    <Loader />
-                  )}
-                </div>
-              </section>
-            )}
           </div>
         ) : (
           <Loader />
@@ -282,6 +216,7 @@ function mapStatetoProps({ subjects, modules }) {
   return {
     subject: subjects.subject,
     module: modules.module,
+    modules: modules.modules,
     chapter: modules.chapter
   };
 }

@@ -5,11 +5,13 @@ import { FaPowerOff, FaBookOpen } from "react-icons/fa";
 import { isLogged } from "../Actions";
 import { connect } from "react-redux";
 
+
 const Logout = dispatch => {
   localStorage.removeItem("token");
   dispatch(isLogged(false));
   window.location.href = "/";
 };
+
 
 const Header = props => {
   return (

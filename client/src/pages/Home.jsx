@@ -14,6 +14,7 @@ import Modules from "./Modules";
 import UpdateModule from "./UpdateModule";
 import UpdateChapter from "./UpdateChapter";
 import Footer from "../components/Footer";
+import Urls from "./Urls";
 import { fetchUser, isLogged } from "../Actions";
 
 class Home extends React.Component {
@@ -68,6 +69,9 @@ class Home extends React.Component {
             <UpdateChapter />
           </Route>
         ) : null}
+        <Route exact path="/urls">
+          <Urls isMentor={isMentor} />
+        </Route>
         <Route exact path={`/modules/:id`}>
           <Modules isMentor={isMentor} />
         </Route>

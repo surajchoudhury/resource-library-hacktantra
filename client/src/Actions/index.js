@@ -8,7 +8,8 @@ import {
   GET_SUBID,
   GET_SUBJECT,
   GET_MODULE,
-  GET_CHAPTER
+  GET_CHAPTER,
+  SET_URLS
 } from "../Types";
 
 function setUsers(payload) {
@@ -21,6 +22,13 @@ function setUsers(payload) {
 function setMentors(payload) {
   return {
     type: SET_MENTORS,
+    payload
+  };
+}
+
+function setUrls(payload) {
+  return {
+    type: SET_URLS,
     payload
   };
 }
@@ -99,6 +107,24 @@ export function fetchSubjects() {
   };
 }
 
+export function fetchUrls() {
+  return dispatch => {
+    fetch("/api/v1/url", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(urls => {
+        if (urls.success) {
+          dispatch(setUrls(urls));
+        }
+      });
+  };
+}
+
 export function createSubject(title, description, image) {
   return dispatch => {
     fetch("/api/v1/subjects", {
@@ -154,6 +180,24 @@ export function fetchSubject(id) {
       .then(subject => {
         if (subject.success) {
           dispatch(setSubject(subject));
+        }
+      });
+  };
+}
+
+export function fetchModules(id) {
+  return dispatch => {
+    fetch(`/api/v1/subjects/${id}/modules`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(modules => {
+        if (modules.success) {
+          dispatch(setModules(modules));
         }
       });
   };

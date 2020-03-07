@@ -1,12 +1,12 @@
 import React from "react";
 import Loader from "../components/Loader";
 import { fetchModule, deleteModule } from "../Actions";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Prism from "prismjs";
-import ModuleCard from "../components/ModuleCard";
+import ModuleCard2 from "../components/ModuleCard2";
 
-class ModulesView extends React.Component {
+class AllModules extends React.Component {
   constructor() {
     super();
     this.state = {};
@@ -26,17 +26,10 @@ class ModulesView extends React.Component {
   render() {
     return (
       <main>
-        {this.props.module ? (
-          <ModuleCard
-            module={this.props.module.module}
-            isMentor={this.props.isMentor}
-          />
-        ) : (
-          <Loader />
-        )}
+        {<ModuleCard2 module={this.props} isMentor={this.props.isMentor} />}
       </main>
     );
   }
 }
 
-export default connect()(withRouter(ModulesView));
+export default connect()(withRouter(AllModules));

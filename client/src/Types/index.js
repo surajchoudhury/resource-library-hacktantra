@@ -8,3 +8,5 @@ export const GET_SUBID = "GET_SUBID";
 export const GET_SUBJECT = "GET_SUBJECT";
 export const GET_MODULE = "GET_MODULE";
 export const GET_CHAPTER = "GET_CHAPTER";
+export const SET_URLS = "SET_URLS";
+export const SET_URLID = "SET_URLID";

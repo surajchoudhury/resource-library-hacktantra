@@ -45,20 +45,20 @@ class Modules extends React.Component {
     this.setState({ [name]: value });
   };
 
-  handleGetModule = (event, id, moduleID) => {
-    event.preventDefault();
-    this.setState({ chapter: false });
-    this.props.dispatch(fetchModule(id, moduleID));
-  };
+  // handleGetModule = (event, id, moduleID) => {
+  //   event.preventDefault();
+  //   this.setState({ chapter: false });
+  //   this.props.dispatch(fetchModule(id, moduleID));
+  // };
 
   handleToggle = () => {
     this.setState({ checked: false });
   };
 
-  getChapter = (subid, modid, chid) => {
-    this.setState({ chapter: true });
-    this.props.dispatch(fetchChapter(subid, modid, chid));
-  };
+  // getChapter = (subid, modid, chid) => {
+  //   this.setState({ chapter: true });
+  //   this.props.dispatch(fetchChapter(subid, modid, chid));
+  // };
 
   renderTooltip = props => {
     return <Tooltip {...props}>Add a Module</Tooltip>;
@@ -135,10 +135,7 @@ class Modules extends React.Component {
                           duration={500}
                         >
                           {this.props.isMentor ? (
-                            <AncLink
-                              to="/modules/chapters/new"
-                              className="link"
-                            >
+                            <AncLink to="/modules/chapters/new">
                               <AiOutlinePlusCircle
                                 className="add_module"
                                 onClick={() => {
@@ -155,14 +152,7 @@ class Modules extends React.Component {
                           ) : null}
                           <span
                             className="module_title_small"
-                            onClick={event => {
-                              this.handleGetModule(
-                                event,
-                                this.props.subject.subject._id,
-                                model._id
-                              );
-                              this.setState({ checked: false });
-                            }}
+                            onClick={() => this.setState({ checked: false })}
                           >
                             {model.title}
                           </span>{" "}
@@ -183,14 +173,9 @@ class Modules extends React.Component {
                                 smooth={true}
                                 offset={-70}
                                 duration={500}
-                                onClick={() => {
-                                  this.getChapter(
-                                    this.props.subject.subject._id,
-                                    model._id,
-                                    chapter._id
-                                  );
-                                  this.setState({ checked: false });
-                                }}
+                                onClick={() =>
+                                  this.setState({ checked: false })
+                                }
                               >
                                 <span>{chapter.title}</span>
                               </Link>

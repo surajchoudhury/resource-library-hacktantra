@@ -58,6 +58,7 @@ class UpdateModule extends React.Component {
     );
   };
   render() {
+    console.log(this.props);
     return (
       <section className="update_form_container">
         {this.state.title || this.state.description || this.state.body ? (

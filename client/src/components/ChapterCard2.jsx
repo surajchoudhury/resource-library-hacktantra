@@ -38,29 +38,30 @@ const ChapterCard = props => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  let { dispatch } = props;
   return (
     <div className="main_container" id={props._id}>
       <div className="topic-container">
-        <div className="topic_header_container" >
+        <div className="topic_header_container">
           <div className="topic_title">
             <span className="topic_title_small">{props.title}</span>
             <span>
               {props.isMentor ? (
-                <div className="edit_update_container">
+                <div
+                  className="edit_update_container"
+                  onMouseOver={() =>
+                    dispatch(
+                      fetchChapter(
+                        props.module.subject,
+                        props.module._id,
+                        props._id
+                      )
+                    )
+                  }
+                >
                   ...
                   <div className="container_edit_update">
-                    <span
-                      className="update_mod_container"
-                      onClick={() =>
-                        props.dispatch(
-                          fetchChapter(
-                            props.module.subject,
-                            props.module._id,
-                            props._id
-                          )
-                        )
-                      }
-                    >
+                    <span className="update_mod_container">
                       <AncLink
                         to="/modules/chapter/update"
                         className="delete_icon_module"
@@ -130,5 +131,7 @@ const ChapterCard = props => {
     </div>
   );
 };
+
+function mapStateToProps() {}
 
 export default connect()(ChapterCard);

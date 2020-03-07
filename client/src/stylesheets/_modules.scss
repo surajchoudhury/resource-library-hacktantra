@@ -196,7 +196,7 @@
 .book_close {
   color: #2f89fb;
   font-size: 28px;
-  left: -50px;
+  left: -55px;
   position: absolute;
 }
 .book_open {
@@ -11360,10 +11360,10 @@ h5,
 }
 .add_mod {
   position: absolute;
-  left: -5.2rem;
+  left: -5.3rem;
   font-size: 0.8rem;
   color: #fff;
-  font-weight: 200;
+  font-weight: 500;
   transition: all 0.5s;
   background-color: rgba(0, 0, 0, 1);
   padding: 0.2rem 0.4rem;
@@ -11458,6 +11458,9 @@ a[data-toggle="collapse"] {
   width: 100%;
   background-color: #fff;
   overflow-y: scroll;
+}
+.article_content ~ ::-webkit-scrollbar {
+  display: none;
 }
 
 #content {

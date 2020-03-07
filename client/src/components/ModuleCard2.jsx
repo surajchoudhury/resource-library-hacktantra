@@ -38,6 +38,7 @@ const ModuleCard = props => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  let { dispatch } = props;
   return (
     <div className="main_container " id={props.module._id}>
       <div className="topic-container">
@@ -46,15 +47,17 @@ const ModuleCard = props => {
             <span className="topic_title_small">{props.module.title}</span>
             <span>
               {props.isMentor ? (
-                <div className="edit_update_container">
+                <div
+                  className="edit_update_container"
+                  onMouseOver={() =>
+                    dispatch(
+                      fetchModule(props.module.subject._id, props.module._id)
+                    )
+                  }
+                >
                   ...
                   <div className="container_edit_update">
-                    <span
-                      className="update_mod_container"
-                      onClick={() =>
-                        fetchModule(props.module.subject._id, props.module._id)
-                      }
-                    >
+                    <span className="update_mod_container">
                       <Link to="/update" className="delete_icon_module">
                         <AiOutlineEdit className="icon-delete" /> Update
                       </Link>

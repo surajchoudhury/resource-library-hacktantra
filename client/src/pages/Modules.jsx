@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 import Loader from "../components/Loader";
 import { Link as AncLink, withRouter } from "react-router-dom";
 import { Link, animateScroll as scroll } from "react-scroll";
+import { FaBook, FaBookOpen } from "react-icons/fa";
 
 // import SidebarModule from "../components/SidebarModule";
 
@@ -66,8 +67,11 @@ class Modules extends React.Component {
   render() {
     return (
       <main>
-        {this.props.modules && this.props.subject && this.props.modules.success ? (
+        {this.props.modules &&
+        this.props.subject &&
+        this.props.modules.success ? (
           <div className="wrapper d-flex align-items-stretch">
+            <input type="checkbox" name="" id="book_menu" />
             <article className="article_content">
               <div id="content">
                 {this.props.modules.module.map(module => (
@@ -76,6 +80,7 @@ class Modules extends React.Component {
               </div>
             </article>
             <input type="checkbox" id="side_chk" checked={this.state.checked} />
+
             <nav id="sidebar">
               <section className="sidebar_contents">
                 <label
@@ -88,6 +93,14 @@ class Modules extends React.Component {
                   <FiMenu />
                 </label>
                 <h1>
+                  <div className="labels_container">
+                    <label htmlFor="book_menu" className="book_close_label">
+                      <FaBook className="book_close" />
+                    </label>
+                    <label htmlFor="book_menu" className="book_open_label">
+                      <FaBookOpen className="book_open" />
+                    </label>
+                  </div>
                   <span className="logo">
                     {this.props.isMentor ? (
                       <AncLink to="/create" className="link">

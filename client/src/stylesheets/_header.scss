@@ -9,21 +9,56 @@
 .link {
   color: rgba(255, 255, 255, 0.5);
   display: flex;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: .8rem;
   align-items: center;
   &:hover {
     color: #fff;
   }
 }
+
 .book_logo {
   font-size: 2rem;
   margin-right: 0.3rem;
 }
+
 .header {
   position: sticky;
+  transition: all .3s;
   top: 0;
   left: 0;
   right: 0;
   z-index: 2;
+  background-color: #fff;
+  .link {
+    color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: .8rem;
+    align-items: center;
+    &:hover {
+      color: rgba(0, 0, 0, 0.8)
+    }
+  }
+  .logout {
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.6);
+    &:hover {
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+  
+}
+.header_active {
+  position: sticky;
+  transition: all .3s;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: #343A40;
 }
 
 //footer

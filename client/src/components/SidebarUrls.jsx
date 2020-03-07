@@ -1,9 +1,6 @@
 import React from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
 
-
-
-
 const SidebarUrls = props => {
   return (
     <aside className="aside_urls">

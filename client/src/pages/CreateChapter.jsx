@@ -53,11 +53,11 @@ class CreateChapter extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword">
-                    <textarea
+                    <input
                       type="text"
                       placeholder="Enter Description for Chapter"
                       name="description"
-                      className="textarea_desc"
+                      className="input_desc"
                       onChange={this.handleChange}
                     />
                   </Form.Group>

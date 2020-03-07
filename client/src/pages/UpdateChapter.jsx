@@ -80,11 +80,11 @@ class UpdateChapter extends React.Component {
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <textarea
+              <input
                 type="text"
                 placeholder="Update Description for Chapter"
                 name="description"
-                className="textarea_desc"
+                className="input_desc"
                 onChange={this.handleChange}
                 value={this.state.description}
               />

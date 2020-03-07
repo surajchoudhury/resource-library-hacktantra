@@ -111,30 +111,30 @@
 ///create module
 
 .input_title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   width: 100%;
-  padding: 1rem;
-  border-bottom: 2px solid transparent;
+  padding:0 1rem;
+  border-left: 2px solid transparent;
   transition: all 0.3s;
   &:focus {
-    border-bottom: 2px solid rgba(#2f89fb, 0.5);
+    border-left: 2px solid rgba(#2f89fb, 1);
   }
 }
 .input_title:focus::placeholder {
-  color: rgba(#2f89fb, 0.5);
+  color: rgba(#2f89fb, 1);
 }
-.textarea_desc {
+.input_desc {
   font-size: 1.2rem;
-  padding: 1rem;
+  padding: .5rem 1rem;
   width: 100%;
   transition: all 0.3s;
-  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
   &:focus {
-    border-bottom: 2px solid rgba(#2f89fb, 0.5);
+    border-left: 2px solid rgba(#2f89fb, 1);
   }
 }
-.textarea_desc:focus::placeholder {
-  color: rgba(#2f89fb, 0.5);
+.input_desc:focus::placeholder {
+  color: rgba(#2f89fb, 1);
 }
 
 .models_cont {
@@ -374,24 +374,25 @@ main {
 }
 
 .form_module {
-  height: 40rem;
+  min-height: 40rem;
   width: 100%;
   font-size: 0.95rem;
-  padding: 1rem;
+  padding: 0 1rem;
   transition: all 0.3s;
   border-left: 2px solid transparent;
   &:focus {
-    border-left: 2px solid rgba(#2f89fb, 0.5);
+    border-left: 2px solid rgba(#2f89fb, 1);
   }
 }
 .form_module:focus::placeholder {
-  color: rgba(#2f89fb, 0.5);
+  color: rgba(#2f89fb, 1);
 }
 .form_module_update {
   transition: all 0.3s;
+  padding: 0 1rem;
   border-left: 2px solid transparent;
   &:focus {
-    border-left: 2px solid rgba(#2f89fb, 0.5);
+    border-left: 2px solid rgba(#2f89fb, 1);
   }
 }
 .form_module_update:focus .form_module_update::placeholder {
@@ -11457,7 +11458,7 @@ a[data-toggle="collapse"] {
   min-height: 100vh;
   width: 100%;
   background-color: #fff;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .article_content ~ ::-webkit-scrollbar {
   display: none;

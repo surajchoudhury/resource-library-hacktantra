@@ -13,9 +13,10 @@ const SidebarUrls = props => {
         offset={-70}
         duration={500}
       >
-        <p className="url_title_sidebar">{props.title}</p>
+        <p className="url_title_sidebar" onClick={props.handleCheck}>
+          {props.title}
+        </p>
       </Link>
-     
     </aside>
   );
 };

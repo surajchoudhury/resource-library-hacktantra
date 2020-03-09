@@ -9,7 +9,8 @@ import {
   GET_SUBJECT,
   GET_MODULE,
   GET_CHAPTER,
-  SET_URLS
+  SET_URLS,
+  SET_URLID
 } from "../Types";
 
 function setUsers(payload) {
@@ -29,6 +30,13 @@ function setMentors(payload) {
 function setUrls(payload) {
   return {
     type: SET_URLS,
+    payload
+  };
+}
+
+export function setUrlId(payload) {
+  return {
+    type: SET_URLID,
     payload
   };
 }
@@ -120,6 +128,70 @@ export function fetchUrls() {
       .then(urls => {
         if (urls.success) {
           dispatch(setUrls(urls));
+        }
+      });
+  };
+}
+
+export function createUrl(title, body, history) {
+  return dispatch => {
+    fetch("/api/v1/url", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        title,
+        body
+      })
+    })
+      .then(res => res.json())
+      .then(url => {
+        if (url.success) {
+          dispatch(fetchUrls());
+          history.push("/urls");
+        }
+      });
+  };
+}
+
+export function updateUrl(id, title, body, history) {
+  return dispatch => {
+    fetch(`/api/v1/url/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        title,
+        body
+      })
+    })
+      .then(res => res.json())
+      .then(url => {
+        if (url.success) {
+          dispatch(fetchUrls());
+          history.push("/urls");
+        }
+      });
+  };
+}
+
+export function deleteUrl(id) {
+  return dispatch => {
+    fetch(`/api/v1/url/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(url => {
+        if (url.success) {
+          dispatch(fetchUrls());
         }
       });
   };
@@ -263,9 +335,7 @@ export function updateModule(id, moduleID, title, description, body, history) {
     })
       .then(res => res.json())
       .then(modules => {
-        console.log("point 2", modules);
         if (modules.success) {
-          console.log("point 3", modules);
           history.push(`/modules/${"=" + id}`);
           dispatch(fetchModule(id, moduleID));
           dispatch(fetchSubject(id));

@@ -14,7 +14,8 @@ class CreateChapter extends React.Component {
     this.state = {
       title: null,
       description: null,
-      body: null
+      body: null,
+      submit: false
     };
   }
   handleChange = ({ target: { name, value } }) => {
@@ -35,11 +36,19 @@ class CreateChapter extends React.Component {
     );
   };
 
+  handleBtn = () => {
+    if (this.state.title && this.state.description && this.state.body) {
+      this.setState({ submit: true });
+    } else {
+      this.setState({ submit: false });
+    }
+  };
+
   render() {
     return (
       <>
         {this.props.module ? (
-          <div id="content">
+          <div className="update_form_container">
             <Accordion>
               <Card.Body>
                 <Form onSubmit={this.handleCreateChapter}>
@@ -74,8 +83,12 @@ class CreateChapter extends React.Component {
                     <Form.Text className="text-muted"></Form.Text>
                   </Form.Group>
 
-                  <Button variant="primary" type="submit">
-                    Create +
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={this.handleBtn}
+                  >
+                    {this.state.submit ? "Creating..." : "Create"}
                   </Button>
                 </Form>
               </Card.Body>

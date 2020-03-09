@@ -1,7 +1,8 @@
-import { SET_URLS } from "../Types";
+import { SET_URLS, SET_URLID } from "../Types";
 
 const INITIAL_STATE = {
-  urls: null
+  urls: null,
+  urlId: null
 };
 
 function Urls(state = INITIAL_STATE, action) {
@@ -10,6 +11,11 @@ function Urls(state = INITIAL_STATE, action) {
       return {
         ...state,
         urls: action.payload
+      };
+    case SET_URLID:
+      return {
+        ...state,
+        urlId: action.payload
       };
     default:
       return state;

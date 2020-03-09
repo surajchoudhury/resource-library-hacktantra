@@ -9,10 +9,11 @@ class UpdateChapter extends React.Component {
   constructor() {
     super();
     this.state = {
+      updating: false,
       title: null,
       description: null,
       body: null,
-      faq: null
+      submit: false
     };
   }
 
@@ -20,6 +21,13 @@ class UpdateChapter extends React.Component {
     this.setState({ [name]: value });
   };
 
+  handleBtn = () => {
+    if (this.state.title && this.state.description && this.state.body) {
+      this.setState({ submit: true });
+    } else {
+      this.setState({ submit: false });
+    }
+  };
   componentDidMount() {
     fetch(
       `/api/v1/subjects/${this.props.chapter &&
@@ -38,6 +46,7 @@ class UpdateChapter extends React.Component {
       .then(chapter => {
         if (chapter.success) {
           this.setState({
+            updating: true,
             title: chapter.MDchapter && chapter.MDchapter.title,
             description: chapter.MDchapter && chapter.MDchapter.description,
             body: chapter.MDchapter && chapter.MDchapter.body
@@ -63,10 +72,7 @@ class UpdateChapter extends React.Component {
   render() {
     return (
       <section className="update_form_container">
-        {this.state.title ||
-        this.state.description ||
-        this.state.body ||
-        this.state.faq ? (
+        {this.state.updating ? (
           <Form onSubmit={this.handleUpdate}>
             <Form.Group controlId="formBasicEmail">
               <input
@@ -105,8 +111,8 @@ class UpdateChapter extends React.Component {
             <Form.Group controlId="formBasicEmail">
               <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Update  ✓
+            <Button variant="primary" type="submit" onClick={this.handleBtn}>
+              {this.state.submit ? "Updating..." : "Update"}
             </Button>
           </Form>
         ) : (

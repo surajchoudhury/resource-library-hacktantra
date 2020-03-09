@@ -50,6 +50,8 @@ router.get("/:id", auth.verifyToken, async (req, res) => {
   }
 });
 
+//update url
+
 router.put("/:id", auth.verifyToken, auth.isMentor, async (req, res) => {
   try {
     var url = await Url.findByIdAndUpdate(req.params.id, req.body, {
@@ -60,6 +62,8 @@ router.put("/:id", auth.verifyToken, auth.isMentor, async (req, res) => {
     res.json({ success: false, err });
   }
 });
+
+//delete url
 
 router.delete("/:id", auth.verifyToken, auth.isMentor, async (req, res) => {
   try {

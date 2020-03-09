@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, FormControl, Button, Form } from "react-bootstrap";
 import { FaPowerOff, FaBookOpen } from "react-icons/fa";
-import { isLogged } from "../Actions";
+import { isLogged} from "../Actions";
 import { connect } from "react-redux";
 
 class Header extends React.Component {

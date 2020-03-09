@@ -1,7 +1,7 @@
 import React from "react";
 import AllModules from "./AllModules";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowDropupCircle } from "react-icons/io";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
 import {
@@ -25,7 +25,7 @@ class Modules extends React.Component {
       title: null,
       description: null,
       body: null,
-      checked: true
+      checked: false
     };
   }
 
@@ -45,20 +45,22 @@ class Modules extends React.Component {
     this.setState({ [name]: value });
   };
 
-  // handleGetModule = (event, id, moduleID) => {
-  //   event.preventDefault();
-  //   this.setState({ chapter: false });
-  //   this.props.dispatch(fetchModule(id, moduleID));
-  // };
+  handleGetModule = (id, moduleID) => {
+    this.setState({ chapter: false });
+    if (this.props.isMentor) {
+      this.props.dispatch(fetchModule(id, moduleID));
+    }
+  };
 
   handleToggle = () => {
     this.setState({ checked: false });
   };
 
-  // getChapter = (subid, modid, chid) => {
-  //   this.setState({ chapter: true });
-  //   this.props.dispatch(fetchChapter(subid, modid, chid));
-  // };
+  getChapter = (subid, modid, chid) => {
+    if (this.props.isMentor) {
+      this.props.dispatch(fetchChapter(subid, modid, chid));
+    }
+  };
 
   renderTooltip = props => {
     return <Tooltip {...props}>Add a Module</Tooltip>;
@@ -113,7 +115,13 @@ class Modules extends React.Component {
                         </OverlayTrigger>
                       </AncLink>
                     ) : null}
-                    <span className="modules_text" onClick={this.scrollToTop}>
+                    <span
+                      className="modules_text"
+                      onClick={() => {
+                        this.scrollToTop();
+                        this.setState({ checked: false });
+                      }}
+                    >
                       Modules
                     </span>
                     <span className="link">
@@ -145,6 +153,7 @@ class Modules extends React.Component {
                                       model._id
                                     )
                                   );
+                                  this.setState({ checked: false });
                                 }}
                               />
                               <span className="add_mod">Add a Chapter</span>
@@ -152,7 +161,13 @@ class Modules extends React.Component {
                           ) : null}
                           <span
                             className="module_title_small"
-                            onClick={() => this.setState({ checked: false })}
+                            onClick={event => {
+                              this.handleGetModule(
+                                this.props.subject.subject._id,
+                                model._id
+                              );
+                              this.setState({ checked: false });
+                            }}
                           >
                             {model.title}
                           </span>{" "}
@@ -173,9 +188,14 @@ class Modules extends React.Component {
                                 smooth={true}
                                 offset={-70}
                                 duration={500}
-                                onClick={() =>
-                                  this.setState({ checked: false })
-                                }
+                                onClick={() => {
+                                  this.getChapter(
+                                    this.props.subject.subject._id,
+                                    model._id,
+                                    chapter._id
+                                  );
+                                  this.setState({ checked: false });
+                                }}
                               >
                                 <span>{chapter.title}</span>
                               </Link>
@@ -205,6 +225,9 @@ class Modules extends React.Component {
         ) : (
           <Loader />
         )}
+        <div onClick={this.scrollToTop} className="back_to_top">
+          <IoIosArrowDropupCircle className="back_to_top_btn" />
+        </div>
       </main>
     );
   }

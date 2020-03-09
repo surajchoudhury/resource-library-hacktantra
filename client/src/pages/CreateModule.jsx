@@ -1,8 +1,6 @@
 import React from "react";
 import { Accordion, Card, Form, Button } from "react-bootstrap";
-import { GoFileSubmodule } from "react-icons/go";
-import { IoMdAdd } from "react-icons/io";
-import { createModule, fetchModule } from "../Actions";
+import { createModule } from "../Actions";
 import { connect } from "react-redux";
 import Loader from "../components/Loader";
 import { withRouter } from "react-router-dom";
@@ -14,7 +12,7 @@ class CreateModule extends React.Component {
       title: null,
       description: null,
       body: null,
-      faq: null
+      submit: false
     };
   }
   handleChange = ({ target: { name, value } }) => {
@@ -35,11 +33,19 @@ class CreateModule extends React.Component {
     );
   };
 
+  handleBtn = () => {
+    if (this.state.title && this.state.description && this.state.body) {
+      this.setState({ submit: true });
+    } else {
+      this.setState({ submit: false });
+    }
+  };
+
   render() {
     return (
       <>
         {this.props.subject ? (
-          <div id="content">
+          <div className="update_form_container">
             <Accordion>
               <Card.Body>
                 <Form onSubmit={this.handleCreateModule}>
@@ -73,20 +79,13 @@ class CreateModule extends React.Component {
 
                     <Form.Text className="text-muted"></Form.Text>
                   </Form.Group>
-                  {/* <Form.Group controlId="formBasicEmail">
-                    <textarea
-                      className="form_module-faq"
-                      as="textarea"
-                      rows="30"
-                      name="faq"
-                      onChange={this.handleChange}
-                      placeholder="Write faq in Mark down"
-                    ></textarea>
 
-                    <Form.Text className="text-muted"></Form.Text>
-                  </Form.Group> */}
-                  <Button variant="primary" type="submit">
-                    Create +
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={this.handleBtn}
+                  >
+                    {this.state.submit ? "Creating..." : "Create"}
                   </Button>
                 </Form>
               </Card.Body>

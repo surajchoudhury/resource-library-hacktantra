@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSubjects, createSubject, deleteSubject } from "../Actions";
+import { fetchSubjects, createSubject, fetchUser } from "../Actions";
 import { Accordion, Card, Button, Form } from "react-bootstrap";
 import { GiWhiteBook } from "react-icons/gi";
 import { IoMdAdd } from "react-icons/io";
@@ -15,12 +15,14 @@ class Dashboard extends React.Component {
     this.state = {
       title: null,
       description: null,
-      image: null
+      image: null,
+      submit: false
     };
   }
 
   componentDidMount() {
     this.props.dispatch(fetchSubjects());
+    this.props.dispatch(fetchUser());
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -38,13 +40,19 @@ class Dashboard extends React.Component {
       )
     );
   };
-  s;
+  handleBtn = () => {
+    if (this.state.title && this.state.description) {
+      this.setState({ submit: true });
+    } else {
+      this.setState({ submit: false });
+    }
+  };
 
   render() {
     let { subjects, user } = this.props;
     return (
       <>
-        {subjects && user && user.success ? (
+        {subjects ? (
           <section className={"container-dashboard-big"}>
             <section className={"container-dashboard"}>
               {this.props.subjects.map((subject, i) => (
@@ -84,7 +92,6 @@ class Dashboard extends React.Component {
                               name="title"
                               onChange={this.handleChange}
                             />
-
                             <textarea
                               autoComplete="off"
                               name="description"
@@ -92,7 +99,6 @@ class Dashboard extends React.Component {
                               onChange={this.handleChange}
                               placeholder="Add a short description"
                             />
-
                             <input
                               className="rounded input-subject-img"
                               type="url"
@@ -100,9 +106,12 @@ class Dashboard extends React.Component {
                               name="image"
                               onChange={this.handleChange}
                             />
-
-                            <Button variant="primary" type="submit">
-                              Create +
+                            <Button
+                              variant="primary"
+                              type="submit"
+                              onClick={this.handleBtn}
+                            >
+                              {this.state.submit ? "Creating..." : "Create"}
                             </Button>
                           </Form>
                         </Card.Body>
@@ -117,7 +126,9 @@ class Dashboard extends React.Component {
                     <FaBookOpen className="book_dashboard" /> resource library
                   </p>
                   <p className="username_dashboard">
-                    {`Welcome @${user.user.username + "!"}`}
+                    {user && user.success
+                      ? `Welcome @${user.user.username + "!"}`
+                      : `Loading...`}
                     <br />
                     <span className="resource_ex">
                       Resource Library is optimized for learning, Examples might

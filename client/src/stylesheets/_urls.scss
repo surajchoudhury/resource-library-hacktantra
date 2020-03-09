@@ -19,16 +19,21 @@
 .links_text {
   padding-left: 1rem;
 }
+#side_chk_url {
+  display: none;
+}
+#side_chk_url:checked ~ .urls_sidebar {
+  max-width: 100vw;
+  min-width: 100vw;
+}
 .urls_sidebar {
   min-width: 280px;
   max-width: 280px;
-  padding-top: 50px;
+  padding-top: 40px;
   color: rgba(0, 0, 0, 0.6);
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  transition: all 0.4s;
-  position: sticky;
-  top: 100px;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
 }
 .active_urls {
   .url_title_sidebar {
@@ -44,6 +49,7 @@
   color: #2f89fb;
   font-weight: 700;
   line-height: 24px;
+  cursor: pointer;
 }
 .url_title_sidebar {
   font-size: 13px;
@@ -56,4 +62,30 @@
   border-left: 1px solid transparent;
   cursor: pointer;
   font-weight: 500;
+}
+.topic_title_url {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  .url_title_small {
+    color: #252c33;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+  }
+}
+
+.input_title_url {
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 0 1rem;
+  border-left: 2px solid transparent;
+  transition: all 0.3s;
+  &:focus {
+    border-left: 2px solid rgba(#2f89fb, 1);
+  }
+}
+.input_title_url:focus::placeholder {
+  color: rgba(#2f89fb, 1);
 }

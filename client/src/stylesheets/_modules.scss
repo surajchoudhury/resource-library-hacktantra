@@ -3,7 +3,9 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-
+.disabled_btn {
+  background-color: #fff;
+}
 ///check
 #side_chk {
   display: none;
@@ -13,10 +15,9 @@
 //   border:1px solid red;
 //   background-color: inherit;
 // }
-.fold,
-.unfold {
+.fold {
   position: absolute;
-  left: -35px;
+  left: -43px;
   top: -8px;
   font-size: 25px;
   padding: 2px 5px;
@@ -25,11 +26,21 @@
   display: none;
   color: #555555;
 }
-.unfold {
-  top: 6.5px;
-  padding: 0 5px;
-  right: 0px;
+
+.back_to_top {
+  text-align: center;
+  background-color: #fff;
+
 }
+.back_to_top_btn {
+  font-size: 2.5rem;
+  color: rgb(98, 99, 100);
+  transition: all .4s;
+  &:hover {
+    color: #343A40;
+  }
+}
+
 #side_chk:checked ~ #sidebar {
   margin-right: 0;
 }
@@ -113,7 +124,7 @@
 .input_title {
   font-size: 2rem;
   width: 100%;
-  padding:0 1rem;
+  padding: 0 1rem;
   border-left: 2px solid transparent;
   transition: all 0.3s;
   &:focus {
@@ -125,7 +136,7 @@
 }
 .input_desc {
   font-size: 1.2rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   width: 100%;
   transition: all 0.3s;
   border-left: 2px solid transparent;
@@ -395,7 +406,7 @@ main {
     border-left: 2px solid rgba(#2f89fb, 1);
   }
 }
-.form_module_update:focus .form_module_update::placeholder {
+.form_module_update:focus::placeholder {
   color: #2f89fb;
 }
 .form_module-faq {
@@ -11318,12 +11329,11 @@ h5,
 #sidebar {
   min-width: 280px;
   max-width: 280px;
-  transition: all 0.3s;
   background: #fff;
   color: rgba(0, 0, 0, 0.8);
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  transition: all 0.4s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
   z-index: 1;
   position: relative;
   // overflow-y: scroll;

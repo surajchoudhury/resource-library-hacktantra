@@ -5,6 +5,9 @@
   .article_content {
     height: fit-content;
   }
+  .chk_chapter {
+    color: #2f89fb;
+  }
   .labels_container {
     display: none;
   }
@@ -15,6 +18,11 @@
   #sidebar {
     margin-right: -100vw;
     min-width: 100vw;
+  }
+  .urls_sidebar {
+    padding-top: 0;
+    min-width: 0;
+    max-width: 0;
   }
   #content {
     max-width: 100vw;
@@ -74,12 +82,16 @@
     margin: 0;
     padding: 5px 0;
   }
+  .chk_chapter {
+    color: #2f89fb;
+  }
   .logo {
     margin: 1rem 0;
   }
   .labels_container {
     display: none;
   }
+
   .container-dashboard-big {
     margin: auto;
     display: flex;
@@ -101,6 +113,11 @@
   #sidebar {
     margin-right: -100vw;
     min-width: 100vw;
+  }
+  .urls_sidebar {
+    padding-top: 0;
+    min-width: 0;
+    max-width: 0;
   }
   #content {
     max-width: 100vw;

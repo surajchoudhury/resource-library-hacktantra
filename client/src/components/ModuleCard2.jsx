@@ -102,30 +102,6 @@ const ModuleCard = props => {
             __html: props.module.body
           }}
         ></div>
-        {/* <hr /> */}
-        {/* <div className="faq_section">
-          <h3 className="faq_heading">Faqs</h3>
-          <div className="faq_container">
-            <h4 className="question">
-              <span>1.</span> Do I need to pay any money to register for the
-              Hackathon
-            </h4>
-            <h4 className="answer">
-              <span>&#8618</span> No. You do not have to pay anything to anyone
-              to register yourself for any Hackathon on HackerEarth.
-            </h4>
-          </div>
-          <div className="faq_container">
-            <h4 className="question">
-              <span>1.</span> Do I need to pay any money to register for the
-              Hackathon
-            </h4>
-            <h4 className="answer">
-              <span>&#8618</span> No. You do not have to pay anything to anyone
-              to register yourself for any Hackathon on HackerEarth.
-            </h4>
-          </div>
-        </div> */}
         {DeleteModal(
           show,
           handleClose,

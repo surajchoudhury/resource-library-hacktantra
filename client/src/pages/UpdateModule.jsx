@@ -9,9 +9,11 @@ class UpdateModule extends React.Component {
   constructor() {
     super();
     this.state = {
+      updating: false,
       title: null,
       description: null,
-      body: null
+      body: null,
+      submit: false
     };
   }
 
@@ -36,6 +38,7 @@ class UpdateModule extends React.Component {
       .then(Module => {
         if (Module.success) {
           this.setState({
+            updating: true,
             title: Module.MDmodule && Module.MDmodule.title,
             description: Module.MDmodule && Module.MDmodule.description,
             body: Module.MDmodule && Module.MDmodule.body
@@ -57,11 +60,19 @@ class UpdateModule extends React.Component {
       )
     );
   };
+
+  handleBtn = () => {
+    if (this.state.title && this.state.description && this.state.body) {
+      this.setState({ submit: true });
+    } else {
+      this.setState({ submit: false });
+    }
+  };
+
   render() {
-    console.log(this.props);
     return (
       <section className="update_form_container">
-        {this.state.title || this.state.description || this.state.body ? (
+        {this.state.updating ? (
           <Form onSubmit={this.handleUpdate}>
             <Form.Group controlId="formBasicEmail">
               <input
@@ -97,8 +108,12 @@ class UpdateModule extends React.Component {
 
               <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Update  ✓
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={this.handleBtn}
+            >
+              {this.state.submit ? "Updating..." : "Update"}
             </Button>
           </Form>
         ) : (

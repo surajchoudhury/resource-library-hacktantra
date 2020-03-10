@@ -22,18 +22,15 @@
 #side_chk_url {
   display: none;
 }
-#side_chk_url:checked ~ .urls_sidebar {
-  max-width: 100vw;
-  min-width: 100vw;
-}
+
 .urls_sidebar {
   min-width: 280px;
   max-width: 280px;
   padding-top: 40px;
   color: rgba(0, 0, 0, 0.6);
-  -webkit-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  transition: all 0.2s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
 }
 .active_urls {
   .url_title_sidebar {

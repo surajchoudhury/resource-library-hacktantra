@@ -18,7 +18,7 @@
 .fold {
   position: absolute;
   left: -43px;
-  top: -8px;
+  top: 0;
   font-size: 25px;
   padding: 2px 5px;
   font-weight: 700;
@@ -34,16 +34,14 @@
 }
 .back_to_top_btn {
   font-size: 2.5rem;
-  color: rgb(98, 99, 100);
+  color: rgba(98, 99, 100,.5);
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
   transition: all .4s;
-  &:hover {
-    color: #343A40;
-  }
 }
 
-#side_chk:checked ~ #sidebar {
-  margin-right: 0;
-}
+
 //edit update
 
 .edit_update_container {
@@ -128,11 +126,11 @@
   border-left: 2px solid transparent;
   transition: all 0.3s;
   &:focus {
-    border-left: 2px solid rgba(#2f89fb, 1);
+    border-left: 2px solid rgba($blue, 1);
   }
 }
 .input_title:focus::placeholder {
-  color: rgba(#2f89fb, 1);
+  color: rgba($blue, 1);
 }
 .input_desc {
   font-size: 1.2rem;
@@ -141,11 +139,11 @@
   transition: all 0.3s;
   border-left: 2px solid transparent;
   &:focus {
-    border-left: 2px solid rgba(#2f89fb, 1);
+    border-left: 2px solid rgba($blue, 1);
   }
 }
 .input_desc:focus::placeholder {
-  color: rgba(#2f89fb, 1);
+  color: rgba($blue, 1);
 }
 
 .models_cont {
@@ -157,10 +155,10 @@
   border-left: 1px solid transparent;
   font-weight: 600;
   &:hover {
-    border-left: 1px solid #2f89fb;
-    color: #2f89fb;
+    border-left: 1px solid $blue;
+    color: $blue;
     .chk_chapter {
-      color: rgba(#2f89fb, 1);
+      color: rgba($blue, 1);
     }
   }
 }
@@ -205,7 +203,7 @@
   top: 10px;
 }
 .book_close {
-  color: #2f89fb;
+  color: $blue;
   font-size: 28px;
   left: -55px;
   position: absolute;
@@ -215,10 +213,10 @@
   font-size: 28px;
 }
 .active_module {
-  border-left: 1px solid #2f89fb;
-  color: #2f89fd;
+  border-left: 1px solid $blue;
+  color: $blue;
   .module_title_small {
-    color: #2f89fd;
+    color: $blue;
   }
   ~ .chapters_cont {
     max-height: 50rem;
@@ -236,8 +234,8 @@
   font-weight: 600;
   border-left: 1px solid transparent;
   &:hover {
-    border-left: 1px solid #2f89fb;
-    color: #2f89fb;
+    border-left: 1px solid $blue;
+    color: $blue;
   }
 }
 .chapter_title_small_2 {
@@ -249,14 +247,14 @@
   width: 100%;
   border-left: 1px solid transparent;
   &:hover {
-    border-left: 1px solid #2f89fb;
-    color: #2f89fb;
+    border-left: 1px solid $blue;
+    color: $blue;
   }
 }
 .active_chapter {
-  border-left: 1px solid #2f89fb;
+  border-left: 1px solid $blue;
   span {
-    color: #2f89fb;
+    color: $blue;
   }
 }
 .module_title_small {
@@ -297,7 +295,7 @@
   color: rgba(255, 255, 255, 1);
   transition: all 0.3s;
   &:hover {
-    color: #2f89fb;
+    color: $blue;
   }
 }
 #model_chk {
@@ -381,7 +379,7 @@ main {
 }
 .module_add_letter {
   font-size: 0.8rem;
-  color: #2f89fb;
+  color: $blue;
 }
 
 .form_module {
@@ -392,22 +390,22 @@ main {
   transition: all 0.3s;
   border-left: 2px solid transparent;
   &:focus {
-    border-left: 2px solid rgba(#2f89fb, 1);
+    border-left: 2px solid rgba($blue, 1);
   }
 }
 .form_module:focus::placeholder {
-  color: rgba(#2f89fb, 1);
+  color: rgba($blue, 1);
 }
 .form_module_update {
   transition: all 0.3s;
   padding: 0 1rem;
   border-left: 2px solid transparent;
   &:focus {
-    border-left: 2px solid rgba(#2f89fb, 1);
+    border-left: 2px solid rgba($blue, 1);
   }
 }
 .form_module_update:focus::placeholder {
-  color: #2f89fb;
+  color: $blue;
 }
 .form_module-faq {
   height: 20rem;
@@ -467,6 +465,7 @@ b {
   padding: 20px 20px 30px 20px;
   font-size: 15px;
   min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
   img {
     max-width: 100%;
     box-sizing: border-box;
@@ -11361,13 +11360,13 @@ h5,
   font-size: 20px;
 }
 #sidebar h1 .logo {
-  color: #2f89fb;
+  color: $blue;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
   position: relative;
-  // border-bottom: 1px solid #2f89fb;
+  // border-bottom: 1px solid $blue;
 }
 .add_mod {
   position: absolute;
@@ -11383,7 +11382,7 @@ h5,
 }
 .add_module {
   font-size: 1.8rem;
-  color: #2f89fb;
+  color: $blue;
   &:hover ~ .add_mod {
     opacity: 1;
   }

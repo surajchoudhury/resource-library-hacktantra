@@ -66,6 +66,8 @@
 .footer {
   padding: 1rem;
   background-color: #343a40;
+  position: relative;
+  z-index: 5;
   text-align: center;
   color: rgba(255, 255, 255, 0.5);
   width: 100%;

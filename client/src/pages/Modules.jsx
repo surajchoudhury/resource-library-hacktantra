@@ -1,7 +1,11 @@
 import React from "react";
 import AllModules from "./AllModules";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
-import { IoIosArrowDown, IoIosArrowDropupCircle } from "react-icons/io";
+import {
+  IoIosArrowDown,
+  IoIosArrowDropupCircle,
+  IoIosArrowBack
+} from "react-icons/io";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
 import {
@@ -25,7 +29,8 @@ class Modules extends React.Component {
       title: null,
       description: null,
       body: null,
-      checked: false
+      checked: false,
+      top: false
     };
   }
 
@@ -36,7 +41,16 @@ class Modules extends React.Component {
     this.props.dispatch(
       fetchModules(this.props.location.pathname.split("=")[1])
     );
+    window.addEventListener("scroll", this.listenScrollEvent);
   }
+
+  listenScrollEvent = e => {
+    if (window.scrollY > 200) {
+      this.setState({ top: true });
+    } else {
+      this.setState({ top: false });
+    }
+  };
   scrollToTop = () => {
     scroll.scrollToTop();
   };
@@ -74,26 +88,46 @@ class Modules extends React.Component {
         this.props.modules.success ? (
           <div className="wrapper d-flex align-items-stretch">
             <input type="checkbox" name="" id="book_menu" />
-            <article className="article_content">
+            <input type="checkbox" id="side_chk" checked={this.state.checked} />
+            <article
+              className="article_content"
+              onClick={() => this.setState({ checked: false })}
+            >
               <div id="content">
                 {this.props.modules.module.map(module => (
                   <AllModules {...module} isMentor={this.props.isMentor} />
                 ))}
               </div>
             </article>
-            <input type="checkbox" id="side_chk" checked={this.state.checked} />
 
             <nav id="sidebar">
               <section className="sidebar_contents">
-                <label
-                  htmlFor="side_chk"
-                  className="fold"
-                  onClick={() =>
-                    this.setState({ checked: !this.state.checked })
-                  }
-                >
-                  <FiMenu />
-                </label>
+                {this.state.top ? null : (
+                  <>
+                    {this.state.checked ? (
+                      <label
+                        htmlFor="side_chk"
+                        className="fold"
+                        onClick={() =>
+                          this.setState({ checked: !this.state.checked })
+                        }
+                      >
+                        <IoIosArrowBack />
+                      </label>
+                    ) : (
+                      <label
+                        htmlFor="side_chk"
+                        className="fold"
+                        onClick={() =>
+                          this.setState({ checked: !this.state.checked })
+                        }
+                      >
+                        <FiMenu />
+                      </label>
+                    )}
+                  </>
+                )}
+
                 <h1>
                   <div className="labels_container">
                     <label htmlFor="book_menu" className="book_close_label">
@@ -226,7 +260,9 @@ class Modules extends React.Component {
           <Loader />
         )}
         <div onClick={this.scrollToTop} className="back_to_top">
-          <IoIosArrowDropupCircle className="back_to_top_btn" />
+          {this.state.top ? (
+            <IoIosArrowDropupCircle className="back_to_top_btn" />
+          ) : null}
         </div>
       </main>
     );

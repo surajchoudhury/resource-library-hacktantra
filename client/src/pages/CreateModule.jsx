@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, Card, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { createModule } from "../Actions";
 import { connect } from "react-redux";
 import Loader from "../components/Loader";
@@ -46,8 +46,7 @@ class CreateModule extends React.Component {
       <>
         {this.props.subject ? (
           <div className="update_form_container">
-            <Accordion>
-              <Card.Body>
+            
                 <Form onSubmit={this.handleCreateModule}>
                   <Form.Group controlId="formBasicEmail">
                     <input
@@ -88,8 +87,7 @@ class CreateModule extends React.Component {
                     {this.state.submit ? "Creating..." : "Create"}
                   </Button>
                 </Form>
-              </Card.Body>
-            </Accordion>
+     
           </div>
         ) : (
           <Loader />

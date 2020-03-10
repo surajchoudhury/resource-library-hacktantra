@@ -17,7 +17,7 @@ class Header extends React.Component {
       }
 
   listenScrollEvent = e => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 80) {
       this.setState({ header: true });
     } else {
       this.setState({ header: false });
@@ -33,7 +33,7 @@ class Header extends React.Component {
   render() {
     return (
       <>
-        <header className={this.state.header ? "header_active" : "header"}>
+        <header className={this.state.header ? "header_active" : "header shadow-sm"}>
           <Navbar>
             <Navbar.Brand href="#home">
               <Link className="link" to="/">

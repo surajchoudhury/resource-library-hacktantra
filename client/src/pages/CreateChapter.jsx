@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, Card, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { GoFileSubmodule } from "react-icons/go";
 import { IoMdAdd } from "react-icons/io";
 import { createChapter } from "../Actions";
@@ -49,8 +49,8 @@ class CreateChapter extends React.Component {
       <>
         {this.props.module ? (
           <div className="update_form_container">
-            <Accordion>
-              <Card.Body>
+            {/* <Accordion> */}
+              {/* <Card.Body> */}
                 <Form onSubmit={this.handleCreateChapter}>
                   <Form.Group controlId="formBasicEmail">
                     <input
@@ -91,8 +91,8 @@ class CreateChapter extends React.Component {
                     {this.state.submit ? "Creating..." : "Create"}
                   </Button>
                 </Form>
-              </Card.Body>
-            </Accordion>
+              {/* </Card.Body> */}
+            {/* </Accordion> */}
           </div>
         ) : (
           <Loader />

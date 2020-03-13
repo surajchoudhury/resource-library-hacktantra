@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Links from "./Link";
 import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
 import { setUrlId, deleteUrl } from "../Actions";
+import CreateLink from "./CreateLink";
 
 const DeleteModal = (show, handleClose, handleShow, url, dispatch) => {
   function handleConfirm() {
@@ -37,11 +39,20 @@ const UrlsMain = props => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  let { dispatch, title, body, _id, createdAt, updatedAt, author } = props;
+  let {
+    dispatch,
+    title,
+    body,
+    _id,
+    createdAt,
+    updatedAt,
+    author,
+    links
+  } = props;
   return (
     <main className="main_container " id={_id}>
       <div className="topic-container">
-          <div className="topic_title_url">
+        <div className="topic_title_url">
           <span className="url_title_small">{title}</span>
           <span>
             {props.isMentor ? (
@@ -76,13 +87,18 @@ const UrlsMain = props => {
             <b>Updated on</b> : {new Date(updatedAt).toDateString()}
           </span>
         </div>
-      
+
         <article
           dangerouslySetInnerHTML={{
             __html: body
           }}
         ></article>
         {DeleteModal(show, handleClose, handleShow, props, dispatch)}
+
+        {links.map(link => (
+          <Links {...link} urlId={_id} />
+        ))}
+        <CreateLink id={_id} />
       </div>
     </main>
   );

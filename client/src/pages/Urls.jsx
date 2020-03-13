@@ -11,7 +11,7 @@ import { fetchUrls } from "../Actions";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { IoIosArrowDropupCircle, IoIosArrowBack } from "react-icons/io";
 import { Link as AncLink } from "react-router-dom";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 
 class Urls extends React.Component {
   constructor() {

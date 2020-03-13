@@ -197,6 +197,45 @@ export function deleteUrl(id) {
   };
 }
 
+export function createLink(id, body) {
+  return dispatch => {
+    fetch(`/api/v1/url/${id}/links`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        body
+      })
+    })
+      .then(res => res.json())
+      .then(link => {
+        if (link.success) {
+          dispatch(fetchUrls());
+        }
+      });
+  };
+}
+
+export function deleteLink(id, linkId) {
+  return dispatch => {
+    fetch(`/api/v1/url/${id}/links/${linkId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.token
+      }
+    })
+      .then(res => res.json())
+      .then(link => {
+        if (link.success) {
+          dispatch(fetchUrls());
+        }
+      });
+  };
+}
+
 export function createSubject(title, description, image) {
   return dispatch => {
     fetch("/api/v1/subjects", {

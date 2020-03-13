@@ -13,6 +13,12 @@ const urlSchema = new Schema(
       trim: true,
       required: true
     },
+    links: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Link"
+      }
+    ],
     author: {
       type: Schema.Types.ObjectId,
       ref: "Mentor"

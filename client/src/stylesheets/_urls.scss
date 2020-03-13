@@ -86,3 +86,53 @@
 .input_title_url:focus::placeholder {
   color: rgba(#2f89fb, 1);
 }
+
+.link_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:hover {
+    .delete_link {
+      color: $blue;
+    }
+  }
+}
+.links_body {
+  display: flex;
+  align-items: center;
+}
+.delete_link {
+  font-size: 25px;
+  margin: 0 16px;
+  color: rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  &:hover {
+    color: $blue;
+  }
+}
+.add_link_icon {
+  color: $blue;
+  font-size: 28px;
+}
+.input_link_hidden {
+  padding: 0.5rem 1rem;
+  margin: 0 1rem;
+  transition: all 0.5s;
+  border: none;
+
+  width: 0;
+}
+.input_link {
+  padding: 0.5rem 1rem;
+  transition: all 0.5s;
+  margin: 0 1rem;
+  border: none;
+  width: 90%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  &:focus {
+    border-bottom: 1px solid $blue;
+  }
+}
+.input_link:focus::placeholder {
+  color: $blue;
+}

@@ -96,7 +96,7 @@ class Urls extends React.Component {
                     </>
                   )}
                   <span className="logo_urls">
-                    {this.props.isMentor ? (
+                    {isMentor ? (
                       <AncLink to="/urls/create" className="link">
                         <OverlayTrigger
                           placement="left"

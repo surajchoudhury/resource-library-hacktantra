@@ -15,21 +15,24 @@ const handleDelete = (id, linkId, dispatch) => {
 const Link = props => {
   return (
     <section className="link_container">
-      <div className="links_body"
+      <div
+        className="links_body"
         dangerouslySetInnerHTML={{
           __html: props.body
         }}
       ></div>
-      <OverlayTrigger
-        placement="left"
-        delay={{ show: 100, hide: 200 }}
-        overlay={renderTooltip(props)}
-      >
-        <TiDeleteOutline
-          className="delete_link"
-          onClick={() => handleDelete(props.urlId, props._id, props.dispatch)}
-        />
-      </OverlayTrigger>
+      {props.isMentor ? (
+        <OverlayTrigger
+          placement="left"
+          delay={{ show: 100, hide: 200 }}
+          overlay={renderTooltip(props)}
+        >
+          <TiDeleteOutline
+            className="delete_link"
+            onClick={() => handleDelete(props.urlId, props._id, props.dispatch)}
+          />
+        </OverlayTrigger>
+      ) : null}
     </section>
   );
 };

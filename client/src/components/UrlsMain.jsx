@@ -41,6 +41,7 @@ const UrlsMain = props => {
   const handleShow = () => setShow(true);
   let {
     dispatch,
+    isMentor,
     title,
     body,
     _id,
@@ -96,9 +97,9 @@ const UrlsMain = props => {
         {DeleteModal(show, handleClose, handleShow, props, dispatch)}
 
         {links.map(link => (
-          <Links {...link} urlId={_id} />
+          <Links {...link} urlId={_id} isMentor={isMentor} />
         ))}
-        <CreateLink id={_id} />
+        {isMentor ? <CreateLink id={_id} /> : null}
       </div>
     </main>
   );
